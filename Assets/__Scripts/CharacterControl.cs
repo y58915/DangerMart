@@ -32,13 +32,14 @@ public class CharacterControl : MonoBehaviour
         }
 
         //Change animator variables
-        if (playerNav.velocity != Vector3.zero)
-        {
-            playerAnim.SetBool("isWalking", true);
-        }
-        else if (playerAnim.velocity == Vector3.zero)
+        if (playerNav.velocity.sqrMagnitude < 0.3f)
         {
             playerAnim.SetBool("isWalking", false);
         }
+        else
+        {
+            playerAnim.SetBool("isWalking", true);
+        }
+        
     }
 }
