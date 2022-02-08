@@ -13,7 +13,13 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if( Input.GetMouseButtonDown(0))
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitPoint;
@@ -34,11 +40,5 @@ public class CharacterControl : MonoBehaviour
         {
             playerAnim.SetBool("isWalking", false);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
