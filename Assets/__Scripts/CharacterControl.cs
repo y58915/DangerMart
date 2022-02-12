@@ -5,10 +5,13 @@ using UnityEngine.AI;
 
 public class CharacterControl : MonoBehaviour
 {
+
     public Camera cam;
     public NavMeshAgent playerNav;
     public Animator playerAnim;
     public GameObject targetDestination;
+
+    public Inventory inventory;
 
     // Start is called before the first frame update
     void Start()
@@ -41,5 +44,19 @@ public class CharacterControl : MonoBehaviour
             playerAnim.SetBool("isWalking", true);
         }
         
+    }
+
+    public void OnTriggerEnter(Collider other) 
+    {
+        var itemOnShelf = other.GetComponent<ItemOnShelf> ();
+        if (itemOnShelf) {
+            inventory.AddItem(itemOnShelf.item, 1);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void OnApplicationQuit() 
+    {
+        inventory.Container.Clear();
     }
 }

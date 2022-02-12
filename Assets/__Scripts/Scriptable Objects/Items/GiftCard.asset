@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9637793e5580ddb4491672700fb989db, type: 3}
-  m_Name: TestItem
+  m_Script: {fileID: 11500000, guid: c74cbb6a28d9a495281a9e446268d3b6, type: 3}
+  m_Name: GiftCard
   m_EditorClassIdentifier: 
-  itemName: Sphere
-  itemCategory: Shapes
-  itemDescription: 'It''s a sphere. '
+  itemName: 
+  itemCategory: 2
+  itemDescription: 
   itemImage: {fileID: 0}
-  itemModelPrefab: {fileID: 3635606160918801101, guid: 7e0cbb9203013bd408dc8a394b592d39, type: 3}
+  itemModelPrefab: {fileID: 6248296296736232619, guid: 577618efe42464fa1b246c9014f13c10, type: 3}
