@@ -5,9 +5,14 @@ using UnityEngine.Events;
 
 public class ShoppingListManager : MonoBehaviour
 {
-    List<ShoppingList> shoppingLists;
+    public int MAXSIZE = 8;
+    public List<Item> allItems;
 
-    public UnityEvent UpdateListsEvent;
+    bool once = false;
+
+    List<List<Item>> shoppingLists;
+
+    [HideInInspector] public UnityEvent<List<List<Item>>> UpdateListsEvent;
 
     #region Singleton
     public static ShoppingListManager instance;
@@ -28,22 +33,42 @@ public class ShoppingListManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        shoppingLists = new List<List<Item>>();
+        AddList(NewShoppingList());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    public void AddList()
+    public void AddList(List<Item> newList)
     {
-        UpdateListsEvent.Invoke();
+        shoppingLists.Add(newList);
+
+        Debug.Log(newList[0]);
+        UpdateListsEvent.Invoke(shoppingLists);
     }
 
     public void RemoveList()
     {
-        UpdateListsEvent.Invoke();
+        UpdateListsEvent.Invoke(shoppingLists);
+    }
+    private List<Item> NewShoppingList()
+    {
+        List<Item> list = new List<Item>();
+
+        int count = allItems.Count;
+        int repeatTime = Random.Range(2, 4);
+
+        for (int i = 0; i < repeatTime; i++)
+        {
+            int rand = Random.Range(0, count);
+
+            list.Add(allItems[rand]);
+        }
+
+        return list;
     }
 }
+
