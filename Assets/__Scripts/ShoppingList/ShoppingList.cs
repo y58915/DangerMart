@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShoppingList: MonoBehaviour
 {
+    List<Item> itemList;
     // Start is called before the first frame update
     void Start()
     {

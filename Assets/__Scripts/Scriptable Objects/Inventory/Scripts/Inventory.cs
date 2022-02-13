@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
-public class Inventory : ScriptableObject
+public class Inventory : ScriptableObject       //mono
 {
     public List<InventorySlot> Container = new List<InventorySlot>();
     public void AddItem(Item _item, int _amount) {
@@ -20,6 +20,8 @@ public class Inventory : ScriptableObject
         {
             Container.Add(new InventorySlot(_item, _amount));
         }
+
+        //additemtevent.invoke()
     }
 }
 
