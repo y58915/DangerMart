@@ -7,7 +7,7 @@ public enum ItemCategory
 {
     Tool,
     Food,
-    Default
+    Default     //why default?
 }
 public abstract class Item : ScriptableObject
 {

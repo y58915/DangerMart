@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &382419490392484703
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &1056534698995790319
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &2135754787250882243
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &3385064707277230941
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &3479438227553713093
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 4290808071574914131}
 --- !u!1 &3916077155782064413
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &5237660759435361462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &6008013153367866766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,6 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &6565133403428233060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,6 +1649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95313e96fc0a8942b479524670b3c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!1 &8335450635830343157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,7 +1661,7 @@ GameObject:
   - component: {fileID: 1754756072407943585}
   - component: {fileID: 6026172557032195231}
   - component: {fileID: 8116926925627775356}
-  - component: {fileID: 7619683827072428713}
+  - component: {fileID: 5056102134921668686}
   m_Layer: 5
   m_Name: ShoppingLisPanel
   m_TagString: Untagged
@@ -1726,7 +1736,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7619683827072428713
+--- !u!114 &5056102134921668686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1735,11 +1745,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8335450635830343157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68c18ec8c73305241ac5ef1d9424bc40, type: 3}
+  m_Script: {fileID: 11500000, guid: a1386057c043eae469e365a7a3d95ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAXSIZE: 8
-  allItems: []
-  UpdateListsEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  shoppingListUIArray: []

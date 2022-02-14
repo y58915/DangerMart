@@ -19,16 +19,21 @@ public class ShoppingListUI : MonoBehaviour
         
     }
 
+
+    //switch to updateImage in the future
     public void UpdateText(List<Item> shoppingList)
     {
 
-        Debug.Log("update text");
+        Debug.Log(shoppingList[0]);
         string temp = "";
 
         foreach (Item item in shoppingList)
         {
             temp += item.itemName;
             temp += "\n";
+
+
+            Debug.Log(temp);
         }
 
         text.text = temp;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec79cdb4409042c8a156a9432bf1d85, type: 3}
   m_Name: Scissors
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Scissors
   itemCategory: 0
   itemDescription: 
   itemImage: {fileID: 0}

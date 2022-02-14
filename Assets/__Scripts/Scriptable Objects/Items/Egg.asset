@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb3f1226b79349b88ecb09d394a75d8, type: 3}
   m_Name: Egg
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Egg
   itemCategory: 1
   itemDescription: 
   itemImage: {fileID: 0}

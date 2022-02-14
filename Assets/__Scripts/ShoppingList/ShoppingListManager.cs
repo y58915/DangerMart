@@ -6,9 +6,10 @@ using UnityEngine.Events;
 public class ShoppingListManager : MonoBehaviour
 {
     public int MAXSIZE = 8;
-    public List<Item> allItems;
+    public float newListTimer = 5f;
+    public Item[] allItems;
 
-    bool once = false;
+    private float timer;
 
     List<List<Item>> shoppingLists;
 
@@ -34,19 +35,27 @@ public class ShoppingListManager : MonoBehaviour
     void Start()
     {
         shoppingLists = new List<List<Item>>();
-        AddList(NewShoppingList());
+        NewShoppingList();
+
+        timer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer += Time.fixedDeltaTime;
+        if (timer >= newListTimer)
+        {
+            timer = 0;
+            if (shoppingLists.Count < MAXSIZE)
+                NewShoppingList();
+        }
     }
 
     public void AddList(List<Item> newList)
     {
         shoppingLists.Add(newList);
 
-        Debug.Log(newList[0]);
         UpdateListsEvent.Invoke(shoppingLists);
     }
 
@@ -54,11 +63,14 @@ public class ShoppingListManager : MonoBehaviour
     {
         UpdateListsEvent.Invoke(shoppingLists);
     }
-    private List<Item> NewShoppingList()
+
+
+
+    private void NewShoppingList()
     {
         List<Item> list = new List<Item>();
 
-        int count = allItems.Count;
+        int count = allItems.Length;
         int repeatTime = Random.Range(2, 4);
 
         for (int i = 0; i < repeatTime; i++)
@@ -68,7 +80,7 @@ public class ShoppingListManager : MonoBehaviour
             list.Add(allItems[rand]);
         }
 
-        return list;
+        AddList(list);
     }
 }
 

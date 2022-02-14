@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74cbb6a28d9a495281a9e446268d3b6, type: 3}
   m_Name: GiftCard
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Gift Card
   itemCategory: 2
   itemDescription: 
   itemImage: {fileID: 0}
