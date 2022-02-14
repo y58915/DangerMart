@@ -17,6 +17,7 @@ public abstract class Item : ScriptableObject
     public string itemDescription;
     public Image itemImage;
     public GameObject itemModelPrefab;
+    public float score;
 
     // Start is called before the first frame update
     void Start()

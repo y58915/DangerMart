@@ -31,5 +31,6 @@ public class CollectionArea : MonoBehaviour
 
         Destroy(myItem);
         myItem = Instantiate(item.itemModelPrefab, this.transform.position, Quaternion.identity);
+        Score.Instance.AddScore(item.score);
     }
 }

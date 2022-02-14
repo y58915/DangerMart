@@ -17,3 +17,4 @@ MonoBehaviour:
   itemDescription: 
   itemImage: {fileID: 0}
   itemModelPrefab: {fileID: 5388746104906565034, guid: fc2252534f7334c048806d3fcd119a68, type: 3}
+  score: 4
