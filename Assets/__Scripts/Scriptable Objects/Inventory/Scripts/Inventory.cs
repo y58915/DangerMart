@@ -11,6 +11,8 @@ public class Inventory : ScriptableObject       //mono
         for (int i = 0; i < Container.Count; i++) {
             if (Container[i].item == _item)
             {
+
+                Score.Instance.AddScore(_item.score);
                 Container[i].AddAmount(_amount);
                 hasItem = true;
                 break;
@@ -18,6 +20,7 @@ public class Inventory : ScriptableObject       //mono
         }
         if (!hasItem)
         {
+            Score.Instance.AddScore(_item.score);
             Container.Add(new InventorySlot(_item, _amount));
         }
 
