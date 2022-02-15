@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -22,20 +23,14 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitPoint;
+        UpdateAnimations();
+        Debug.Log("Speed " + playerNav.velocity.sqrMagnitude);
+    }
 
-            if (Physics.Raycast(ray, out hitPoint))
-            {
-                targetDestination.transform.position = hitPoint.point;
-                playerNav.SetDestination(hitPoint.point);
-            }
-        }
-
+    public void UpdateAnimations()
+    {
         //Change animator variables
-        if (playerNav.velocity.sqrMagnitude < 0.3f)
+        if (playerNav.velocity.sqrMagnitude < 0.5f)
         {
             playerAnim.SetBool("isWalking", false);
         }
@@ -43,6 +38,21 @@ public class CharacterControl : MonoBehaviour
         {
             playerAnim.SetBool("isWalking", true);
         }
+    }
+
+    public void OnMove()
+    {
+        Debug.Log("move " + Mouse.current.position.ReadValue());
+        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hitPoint;
+
+        if (Physics.Raycast(ray, out hitPoint))
+        {
+            Debug.Log("Here");
+            targetDestination.transform.position = hitPoint.point;
+            playerNav.SetDestination(hitPoint.point);
+        }
+
         
     }
 
