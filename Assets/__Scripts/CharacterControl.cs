@@ -11,7 +11,7 @@ public class CharacterControl : MonoBehaviour
     public NavMeshAgent playerNav;
     public Animator playerAnim;
     public GameObject targetDestination;
-
+    public LayerMask groundLayerMask;
     public Inventory inventory;
 
     // Start is called before the first frame update
@@ -24,7 +24,6 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         UpdateAnimations();
-        Debug.Log("Speed " + playerNav.velocity.sqrMagnitude);
     }
 
     public void UpdateAnimations()
@@ -42,11 +41,11 @@ public class CharacterControl : MonoBehaviour
 
     public void OnMove()
     {
-        Debug.Log("move " + Mouse.current.position.ReadValue());
+        Debug.Log("Move to: " + Mouse.current.position.ReadValue());
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hitPoint;
 
-        if (Physics.Raycast(ray, out hitPoint))
+        if (Physics.Raycast(ray, out hitPoint, 1000f, groundLayerMask))
         {
             Debug.Log("Here");
             targetDestination.transform.position = hitPoint.point;
