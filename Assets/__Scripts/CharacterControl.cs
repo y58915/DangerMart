@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.Analytics;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -60,6 +61,15 @@ public class CharacterControl : MonoBehaviour
         var itemOnShelf = other.GetComponent<ItemOnShelf> ();
         if (itemOnShelf) {
             inventory.AddItem(itemOnShelf.item, 1);
+            AnalyticsResult analyticsResult = Analytics.CustomEvent(
+            "Collected Item",
+            new Dictionary<string, object>
+            {
+                {
+                    "Item", other.gameObject.name
+                }
+            });
+            Debug.Log("Item result: " + analyticsResult);
             Destroy(other.gameObject);
         }
     }

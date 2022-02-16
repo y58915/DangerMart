@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using TMPro;
 
 public class Score : MonoBehaviour
@@ -36,6 +37,15 @@ public class Score : MonoBehaviour
     public void AddScore(float score)
     {
         currentScore += score;
+        AnalyticsResult analyticsResult = Analytics.CustomEvent(
+            "High Score",
+            new Dictionary<string, object>
+            {
+                {
+                    "Score", currentScore
+                }
+            });
+        Debug.Log("Score result: " + analyticsResult);
     }
 
     public void SubtractScore(float score)
