@@ -7,25 +7,29 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     float currentScore = 0;
-    public static Score Instance { get { return instance; } }
 
-    [SerializeField] TextMeshProUGUI scoreText;
-
-    private static Score instance;
+    [SerializeField] TextMeshProUGUI scoreText;         //remove it. UI will be managed together
 
 
-    // Start is called before the first frame update
-    void Start()
+    #region Singleton
+    public static Score instance;
+
+    private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Score.Instance.currentScore = 0;
-            Destroy(this.gameObject);
-        }
-        else
+        if (instance == null)
         {
             instance = this;
         }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    #endregion
+
+    private void Start()
+    {
+        currentScore = 0;
     }
 
     // Update is called once per frame

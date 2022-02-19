@@ -15,6 +15,7 @@ public class DisplayInventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inventory = Inventory.instance;
         CreateDisplay();
     }
     // Update is called once per frame
@@ -24,29 +25,29 @@ public class DisplayInventory : MonoBehaviour
     }
     public void UpdateDisplay()
     {
-        for (int i = 0; i < inventory.Container.Count; i++)
+        for (int i = 0; i < inventory.container.Count; i++)
         {
-            if (itemsDisplayed.ContainsKey(inventory.Container[i]))
+            if (itemsDisplayed.ContainsKey(inventory.container[i]))
             {
-                itemsDisplayed[inventory.Container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0"); 
+                itemsDisplayed[inventory.container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0"); 
             }
             else
             {
-                var obj = Instantiate(inventory.Container[i].item.itemModelPrefab, Vector3.zero, Quaternion.identity, transform);
+                var obj = Instantiate(inventory.container[i].item.itemModelPrefab, Vector3.zero, Quaternion.identity, transform);
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-                obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
-                itemsDisplayed.Add(inventory.Container[i], obj);
+                obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0");
+                itemsDisplayed.Add(inventory.container[i], obj);
             }
         }
     }
     public void CreateDisplay()
     {
-        for (int i = 0; i < inventory.Container.Count; i++)
+        for (int i = 0; i < inventory.container.Count; i++)
         {
-            var obj = Instantiate(inventory.Container[i].item.itemModelPrefab, Vector3.zero, Quaternion.identity, transform);
+            var obj = Instantiate(inventory.container[i].item.itemModelPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
-            obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Container[i].amount.ToString("n0");
-            itemsDisplayed.Add(inventory.Container[i], obj);
+            obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0");
+            itemsDisplayed.Add(inventory.container[i], obj);
         }
     }
     public Vector3 GetPosition(int i) 

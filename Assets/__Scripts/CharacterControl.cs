@@ -18,7 +18,7 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        inventory = Inventory.instance;
     }
 
     // Update is called once per frame
@@ -76,6 +76,6 @@ public class CharacterControl : MonoBehaviour
 
     private void OnApplicationQuit() 
     {
-        inventory.Container.Clear();
+        inventory.container.Clear();
     }
 }
