@@ -15,7 +15,8 @@ public abstract class Item : ScriptableObject
     public ItemCategory itemCategory;
     [TextArea(10, 20)]
     public string itemDescription;
-    public Image itemImage;
+    //public Image itemImage;
+    public Sprite itemImage;
     public GameObject itemModelPrefab;
     public float score;
 

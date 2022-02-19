@@ -13,6 +13,7 @@ public class CharacterControl : MonoBehaviour
     public Animator playerAnim;
     public GameObject targetDestination;
     public LayerMask groundLayerMask;
+    public LayerMask collectionLayerMask;
     public Inventory inventory;
 
     // Start is called before the first frame update
@@ -42,13 +43,19 @@ public class CharacterControl : MonoBehaviour
 
     public void OnMove()
     {
-        Debug.Log("Move to: " + Mouse.current.position.ReadValue());
+        //Debug.Log("Move to: " + Mouse.current.position.ReadValue());
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hitPoint;
 
-        if (Physics.Raycast(ray, out hitPoint, 1000f, groundLayerMask))
+        if (Physics.Raycast(ray, out hitPoint, 1000f, collectionLayerMask))
         {
-            Debug.Log("Here");
+            // Move in fron of collection area to collect item
+            targetDestination.transform.position = hitPoint.collider.gameObject.GetComponent<CollectionArea>().collectionPosition.position;
+            playerNav.SetDestination(hitPoint.collider.gameObject.GetComponent<CollectionArea>().collectionPosition.position);
+        }
+        else if (Physics.Raycast(ray, out hitPoint, 1000f, groundLayerMask))
+        {
+            // Move to point on floor 
             targetDestination.transform.position = hitPoint.point;
             playerNav.SetDestination(hitPoint.point);
         }
