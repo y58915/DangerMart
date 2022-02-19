@@ -91,6 +91,32 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // compare the inventory with shoppinglists
+    public void CompareInventoryShoppingLists(List<InventorySlot> inventory, List<ShoppingList> shoppingLists){
+        foreach (ShoppingList list in shoppingLists)
+        {
+            Dictionary<Item, int> curr;
+            foreach (Item item in list){
+                if (!curr.ContainsKey(item)){
+                    curr[item] = 0;
+                }
+                curr[item] += 1;
+            }
+            bool completed = true;
+
+            foreach (KeyValuePair<Item, int> entry in curr)
+            {
+                if (!inventory.Exists(x => ((x.item == entry.Key) && (entry.Value < x.amount)))){
+                    completed = false;
+                    break;
+                }
+            }
+            if (completed){
+                CompleteShoppingList(list);
+            }
+        }
+    }
+
     public List<InventorySlot> GetInventory()
     {
         Debug.Log("get");
