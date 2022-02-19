@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CollectionArea : MonoBehaviour
 {
+    [Header("Navigation")]
+    public Transform collectionPosition;
+
     [Header("Item")]
     [SerializeField]
     private Item item;
