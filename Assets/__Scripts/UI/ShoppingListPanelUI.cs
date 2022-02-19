@@ -23,7 +23,7 @@ public class ShoppingListPanelUI : MonoBehaviour
         
     }
 
-    void UpdateShoppingListPanel(List<List<Item>> list)
+    void UpdateShoppingListPanel(List<ShoppingListManager.ShoppingList> list)
     {
         for (int i = 0; i < list.Count; i++)
         {

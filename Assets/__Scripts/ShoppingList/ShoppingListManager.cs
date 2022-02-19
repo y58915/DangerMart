@@ -9,12 +9,13 @@ public class ShoppingListManager : MonoBehaviour
     public float newListTimer = 5f;
     public Item[] allItems;
 
+    
     private float timer;
 
-    List<List<Item>> shoppingLists;
+    List<ShoppingList> shoppingLists;
 
-    [HideInInspector] public UnityEvent<List<List<Item>>> UpdateListsEvent;
-    [HideInInspector] public UnityEvent<List<Item>> ShoppingListCompleteEvent;          //Link: inventory remove item, score add score
+    [HideInInspector] public UnityEvent<List<ShoppingList>> UpdateListsEvent;
+    [HideInInspector] public UnityEvent<ShoppingList> ShoppingListCompleteEvent;          //Link: inventory remove item, score add score
 
     #region Singleton
     public static ShoppingListManager instance;
@@ -32,10 +33,14 @@ public class ShoppingListManager : MonoBehaviour
     }
     #endregion
 
+    
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        shoppingLists = new List<List<Item>>();
+        shoppingLists = new List<ShoppingList>();
         NewShoppingList();
 
         Inventory.instance.addItemEvent.AddListener(AddNewItem);
@@ -55,7 +60,7 @@ public class ShoppingListManager : MonoBehaviour
         }
     }
 
-    public void AddList(List<Item> newList)
+    public void AddList(ShoppingList newList)
     {
         shoppingLists.Add(newList);
 
@@ -71,7 +76,7 @@ public class ShoppingListManager : MonoBehaviour
 
     private void NewShoppingList()
     {
-        List<Item> list = new List<Item>();
+        ShoppingList list = new ShoppingList();
 
         int count = allItems.Length;
         int repeatTime = Random.Range(2, 4);
@@ -90,7 +95,26 @@ public class ShoppingListManager : MonoBehaviour
     //update shoppinglist based on the inventory
     private void AddNewItem(Item item)
     {
+    }
 
+    public class ShoppingList
+    {
+        public List<Item> itemList;
+        public int score;
+
+        public ShoppingList()
+        {
+            itemList = new List<Item>();
+            score = 0;
+
+        }
+
+        public void Add(Item item)
+        {
+            itemList.Add(item);
+            // TODO: revise the true score of an item
+            score += 1;
+        }
     }
 }
 

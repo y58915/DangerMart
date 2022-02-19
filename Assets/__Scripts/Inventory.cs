@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
 
 
     //remove item based on a shopping list
-    public void CompleteShoppingList(List<Item> list)
+    public void CompleteShoppingList(ShoppingListManager.ShoppingList list)
     {
 
     }

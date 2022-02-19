@@ -21,11 +21,11 @@ public class ShoppingListUI : MonoBehaviour
 
 
     //switch to updateImage in the future
-    public void UpdateText(List<Item> shoppingList)
+    public void UpdateText(ShoppingListManager.ShoppingList shoppingList)
     {
         string temp = "";
 
-        foreach (Item item in shoppingList)
+        foreach (Item item in shoppingList.itemList)
         {
             temp += item.itemName;
             temp += "\n";
