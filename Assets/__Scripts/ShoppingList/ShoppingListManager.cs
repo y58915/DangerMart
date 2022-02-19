@@ -14,6 +14,7 @@ public class ShoppingListManager : MonoBehaviour
     List<List<Item>> shoppingLists;
 
     [HideInInspector] public UnityEvent<List<List<Item>>> UpdateListsEvent;
+    [HideInInspector] public UnityEvent<List<Item>> ShoppingListCompleteEvent;          //Link: inventory remove item, score add score
 
     #region Singleton
     public static ShoppingListManager instance;
@@ -36,6 +37,8 @@ public class ShoppingListManager : MonoBehaviour
     {
         shoppingLists = new List<List<Item>>();
         NewShoppingList();
+
+        Inventory.instance.addItemEvent.AddListener(AddNewItem);
 
         timer = 0f;
     }
@@ -81,6 +84,13 @@ public class ShoppingListManager : MonoBehaviour
         }
 
         AddList(list);
+    }
+
+    
+    //update shoppinglist based on the inventory
+    private void AddNewItem(Item item)
+    {
+
     }
 }
 

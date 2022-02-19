@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public List<InventorySlot> container;           //Maybe have a dictionary?
 
-    [HideInInspector]public UnityEvent addItemEvent;
+    [HideInInspector]public UnityEvent<Item> addItemEvent;
 
     #region Singleton
     public static Inventory instance;
@@ -28,8 +28,12 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         container = new List<InventorySlot>();
+
+        ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(CompleteShoppingList);
     }
 
+
+    //we maybe dont need amount. Add item only happened once a time
     public void AddItem(Item _item, int _amount) {
         bool hasItem = false;
         Debug.Log(container.ToString());
@@ -49,7 +53,21 @@ public class Inventory : MonoBehaviour
             container.Add(new InventorySlot(_item, _amount));
         }
 
-        addItemEvent.Invoke();
+        addItemEvent.Invoke(_item);
+    }
+
+
+    //remove a single item (maybe remove multiple at same time?)
+    public void RemoveItem(Item item)
+    {
+
+    }
+
+
+    //remove item based on a shopping list
+    public void CompleteShoppingList(List<Item> list)
+    {
+
     }
 }
 
