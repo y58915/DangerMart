@@ -6,40 +6,27 @@ using TMPro;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public float currentTime = 0f;
-
-    public static CountdownTimer Instance { get { return instance; } }
-
+    public float currentTime;
     [SerializeField] TextMeshProUGUI timerText;
 
-    private static CountdownTimer instance;
+    private bool timerPaused = false;
 
-    private bool timerStart = true;
-
-    private void Awake()
+    private void Start()
     {
-        if (instance != null && instance != this)
-        {
-            CountdownTimer.Instance.currentTime = this.currentTime;
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
+        currentTime = LevelController.instance.GetLevelTimer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timerStart)
+        if (!timerPaused)
         {
-            currentTime -= 1 * Time.deltaTime;
+            currentTime -= Time.deltaTime;
 
             if (currentTime < 0)
             {
                 currentTime = 0;
-                timerStart = false;
+                timerPaused = true;
             }
 
             int minute = (int)(currentTime / 60);
@@ -51,9 +38,9 @@ public class CountdownTimer : MonoBehaviour
         }
     }
 
-    public void StartTimer()
+    public void ToggleTimerPause()
     {
-        timerStart = true;
+        timerPaused = !timerPaused;
     }
 
     public void AddToCurrentTime(float time)

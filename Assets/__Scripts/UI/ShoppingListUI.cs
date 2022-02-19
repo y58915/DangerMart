@@ -21,7 +21,7 @@ public class ShoppingListUI : MonoBehaviour
 
 
     //switch to updateImage in the future
-    public void UpdateText(ShoppingListManager.ShoppingList shoppingList)
+    public void UpdateText(ShoppingList shoppingList)
     {
         string temp = "";
 

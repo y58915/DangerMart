@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public List<InventorySlot> container;           //Maybe have a dictionary?
 
-    [HideInInspector]public UnityEvent<Item> addItemEvent;
+    [HideInInspector] public UnityEvent<Item> addItemEvent;
 
     #region Singleton
     public static Inventory instance;
@@ -34,10 +34,12 @@ public class Inventory : MonoBehaviour
 
 
     //we maybe dont need amount. Add item only happened once a time
-    public void AddItem(Item _item, int _amount) {
+    public void AddItem(Item _item, int _amount)
+    {
         bool hasItem = false;
         Debug.Log(container.ToString());
-        for (int i = 0; i < container.Count; i++) {
+        for (int i = 0; i < container.Count; i++)
+        {
             if (container[i].item == _item)
             {
 
@@ -58,16 +60,41 @@ public class Inventory : MonoBehaviour
 
 
     //remove a single item (maybe remove multiple at same time?)
-    public void RemoveItem(Item item)
+    public void RemoveItem(Item _item)
     {
+        Debug.Log(container.ToString());
+        for (int i = 0; i < container.Count; i++)
+        {
+            if (container[i].item == _item)
+            {
+                container[i].RemoveAmount(1);
+                if (container[i].amount == 0)
+                {
+                    container.Remove(container[i]);
+                }
+                break;
+            }
+        }
 
+        // TODO
+        // removeItemEvent.Invoke(_item);
     }
 
 
     //remove item based on a shopping list
-    public void CompleteShoppingList(ShoppingListManager.ShoppingList list)
+    public void CompleteShoppingList(ShoppingList list)
     {
+        List<Item> temp = list.itemList;
+        for (int i = 0; i < temp.Count; i++)
+        {
+            RemoveItem(temp[i]);
+        }
+    }
 
+    public List<InventorySlot> GetInventory()
+    {
+        Debug.Log("get");
+        return container;
     }
 }
 
@@ -81,7 +108,12 @@ public class InventorySlot
         item = _item;
         amount = _amount;
     }
-    public void AddAmount(int value) {
+    public void AddAmount(int value)
+    {
         amount += value;
+    }
+    public void RemoveAmount(int value)
+    {
+        amount -= value;
     }
 }

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.Events;
 using TMPro;
 
 public class Score : MonoBehaviour
 {
     float currentScore = 0;
 
-    [SerializeField] TextMeshProUGUI scoreText;         //remove it. UI will be managed together
-
+    [HideInInspector] public UnityEvent<float> UpdateScore;
 
     #region Singleton
     public static Score instance;
@@ -35,7 +35,6 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score: " + currentScore.ToString();
     }
 
     public void AddScore(float score)
@@ -49,12 +48,15 @@ public class Score : MonoBehaviour
                     "Score", currentScore
                 }
             });
-        Debug.Log("Score result: " + analyticsResult);
+
+        UpdateScore.Invoke(currentScore);
     }
 
     public void SubtractScore(float score)
     {
         currentScore -= score;
+
+        UpdateScore.Invoke(currentScore);
     }
 
     public float GetScore()

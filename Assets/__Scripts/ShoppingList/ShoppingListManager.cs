@@ -97,24 +97,25 @@ public class ShoppingListManager : MonoBehaviour
     {
     }
 
-    public class ShoppingList
-    {
-        public List<Item> itemList;
-        public int score;
-
-        public ShoppingList()
-        {
-            itemList = new List<Item>();
-            score = 0;
-
-        }
-
-        public void Add(Item item)
-        {
-            itemList.Add(item);
-            // TODO: revise the true score of an item
-            score += 1;
-        }
-    }
 }
 
+
+public class ShoppingList
+{
+    public List<Item> itemList;
+    public int score;
+
+    public ShoppingList()
+    {
+        itemList = new List<Item>();
+        score = 0;
+
+    }
+
+    public void Add(Item item)
+    {
+        itemList.Add(item);
+        // TODO: revise the true score of an item
+        score += 1;
+    }
+}

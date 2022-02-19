@@ -14,12 +14,10 @@ public class CharacterControl : MonoBehaviour
     public GameObject targetDestination;
     public LayerMask groundLayerMask;
     public LayerMask collectionLayerMask;
-    public Inventory inventory;
 
     // Start is called before the first frame update
     void Start()
     {
-        inventory = Inventory.instance;
     }
 
     // Update is called once per frame
@@ -67,7 +65,7 @@ public class CharacterControl : MonoBehaviour
     {
         var itemOnShelf = other.GetComponent<ItemOnShelf> ();
         if (itemOnShelf) {
-            inventory.AddItem(itemOnShelf.item, 1);
+            Inventory.instance.AddItem(itemOnShelf.item, 1);
             AnalyticsResult analyticsResult = Analytics.CustomEvent(
             "Collected Item",
             new Dictionary<string, object>
@@ -79,10 +77,5 @@ public class CharacterControl : MonoBehaviour
             Debug.Log("Item result: " + analyticsResult);
             Destroy(other.gameObject);
         }
-    }
-
-    private void OnApplicationQuit() 
-    {
-        inventory.container.Clear();
     }
 }
