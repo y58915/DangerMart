@@ -95,8 +95,8 @@ public class Inventory : MonoBehaviour
     public void CompareInventoryShoppingLists(List<InventorySlot> inventory, List<ShoppingList> shoppingLists){
         foreach (ShoppingList list in shoppingLists)
         {
-            Dictionary<Item, int> curr;
-            foreach (Item item in list){
+            Dictionary<Item, int> curr = new Dictionary<Item, int>();
+            foreach (Item item in list.itemList){
                 if (!curr.ContainsKey(item)){
                     curr[item] = 0;
                 }
