@@ -65,7 +65,7 @@ public class CharacterControl : MonoBehaviour
     {
         var itemOnShelf = other.GetComponent<ItemOnShelf> ();
         if (itemOnShelf) {
-            Inventory.instance.AddItem(itemOnShelf.item, 1);
+            Inventory.instance.AddItem(itemOnShelf.item);
             AnalyticsResult analyticsResult = Analytics.CustomEvent(
             "Collected Item",
             new Dictionary<string, object>

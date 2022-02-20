@@ -4,7 +4,9 @@ using System;
 using UnityEngine;
 using TMPro;
 
-public class CountdownTimer : MonoBehaviour
+
+//maybe timer will merge into level controller and this will only be an UI script
+public class CountdownTimerUI : MonoBehaviour
 {
     public float currentTime;
     [SerializeField] TextMeshProUGUI timerText;

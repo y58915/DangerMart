@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayInventory : MonoBehaviour
+public class InventoryPanelUI : MonoBehaviour
 {
-    List<InventorySlot> inventory;
+    Dictionary<Item, int> inventory;
 
     [SerializeField] GameObject inventoryImageParent;
     Image[] inventoryImageList;
@@ -37,18 +37,18 @@ public class DisplayInventory : MonoBehaviour
     {
         inventory = Inventory.instance.GetInventory();
 
-        for (int i = 0; i < inventory.Count; i++)
+        int i = 0;
+        foreach (KeyValuePair<Item, int> entry in inventory)
         {
-            if(inventory[i] == null)
-            {
-                inventoryImageList[i].sprite = null;
-                inventoryImageList[i].color = Color.clear;
-            }
-            else
-            {
-                inventoryImageList[i].sprite = inventory[i].item.itemImage;
-                inventoryImageList[i].color = Color.white;
-            }
+            inventoryImageList[i].sprite = entry.Key.itemImage;
+            inventoryImageList[i].color = Color.white;
+            i++;
+        }
+
+        for (int j = i; j < inventoryImageList.Length; j++)
+        {
+            inventoryImageList[j].sprite = null;
+            inventoryImageList[j].color = Color.clear;
         }
     }
 }

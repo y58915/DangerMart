@@ -5,9 +5,10 @@ using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
-    public List<InventorySlot> container;           //Maybe have a dictionary?
+    public Dictionary<Item, int> container;             //value: the number of the item in the inventory
 
     [HideInInspector] public UnityEvent<Item> addItemEvent;
+    [HideInInspector] public UnityEvent<Item> itemAddedEvent;
 
     #region Singleton
     public static Inventory instance;
@@ -27,54 +28,49 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        container = new List<InventorySlot>();
+        container = new Dictionary<Item, int>();
 
+        addItemEvent.AddListener(AddItem);
         ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(CompleteShoppingList);
     }
 
 
     //we maybe dont need amount. Add item only happened once a time
-    public void AddItem(Item _item, int _amount)
+    public void AddItem(Item _item)
     {
-        bool hasItem = false;
-        Debug.Log(container.ToString());
-        for (int i = 0; i < container.Count; i++)
+        if (container.Count == 0)
         {
-            if (container[i].item == _item)
-            {
-
-                Score.instance.AddScore(_item.score);
-                container[i].AddAmount(_amount);
-                hasItem = true;
-                break;
-            }
+            container.Add(_item, 1);
         }
-        if (!hasItem)
+        else if (container.ContainsKey(_item))
         {
-            Score.instance.AddScore(_item.score);
-            container.Add(new InventorySlot(_item, _amount));
+            container[_item]++;
+        }
+        else
+        {
+            container.Add(_item, 1);
         }
 
-        addItemEvent.Invoke(_item);
+        itemAddedEvent.Invoke(_item);
     }
 
 
     //remove a single item (maybe remove multiple at same time?)
     public void RemoveItem(Item _item)
     {
-        Debug.Log(container.ToString());
-        for (int i = 0; i < container.Count; i++)
+        if (!container.ContainsKey(_item))
         {
-            if (container[i].item == _item)
-            {
-                container[i].RemoveAmount(1);
-                if (container[i].amount == 0)
-                {
-                    container.Remove(container[i]);
-                }
-                break;
-            }
+            return;
         }
+
+        int value = container[_item];
+
+        if (value == 0)
+        {
+            return;
+        }
+
+        container[_item]--;
 
         // TODO
         // removeItemEvent.Invoke(_item);
@@ -84,62 +80,34 @@ public class Inventory : MonoBehaviour
     //remove item based on a shopping list
     public void CompleteShoppingList(ShoppingList list)
     {
-        List<Item> temp = list.itemList;
-        for (int i = 0; i < temp.Count; i++)
+        foreach (Item item in list.itemList)
         {
-            RemoveItem(temp[i]);
+            RemoveItem(item);
         }
     }
 
-    // compare the inventory with shoppinglists
-    public void CompareInventoryShoppingLists(List<InventorySlot> inventory, List<ShoppingList> shoppingLists){
-        foreach (ShoppingList list in shoppingLists)
-        {
-            Dictionary<Item, int> curr = new Dictionary<Item, int>();
-            foreach (Item item in list.itemList){
-                if (!curr.ContainsKey(item)){
-                    curr[item] = 0;
-                }
-                curr[item] += 1;
-            }
-            bool completed = true;
-
-            foreach (KeyValuePair<Item, int> entry in curr)
-            {
-                if (!inventory.Exists(x => ((x.item == entry.Key) && (entry.Value < x.amount)))){
-                    completed = false;
-                    break;
-                }
-            }
-            if (completed){
-                CompleteShoppingList(list);
-            }
-        }
-    }
-
-    public List<InventorySlot> GetInventory()
+    public Dictionary<Item, int> GetInventory()
     {
-        Debug.Log("get");
         return container;
     }
 }
 
-[System.Serializable]
-public class InventorySlot
-{
-    public Item item;
-    public int amount;
-    public InventorySlot(Item _item, int _amount)
-    {
-        item = _item;
-        amount = _amount;
-    }
-    public void AddAmount(int value)
-    {
-        amount += value;
-    }
-    public void RemoveAmount(int value)
-    {
-        amount -= value;
-    }
-}
+//[System.Serializable]
+//public class InventorySlot
+//{
+//    public Item item;
+//    public int amount;
+//    public InventorySlot(Item _item, int _amount)
+//    {
+//        item = _item;
+//        amount = _amount;
+//    }
+//    public void AddAmount(int value)
+//    {
+//        amount += value;
+//    }
+//    public void RemoveAmount(int value)
+//    {
+//        amount -= value;
+//    }
+//}

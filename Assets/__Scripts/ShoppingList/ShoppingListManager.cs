@@ -8,8 +8,6 @@ public class ShoppingListManager : MonoBehaviour
     public int MAXSIZE = 8;
     public float newListTimer = 5f;
     public Item[] allItems;
-
-    
     private float timer;
 
     List<ShoppingList> shoppingLists;
@@ -43,7 +41,7 @@ public class ShoppingListManager : MonoBehaviour
         shoppingLists = new List<ShoppingList>();
         NewShoppingList();
 
-        Inventory.instance.addItemEvent.AddListener(AddNewItem);
+        Inventory.instance.itemAddedEvent.AddListener(NewItemAdded);
 
         timer = 0f;
     }
@@ -93,10 +91,44 @@ public class ShoppingListManager : MonoBehaviour
 
     
     //update shoppinglist based on the inventory
-    private void AddNewItem(Item item)
+    private void NewItemAdded(Item item)
     {
     }
 
+
+    //temp, we may need to optimize the algorithm
+    public void CompareInventoryShoppingLists()
+    {
+        foreach (ShoppingList list in shoppingLists)
+        {
+            Dictionary<Item, int> curr = new Dictionary<Item, int>();
+            foreach (Item item in list.itemList)
+            {
+                if (!curr.ContainsKey(item))
+                {
+                    curr[item] = 0;
+                }
+                curr[item] += 1;
+            }
+            bool completed = true;
+
+            var inventory = Inventory.instance.GetInventory();
+
+            foreach (KeyValuePair<Item, int> entry in curr)
+            {
+                if (!(inventory.ContainsKey(entry.Key) && inventory[entry.Key] >= entry.Value))
+                {
+                    completed = false;
+                    break;
+                }
+            }
+
+            if (completed)
+            {
+                ShoppingListCompleteEvent.Invoke(list);
+            }
+        }
+    }
 }
 
 
@@ -109,7 +141,6 @@ public class ShoppingList
     {
         itemList = new List<Item>();
         score = 0;
-
     }
 
     public void Add(Item item)

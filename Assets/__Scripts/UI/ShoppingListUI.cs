@@ -25,11 +25,11 @@ public class ShoppingListUI : MonoBehaviour
     {
         string temp = "";
 
+
         foreach (Item item in shoppingList.itemList)
         {
             temp += item.itemName;
             temp += "\n";
-
         }
 
         text.text = temp;

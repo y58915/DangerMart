@@ -5314,9 +5314,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: startWithInventory
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: Inventory.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: inventory.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: Inventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: Inventory.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e2f608121abf342558128238ed67592b, type: 2}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: Inventory.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: inventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: inventory.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 78ccb0d16feef4bb3bd604f5304fed48, type: 2}
+    - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: inventory.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
     - target: {fileID: 8100196777407145413, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_Name
       value: LevelController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: newListTimer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8100196777407145415, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_RootOrder
