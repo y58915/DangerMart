@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Analytics;
 using TMPro;
 
 
@@ -12,10 +13,15 @@ public class CountdownTimerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
 
     private bool timerPaused = false;
+    private Score scoreReference;
+
+    [SerializeField]
+    private GameObject gameOverScreen;
 
     private void Start()
     {
         currentTime = LevelController.instance.GetLevelTimer();
+        scoreReference = GameObject.Find("LevelController").GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -29,6 +35,17 @@ public class CountdownTimerUI : MonoBehaviour
             {
                 currentTime = 0;
                 timerPaused = true;
+                
+                // End the round 
+                Time.timeScale = 0.0f;
+                gameOverScreen.SetActive(true);
+
+                // Add analytics for Total Score
+                AnalyticsResult analyticsResult = Analytics.CustomEvent("High Score", new Dictionary<string, object> { { "Score", scoreReference.currentScore } });
+                Debug.Log("High Score " + analyticsResult);
+
+                // TODO: Add Analytics for Total Lists Completed
+                //AnalyticsResult analyticsResult = Analytics.CustomEvent("Total Lists Completed", new Dictionary<string, object> { { "Lists", *something goes here* } });
             }
 
             int minute = (int)(currentTime / 60);

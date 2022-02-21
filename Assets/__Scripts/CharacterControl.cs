@@ -15,6 +15,8 @@ public class CharacterControl : MonoBehaviour
     public LayerMask groundLayerMask;
     public LayerMask collectionLayerMask;
 
+    private CollectionArea targetCollectionArea;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,9 +49,15 @@ public class CharacterControl : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitPoint, 1000f, collectionLayerMask))
         {
+            // Set clicked on collection area as destination
+            targetCollectionArea = hitPoint.collider.gameObject.GetComponent<CollectionArea>();
+
             // Move in fron of collection area to collect item
-            targetDestination.transform.position = hitPoint.collider.gameObject.GetComponent<CollectionArea>().collectionPosition.position;
-            playerNav.SetDestination(hitPoint.collider.gameObject.GetComponent<CollectionArea>().collectionPosition.position);
+            targetDestination.transform.position = targetCollectionArea.collectionPosition.position;
+            playerNav.SetDestination(targetCollectionArea.collectionPosition.position);
+
+            // Activate collection trigger
+            targetCollectionArea.collectionTrigger.enabled = true;
         }
         else if (Physics.Raycast(ray, out hitPoint, 1000f, groundLayerMask))
         {
@@ -61,21 +69,4 @@ public class CharacterControl : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider other) 
-    {
-        var itemOnShelf = other.GetComponent<ItemOnShelf> ();
-        if (itemOnShelf) {
-            Inventory.instance.AddItem(itemOnShelf.item);
-            AnalyticsResult analyticsResult = Analytics.CustomEvent(
-            "Collected Item",
-            new Dictionary<string, object>
-            {
-                {
-                    "Item", other.gameObject.name
-                }
-            });
-            Debug.Log("Item result: " + analyticsResult);
-            Destroy(other.gameObject);
-        }
-    }
 }

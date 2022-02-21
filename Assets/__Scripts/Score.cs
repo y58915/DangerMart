@@ -7,7 +7,7 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    float currentScore = 0;
+    public float currentScore = 0;
 
     [HideInInspector] public UnityEvent<float> UpdateScore;
 
@@ -40,14 +40,6 @@ public class Score : MonoBehaviour
     public void AddScore(float score)
     {
         currentScore += score;
-        AnalyticsResult analyticsResult = Analytics.CustomEvent(
-            "High Score",
-            new Dictionary<string, object>
-            {
-                {
-                    "Score", currentScore
-                }
-            });
 
         UpdateScore.Invoke(currentScore);
     }
