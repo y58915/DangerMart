@@ -5,10 +5,11 @@ using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
-    public Dictionary<Item, int> container;             //value: the number of the item in the inventory
+    [SerializeField] public Dictionary<Item, int> container;             //value: the number of the item in the inventory
 
     [HideInInspector] public UnityEvent<Item> addItemEvent;
-    [HideInInspector] public UnityEvent<Item> itemAddedEvent;
+    [HideInInspector] public UnityEvent itemUpdatedEvent;
+    [HideInInspector] public UnityEvent updateInventoryEvent;
 
     #region Singleton
     public static Inventory instance;
@@ -51,7 +52,11 @@ public class Inventory : MonoBehaviour
             container.Add(_item, 1);
         }
 
-        itemAddedEvent.Invoke(_item);
+
+        PrintInventory();
+
+        itemUpdatedEvent.Invoke();
+        updateInventoryEvent.Invoke();
     }
 
 
@@ -72,8 +77,7 @@ public class Inventory : MonoBehaviour
 
         container[_item]--;
 
-        // TODO
-        // removeItemEvent.Invoke(_item);
+        updateInventoryEvent.Invoke();
     }
 
 
@@ -84,11 +88,29 @@ public class Inventory : MonoBehaviour
         {
             RemoveItem(item);
         }
+
+        PrintInventory();
+
+        itemUpdatedEvent.Invoke();
     }
 
     public Dictionary<Item, int> GetInventory()
     {
         return container;
+    }
+
+    void PrintInventory()
+    {
+        string temp = "";
+        foreach (var entry in container)
+        {
+            temp += entry.Key.itemName;
+            temp += ": ";
+            temp += entry.Value;
+            temp += "; ";
+        }
+
+        Debug.Log(temp);
     }
 }
 

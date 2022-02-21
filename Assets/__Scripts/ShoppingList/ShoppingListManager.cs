@@ -39,9 +39,8 @@ public class ShoppingListManager : MonoBehaviour
     void Start()
     {
         shoppingLists = new List<ShoppingList>();
-        NewShoppingList();
 
-        Inventory.instance.itemAddedEvent.AddListener(NewItemAdded);
+        Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);
 
         timer = 0f;
     }
@@ -65,8 +64,9 @@ public class ShoppingListManager : MonoBehaviour
         UpdateListsEvent.Invoke(shoppingLists);
     }
 
-    public void RemoveList()
+    public void RemoveList(int i)
     {
+        shoppingLists.RemoveAt(i);
         UpdateListsEvent.Invoke(shoppingLists);
     }
 
@@ -91,18 +91,19 @@ public class ShoppingListManager : MonoBehaviour
 
     
     //update shoppinglist based on the inventory
-    private void NewItemAdded(Item item)
+    private void NewItemAdded()
     {
+        CompareInventoryShoppingLists();
     }
 
 
     //temp, we may need to optimize the algorithm
     public void CompareInventoryShoppingLists()
     {
-        foreach (ShoppingList list in shoppingLists)
+        for (int i = 0; i < shoppingLists.Count; i++)
         {
             Dictionary<Item, int> curr = new Dictionary<Item, int>();
-            foreach (Item item in list.itemList)
+            foreach (Item item in shoppingLists[i].itemList)
             {
                 if (!curr.ContainsKey(item))
                 {
@@ -125,9 +126,20 @@ public class ShoppingListManager : MonoBehaviour
 
             if (completed)
             {
-                ShoppingListCompleteEvent.Invoke(list);
+                ShoppingListCompleteEvent.Invoke(shoppingLists[i]);
+                RemoveList(i);
             }
         }
+    }
+
+    public void AddSpecificList(List<Item> list)
+    {
+        ShoppingList temp = new ShoppingList();
+        foreach (Item item in list)
+        {
+            temp.Add(item);
+        }
+        shoppingLists.Add(temp);
     }
 }
 

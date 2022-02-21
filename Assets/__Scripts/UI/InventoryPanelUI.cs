@@ -16,6 +16,8 @@ public class InventoryPanelUI : MonoBehaviour
     void Start()
     {
         inventoryImageList = inventoryImageParent.GetComponentsInChildren<Image>();
+
+        Inventory.instance.updateInventoryEvent.AddListener(UpdateDisplay);
     }
 
     private void OnEnable()
@@ -35,11 +37,15 @@ public class InventoryPanelUI : MonoBehaviour
  
     public void UpdateDisplay()
     {
+        if (!gameObject.activeInHierarchy) return;
+
         inventory = Inventory.instance.GetInventory();
 
         int i = 0;
         foreach (KeyValuePair<Item, int> entry in inventory)
         {
+            if (entry.Value == 0)
+                continue;
             inventoryImageList[i].sprite = entry.Key.itemImage;
             inventoryImageList[i].color = Color.white;
             i++;

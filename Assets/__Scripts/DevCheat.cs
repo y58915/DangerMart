@@ -6,6 +6,8 @@ public class DevCheat : MonoBehaviour
 {
     [SerializeField] bool startWithInventory;
     [SerializeField] List<Item> inventory;
+    [SerializeField] bool startWithShoppingList;
+    [SerializeField] List<Item> shoppingListItems;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,11 @@ public class DevCheat : MonoBehaviour
             {
                 Inventory.instance.addItemEvent.Invoke(item);
             }
+        }
+
+        if (startWithShoppingList)
+        {
+            ShoppingListManager.instance.AddSpecificList(shoppingListItems);
         }
     }
 }
