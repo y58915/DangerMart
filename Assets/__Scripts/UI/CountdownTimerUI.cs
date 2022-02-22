@@ -12,16 +12,19 @@ public class CountdownTimerUI : MonoBehaviour
     public float currentTime;
     [SerializeField] TextMeshProUGUI timerText;
 
-    private bool timerPaused = false;
-    private Score scoreReference;
-
     [SerializeField]
     private GameObject gameOverScreen;
+
+    private bool timerPaused = false;
+    private Score scoreReference;
+    private ShoppingListManager listManager;
 
     private void Start()
     {
         currentTime = LevelController.instance.GetLevelTimer();
+
         scoreReference = GameObject.Find("LevelController").GetComponent<Score>();
+        listManager = GameObject.Find("LevelController").GetComponent<ShoppingListManager>();
     }
 
     // Update is called once per frame
@@ -40,12 +43,13 @@ public class CountdownTimerUI : MonoBehaviour
                 Time.timeScale = 0.0f;
                 gameOverScreen.SetActive(true);
 
-                // Add analytics for Total Score
-                AnalyticsResult analyticsResult = Analytics.CustomEvent("High Score", new Dictionary<string, object> { { "Score", scoreReference.currentScore } });
-                Debug.Log("High Score " + analyticsResult);
+                // Add analytics for High Score
+                AnalyticsResult analyticsResult_Score = Analytics.CustomEvent("High Score", new Dictionary<string, object> { { "Score", scoreReference.currentScore } });
+                Debug.Log("High Score: " + analyticsResult_Score);
 
-                // TODO: Add Analytics for Total Lists Completed
-                //AnalyticsResult analyticsResult = Analytics.CustomEvent("Total Lists Completed", new Dictionary<string, object> { { "Lists", *something goes here* } });
+                // Add analytics for Total Lists Complete
+                AnalyticsResult analyticsResult_Lists = Analytics.CustomEvent("Total Lists Complete", new Dictionary<string, object> { { "Lists", listManager.listsCompleted } });
+                Debug.Log("Total Lists Complete: " + analyticsResult_Lists);
             }
 
             int minute = (int)(currentTime / 60);

@@ -14,7 +14,6 @@ public class CollectionArea : MonoBehaviour
     private Item item;
 
     private GameObject myItem;
-    private Score scoreReference;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +22,6 @@ public class CollectionArea : MonoBehaviour
 
         collectionTrigger = GetComponent<SphereCollider>();
         collectionTrigger.enabled = false;
-
-        //scoreReference = GameObject.Find("LevelController").GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -39,9 +36,6 @@ public class CollectionArea : MonoBehaviour
         {
             // Add item to the player's inventory
             Inventory.instance.addItemEvent.Invoke(item);
-
-            // Update score 
-            //scoreReference.AddScore(item.score);
 
             // Reset the trigger 
             collectionTrigger.enabled = false;

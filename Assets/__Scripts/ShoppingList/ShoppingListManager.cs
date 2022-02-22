@@ -8,6 +8,7 @@ public class ShoppingListManager : MonoBehaviour
     public int MAXSIZE = 8;
     public float newListTimer = 5f;
     public Item[] allItems;
+    public int listsCompleted = 0;
     private float timer;
 
     List<ShoppingList> shoppingLists;
@@ -126,6 +127,10 @@ public class ShoppingListManager : MonoBehaviour
 
             if (completed)
             {
+                // Increase the amount of lists completed
+                listsCompleted++;
+
+                // Remove a shopping list
                 ShoppingListCompleteEvent.Invoke(shoppingLists[i]);
                 RemoveList(i);
             }
