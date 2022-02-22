@@ -8,7 +8,10 @@ public class InventoryPanelUI : MonoBehaviour
     Dictionary<Item, int> inventory;
 
     [SerializeField] GameObject inventoryImageParent;
+    [SerializeField] GameObject inventoryCountParent;
+
     Image[] inventoryImageList;
+    Text[] inventoryCountList;
 
     bool skipfirst = true;
 
@@ -16,6 +19,7 @@ public class InventoryPanelUI : MonoBehaviour
     void Start()
     {
         inventoryImageList = inventoryImageParent.GetComponentsInChildren<Image>();
+        inventoryCountList = inventoryCountParent.GetComponentsInChildren<Text>();
 
         Inventory.instance.updateInventoryEvent.AddListener(UpdateDisplay);
     }
@@ -48,6 +52,8 @@ public class InventoryPanelUI : MonoBehaviour
                 continue;
             inventoryImageList[i].sprite = entry.Key.itemImage;
             inventoryImageList[i].color = Color.white;
+            inventoryCountList[i].text = entry.Value.ToString();
+            inventoryCountList[i].color = Color.black;
             i++;
         }
 
@@ -55,6 +61,8 @@ public class InventoryPanelUI : MonoBehaviour
         {
             inventoryImageList[j].sprite = null;
             inventoryImageList[j].color = Color.clear;
+            inventoryCountList[j].text = "";
+            inventoryCountList[j].color = Color.clear;
         }
     }
 }
