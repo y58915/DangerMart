@@ -147,7 +147,7 @@ public class ShoppingListManager : MonoBehaviour
 public class ShoppingList
 {
     public List<Item> itemList;
-    public int score;
+    public float score;
 
     public ShoppingList()
     {
@@ -159,6 +159,6 @@ public class ShoppingList
     {
         itemList.Add(item);
         // TODO: revise the true score of an item
-        score += 1;
+        score += item.score;
     }
 }

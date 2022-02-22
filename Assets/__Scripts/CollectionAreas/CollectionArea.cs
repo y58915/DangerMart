@@ -24,7 +24,7 @@ public class CollectionArea : MonoBehaviour
         collectionTrigger = GetComponent<SphereCollider>();
         collectionTrigger.enabled = false;
 
-        scoreReference = GameObject.Find("LevelController").GetComponent<Score>();
+        //scoreReference = GameObject.Find("LevelController").GetComponent<Score>();
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class CollectionArea : MonoBehaviour
             Inventory.instance.addItemEvent.Invoke(item);
 
             // Update score 
-            scoreReference.AddScore(item.score);
+            //scoreReference.AddScore(item.score);
 
             // Reset the trigger 
             collectionTrigger.enabled = false;

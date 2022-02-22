@@ -22,6 +22,6 @@ public class ScoreUI : MonoBehaviour
 
     void UpdateScoreUI(float score)
     {
-        scoreText.text = score.ToString();
+        scoreText.text = "Score: " + score.ToString();
     }
 }
