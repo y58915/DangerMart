@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Pen
   itemCategory: 2
   itemDescription: 
-  itemImage: {fileID: 0}
-  itemModelPrefab: {fileID: 5388746104906565034, guid: fc2252534f7334c048806d3fcd119a68, type: 3}
+  itemImage: {fileID: 21300000, guid: f18e26c2fbec20d4e9edfbd08b32d821, type: 3}
+  itemModelPrefab: {fileID: 3635606160918801101, guid: db5e01164609d7c44a472fb8e7cdef02, type: 3}
   score: 4

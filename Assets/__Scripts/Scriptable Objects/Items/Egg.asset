@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Egg
   itemCategory: 1
   itemDescription: 
-  itemImage: {fileID: 0}
-  itemModelPrefab: {fileID: 4149424003223674092, guid: ca3d398f986a849c38e7d7f2543ac9d8, type: 3}
+  itemImage: {fileID: 21300000, guid: 2da04bd9ff292e7418cae5cd614255f0, type: 3}
+  itemModelPrefab: {fileID: 3635606160918801101, guid: 2e552caf3eaa3934ab3e593fd9ec47d6, type: 3}
   score: 5
   restoreHealthValue: 0

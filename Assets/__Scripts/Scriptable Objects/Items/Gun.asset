@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Gun
   itemCategory: 0
   itemDescription: 
-  itemImage: {fileID: 0}
-  itemModelPrefab: {fileID: 5064505504916483136, guid: 25934a1346aa348a3907c7c4ab931ebc, type: 3}
+  itemImage: {fileID: 21300000, guid: 3bca0fd19f385864880447a228cc50d2, type: 3}
+  itemModelPrefab: {fileID: 3635606160918801101, guid: 5df84bbce698cf641aac4c5b0a824676, type: 3}
   score: 2
   usage: 
