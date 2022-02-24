@@ -6,9 +6,13 @@ using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] GameObject HUD;
     [SerializeField] GameObject ShoppingListPanel;
     [SerializeField] GameObject InventoryPanel;
+    [SerializeField] GameObject PausePanel;
+
     [SerializeField] Button InventoryButton;
+    [SerializeField] Button PauseButton;
 
     Keyboard keyboard;
 
@@ -34,9 +38,11 @@ public class UIManager : MonoBehaviour
     {
         keyboard = Keyboard.current;
         InventoryButton.onClick.AddListener(ToggleInventoryPanel);
+        PauseButton.onClick.AddListener(TogglePausePanel);
 
         ShoppingListPanel.SetActive(true);
         InventoryPanel.SetActive(false);
+        PausePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,5 +53,10 @@ public class UIManager : MonoBehaviour
     public void ToggleInventoryPanel()
     {
         InventoryPanel.SetActive(!InventoryPanel.activeInHierarchy);
+    }
+
+    public void TogglePausePanel()
+    {
+        PausePanel.SetActive(!PausePanel.activeInHierarchy);
     }
 }
