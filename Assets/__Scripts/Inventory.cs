@@ -96,8 +96,16 @@ public class Inventory : MonoBehaviour
 
     public Dictionary<Item, int> GetInventory()
     {
+        
         return container;
     }
+
+    /*public Item GetRandomItem()
+    {
+        container.Keys.ToString();
+
+        return container.
+    }*/
 
     void PrintInventory()
     {

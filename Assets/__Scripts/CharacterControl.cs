@@ -16,10 +16,13 @@ public class CharacterControl : MonoBehaviour
     public LayerMask collectionLayerMask;
 
     private CollectionArea targetCollectionArea;
+    private bool inputEnabled = true;
+    private float originalSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
+        originalSpeed = playerNav.speed;
     }
 
     // Update is called once per frame
@@ -44,10 +47,11 @@ public class CharacterControl : MonoBehaviour
     public void OnMove()
     {
         //Debug.Log("Move to: " + Mouse.current.position.ReadValue());
+
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hitPoint;
 
-        if (Physics.Raycast(ray, out hitPoint, 1000f, collectionLayerMask))
+        if (Physics.Raycast(ray, out hitPoint, 1000f, collectionLayerMask) && inputEnabled)
         {
             // Set clicked on collection area as destination
             targetCollectionArea = hitPoint.collider.gameObject.GetComponent<CollectionArea>();
@@ -59,7 +63,7 @@ public class CharacterControl : MonoBehaviour
             // Activate collection trigger
             targetCollectionArea.collectionTrigger.enabled = true;
         }
-        else if (Physics.Raycast(ray, out hitPoint, 1000f, groundLayerMask))
+        else if (Physics.Raycast(ray, out hitPoint, 1000f, groundLayerMask) && inputEnabled)
         {
             // Move to point on floor 
             targetDestination.transform.position = hitPoint.point;
@@ -69,4 +73,61 @@ public class CharacterControl : MonoBehaviour
         
     }
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<EnemyController>() != null)
+        {
+            switch(collision.gameObject.GetComponent<EnemyController>().enemyType)
+            {
+                case EnemyController.EnemyType.Stun:
+                    Stun();
+                    break;
+                case EnemyController.EnemyType.SlowDown:
+                    SlowDown();
+                    break;
+                case EnemyController.EnemyType.Steal:
+                    LoseItem();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void Stun()
+    {
+        playerNav.isStopped = true;
+        inputEnabled = false;
+
+        StartCoroutine(StunTime(5.0f));
+    }
+
+    private IEnumerator StunTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        playerNav.isStopped = false;
+        inputEnabled = true;
+    }
+
+    private void SlowDown()
+    {
+        playerNav.speed = originalSpeed * 0.25f;
+
+        StartCoroutine(SlowTime(5.0f));
+    }
+
+    private IEnumerator SlowTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        playerNav.speed = originalSpeed;
+    }
+
+    private void LoseItem()
+    {
+        List<Item> items = new List<Item>(Inventory.instance.container.Keys);
+        int index = Random.Range(0, items.Count);
+
+        Inventory.instance.RemoveItem(items[index]);
+    }
 }
