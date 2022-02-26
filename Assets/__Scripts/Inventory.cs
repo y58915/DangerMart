@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Analytics;
 
 public class Inventory : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class Inventory : MonoBehaviour
             container.Add(_item, 1);
         }
 
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Picked Up", new Dictionary<string, object> { { _item.itemName, container[_item] } });
+        Debug.Log("New Items " + analyticsResult_Item);
+
 
         PrintInventory();
 
@@ -76,7 +80,8 @@ public class Inventory : MonoBehaviour
         }
 
         container[_item]--;
-
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { _item.itemName, container[_item] } });
+        Debug.Log("Discarded Items " + analyticsResult_Item);
         updateInventoryEvent.Invoke();
     }
 
