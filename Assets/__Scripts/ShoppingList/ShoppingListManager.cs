@@ -43,13 +43,12 @@ public class ShoppingListManager : MonoBehaviour
 
         Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);
 
-        for (int i = 0; i < MAXSIZE; i++)
+        for (int i = 0; i < MAXSIZE-1; i++)
         {
             NewShoppingList();
         }
-        Debug.Log(shoppingLists);
 
-        timer = 0f;
+        timer = newListTimer;
     }
 
     // Update is called once per frame
@@ -171,5 +170,10 @@ public class ShoppingList
         itemList.Add(item);
         // TODO: revise the true score of an item
         score += item.score;
+    }
+
+    public override string ToString()
+    {
+        return score.ToString() + " " + itemList.ToString();
     }
 }
