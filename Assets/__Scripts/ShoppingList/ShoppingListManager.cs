@@ -99,47 +99,6 @@ public class ShoppingListManager : MonoBehaviour
     //update shoppinglist based on the inventory
     private void NewItemAdded()
     {
-        CompareInventoryShoppingLists();
-    }
-
-
-    //temp, we may need to optimize the algorithm
-    public void CompareInventoryShoppingLists()
-    {
-        for (int i = 0; i < shoppingLists.Count; i++)
-        {
-            Dictionary<Item, int> curr = new Dictionary<Item, int>();
-            foreach (Item item in shoppingLists[i].itemList)
-            {
-                if (!curr.ContainsKey(item))
-                {
-                    curr[item] = 0;
-                }
-                curr[item] += 1;
-            }
-            bool completed = true;
-
-            var inventory = Inventory.instance.GetInventory();
-
-            foreach (KeyValuePair<Item, int> entry in curr)
-            {
-                if (!(inventory.ContainsKey(entry.Key) && inventory[entry.Key] >= entry.Value))
-                {
-                    completed = false;
-                    break;
-                }
-            }
-
-            if (completed)
-            {
-                // Increase the amount of lists completed
-                listsCompleted++;
-
-                // Remove a shopping list
-                ShoppingListCompleteEvent.Invoke(shoppingLists[i]);
-                RemoveList(i);
-            }
-        }
     }
 
     public void AddSpecificList(List<Item> list)
