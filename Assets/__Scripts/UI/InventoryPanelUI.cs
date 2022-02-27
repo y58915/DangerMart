@@ -52,17 +52,17 @@ public class InventoryPanelUI : MonoBehaviour
                 continue;
             inventoryImageList[i].sprite = entry.Key.itemImage;
             inventoryImageList[i].color = Color.white;
-            inventoryCountList[i].text = entry.Value.ToString();
-            inventoryCountList[i].color = Color.black;
+            // inventoryCountList[i].text = entry.Value.ToString();
+            // inventoryCountList[i].color = Color.black;
             i++;
         }
 
         for (int j = i; j < inventoryImageList.Length; j++)
         {
             inventoryImageList[j].sprite = null;
-            inventoryImageList[j].color = Color.clear;
-            inventoryCountList[j].text = "";
-            inventoryCountList[j].color = Color.clear;
+            // inventoryImageList[j].color = Color.clear;
+            // inventoryCountList[j].text = "";
+            // inventoryCountList[j].color = Color.clear;
         }
     }
 }

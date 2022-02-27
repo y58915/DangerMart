@@ -125,7 +125,7 @@ public class CharacterControl : MonoBehaviour
 
     private void LoseItem()
     {
-        List<Item> items = new List<Item>(Inventory.instance.container.Keys);
+        List<Item> items = new List<Item>(Inventory.instance.container.Where(x => x.Value != 0).Select(item=>item.Key).ToList());
         int index = Random.Range(0, items.Count);
 
         Inventory.instance.RemoveItem(items[index]);

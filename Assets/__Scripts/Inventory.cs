@@ -40,13 +40,10 @@ public class Inventory : MonoBehaviour
     //we maybe dont need amount. Add item only happened once a time
     public void AddItem(Item _item)
     {
-        if (container.Count == 0)
+        if (container.ContainsKey(_item))
         {
-            container.Add(_item, 1);
-        }
-        else if (container.ContainsKey(_item))
-        {
-            container[_item]++;
+            // container[_item]++;
+            return;
         }
         else
         {
