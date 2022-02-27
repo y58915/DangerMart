@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Analytics;
+using System.Linq;
 
 public class CharacterControl : MonoBehaviour
 {

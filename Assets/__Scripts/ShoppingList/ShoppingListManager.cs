@@ -43,6 +43,12 @@ public class ShoppingListManager : MonoBehaviour
 
         Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);
 
+        for (int i = 0; i < MAXSIZE; i++)
+        {
+            NewShoppingList();
+        }
+        Debug.Log(shoppingLists);
+
         timer = 0f;
     }
 
