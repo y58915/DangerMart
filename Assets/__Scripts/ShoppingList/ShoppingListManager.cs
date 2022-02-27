@@ -6,10 +6,13 @@ using UnityEngine.Events;
 public class ShoppingListManager : MonoBehaviour
 {
     public int MAXSIZE = 8;
+    public int MAXRATING = 4;
     public float newListTimer = 5f;
     public Item[] allItems;
     public int listsCompleted = 0;
     private float timer;
+
+    public List<ShoppingList> PRESET;
 
     List<ShoppingList> shoppingLists;
 
@@ -43,11 +46,11 @@ public class ShoppingListManager : MonoBehaviour
 
         Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);
 
+        // prepopulate the list to maxsize-1 and let update() add the remaining list so that the UI can be automatically updated
         for (int i = 0; i < MAXSIZE-1; i++)
         {
             NewShoppingList();
         }
-
         timer = newListTimer;
     }
 
@@ -150,30 +153,5 @@ public class ShoppingListManager : MonoBehaviour
             temp.Add(item);
         }
         shoppingLists.Add(temp);
-    }
-}
-
-
-public class ShoppingList
-{
-    public List<Item> itemList;
-    public float score;
-
-    public ShoppingList()
-    {
-        itemList = new List<Item>();
-        score = 0;
-    }
-
-    public void Add(Item item)
-    {
-        itemList.Add(item);
-        // TODO: revise the true score of an item
-        score += item.score;
-    }
-
-    public override string ToString()
-    {
-        return score.ToString() + " " + itemList.ToString();
     }
 }

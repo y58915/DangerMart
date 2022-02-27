@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShoppingListPanelUI : MonoBehaviour
 {
     private ShoppingListUI[] shoppingListUIArray;
+    private StarRatingUI[] ratingUIs;
     // Start is called before the first frame update
 
     private void Awake()
@@ -14,6 +16,7 @@ public class ShoppingListPanelUI : MonoBehaviour
     void Start()
     {
         shoppingListUIArray = gameObject.GetComponentsInChildren<ShoppingListUI>();
+        ratingUIs = gameObject.GetComponentsInChildren<StarRatingUI>();
         ShoppingListManager.instance.UpdateListsEvent.AddListener(UpdateShoppingListPanel);
     }
 
@@ -28,6 +31,7 @@ public class ShoppingListPanelUI : MonoBehaviour
         for (int i = 0; i < list.Count; i++)
         {
             shoppingListUIArray[i].UpdateText(list[i]);
+            ratingUIs[i].SetStar(list[i].rating);
         }
     }
 }
