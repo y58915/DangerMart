@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryPanelUI : MonoBehaviour
 {
-    Dictionary<Item, int> inventory;
+    List<Item> inventory;
 
     [SerializeField] GameObject inventoryImageParent;
     [SerializeField] GameObject inventoryCountParent;
@@ -46,11 +46,9 @@ public class InventoryPanelUI : MonoBehaviour
         inventory = Inventory.instance.GetInventory();
 
         int i = 0;
-        foreach (KeyValuePair<Item, int> entry in inventory)
+        foreach (var entry in inventory)
         {
-            if (entry.Value == 0)
-                continue;
-            inventoryImageList[i].sprite = entry.Key.itemImage;
+            inventoryImageList[i].sprite = entry.itemImage;
             inventoryImageList[i].color = Color.white;
             // inventoryCountList[i].text = entry.Value.ToString();
             // inventoryCountList[i].color = Color.black;
