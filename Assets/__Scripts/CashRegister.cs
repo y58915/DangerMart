@@ -31,9 +31,10 @@ namespace __Scripts
         public void CompleteAction(int completeIndex)
         {
             List<ShoppingList> completable = CompletableOptions();
-            //shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
+            shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
 
             ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[completeIndex]);
+
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -82,7 +83,7 @@ namespace __Scripts
                 
             }
 
-            return completable.Distinct().ToList();
+            return completable;
 
         }
     }
