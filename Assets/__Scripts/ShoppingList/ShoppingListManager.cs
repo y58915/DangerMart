@@ -83,19 +83,11 @@ public class ShoppingListManager : MonoBehaviour
 
     private void NewShoppingList()
     {
-        ShoppingList list = new ShoppingList();
+        AddList(PRESET[Random.Range(0, PRESET.Count)]);
+    }
 
-        int count = allItems.Length;
-        int repeatTime = Random.Range(2, 4);
-
-        for (int i = 0; i < repeatTime; i++)
-        {
-            int rand = Random.Range(0, count);
-
-            list.Add(allItems[rand]);
-        }
-
-        AddList(list);
+    private void NewShoppingList(int i){
+        AddList(PRESET[i]);
     }
 
     
