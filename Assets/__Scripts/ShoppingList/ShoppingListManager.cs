@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ShoppingListManager : MonoBehaviour
 {
-    public int MAXSIZE = 8;
+    public int MAXSIZE = 5;
     public int MAXRATING = 4;
     public float newListTimer = 5f;
     public Item[] allItems;
@@ -57,13 +57,8 @@ public class ShoppingListManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.fixedDeltaTime;
-        if (timer >= newListTimer)
-        {
-            timer = 0;
-            if (shoppingLists.Count < MAXSIZE)
-                NewShoppingList();
-        }
+        if (shoppingLists.Count < MAXSIZE)
+            NewShoppingList();
     }
 
     public void AddList(ShoppingList newList)
