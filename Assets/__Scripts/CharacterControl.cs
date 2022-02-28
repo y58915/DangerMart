@@ -138,6 +138,9 @@ public class CharacterControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (invulernable)
+            return;
+
         if (other.gameObject.GetComponent<PowerUp>() != null)
         {
             switch(other.gameObject.GetComponent<PowerUp>().powerupItem.type)
