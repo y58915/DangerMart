@@ -890,10 +890,10 @@ PrefabInstance:
     - target: {fileID: 3155020194874306665, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 101793eda77944ffb8bcb68258e1cfec, type: 2}
+      objectReference: {fileID: 11400000, guid: af2f2ffb9eb21ee4181b66f18b29de2c, type: 2}
     - target: {fileID: 3155020194874306670, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Name
-      value: CollectionArea (Scissors)
+      value: CollectionArea (Apple)
       objectReference: {fileID: 0}
     - target: {fileID: 3932508750780540561, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Layer
@@ -5050,10 +5050,10 @@ PrefabInstance:
     - target: {fileID: 3155020194874306665, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: babc572bb79cd4f27b347abffc609fe0, type: 2}
+      objectReference: {fileID: 11400000, guid: b98c7e71e666d8b4eaedceb2037abf49, type: 2}
     - target: {fileID: 3155020194874306670, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Name
-      value: 'CollectionArea (Gun) '
+      value: CollectionArea (Water)
       objectReference: {fileID: 0}
     - target: {fileID: 3932508750780540561, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Layer
@@ -5248,10 +5248,10 @@ PrefabInstance:
     - target: {fileID: 3155020194874306665, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: a826dd49c4bae4087b3f1a85f82b1abe, type: 2}
+      objectReference: {fileID: 11400000, guid: 1dd5b72aaad4e2a43a6b939bc3433c2f, type: 2}
     - target: {fileID: 3155020194874306670, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Name
-      value: CollectionArea (Pen)
+      value: CollectionArea (Strawberry)
       objectReference: {fileID: 0}
     - target: {fileID: 3932508750780540561, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Layer
@@ -8891,10 +8891,10 @@ PrefabInstance:
     - target: {fileID: 3155020194874306665, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: e2f608121abf342558128238ed67592b, type: 2}
+      objectReference: {fileID: 11400000, guid: 0ebe5611d739f6d4b99319556a97fde1, type: 2}
     - target: {fileID: 3155020194874306670, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Name
-      value: CollectionArea (GiftCard)
+      value: CollectionArea (Milk)
       objectReference: {fileID: 0}
     - target: {fileID: 3932508750780540561, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Layer
@@ -10029,10 +10029,10 @@ PrefabInstance:
     - target: {fileID: 3155020194874306665, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 3f6d406945d6e48d583fe267dcec71ab, type: 2}
+      objectReference: {fileID: 11400000, guid: 837e2e7c55551a24fafe772a04876c3c, type: 2}
     - target: {fileID: 3155020194874306670, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Name
-      value: 'CollectionArea (Knife) '
+      value: 'CollectionArea (DragonFruit) '
       objectReference: {fileID: 0}
     - target: {fileID: 3932508750780540561, guid: 0261931ed05acc646b60a68c586b661f, type: 3}
       propertyPath: m_Layer

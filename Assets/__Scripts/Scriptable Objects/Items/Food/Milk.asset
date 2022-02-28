@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb3f1226b79349b88ecb09d394a75d8, type: 3}
+  m_Name: Milk
+  m_EditorClassIdentifier: 
+  itemName: Milk
+  itemCategory: 1
+  itemDescription: 
+  itemImage: {fileID: 21300000, guid: a63884f0f3e572a47b2a347fa3f95a6b, type: 3}
+  itemModelPrefab: {fileID: 3635606160918801101, guid: 0f2b3e664aae36b4486c682ad48b0aed, type: 3}
+  score: 10
+  restoreHealthValue: 0
