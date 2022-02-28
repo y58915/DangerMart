@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd11d91ebc3d34baab784d865b19b593, type: 3}
   m_Name: 3_1
   m_EditorClassIdentifier: 
-  itemList: []
+  itemList:
+  - {fileID: 11400000, guid: e2f608121abf342558128238ed67592b, type: 2}
+  - {fileID: 11400000, guid: babc572bb79cd4f27b347abffc609fe0, type: 2}
+  - {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
   score: 0
   rating: 2
