@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject ShoppingListPanel;
     [SerializeField] GameObject InventoryPanel;
     [SerializeField] GameObject PausePanel;
+    [SerializeField] GameObject CashRegister;
 
     [SerializeField] Button InventoryButton;
     [SerializeField] Button PauseButton;
@@ -43,13 +44,13 @@ public class UIManager : MonoBehaviour
         ShoppingListPanel.SetActive(true);
         InventoryPanel.SetActive(false);
         PausePanel.SetActive(false);
+        CashRegister.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
     }
-
     public void ToggleInventoryPanel()
     {
         InventoryPanel.SetActive(!InventoryPanel.activeInHierarchy);

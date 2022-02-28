@@ -74,6 +74,15 @@ public class ShoppingListManager : MonoBehaviour
         UpdateListsEvent.Invoke(shoppingLists);
     }
 
+    public int FindShoppingListIndex(ShoppingList shopList)
+    {
+        return shoppingLists.FindIndex(obj => obj == shopList);
+    }
+
+    public List<ShoppingList> GetAllShoppingLists()
+    {
+        return shoppingLists;
+    }
 
 
     private void NewShoppingList()
