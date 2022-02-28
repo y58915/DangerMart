@@ -13,10 +13,10 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent playerNav;
 
     // Borders of the floor
-    private float LEFT_BORDER = -10.5f;
-    private float RIGHT_BORDER = 3.5f;
-    private float UPPER_BORDER = 2.5f;
-    private float LOWER_BORDER = -6.5f;
+    public float LEFT_BORDER;
+    public float RIGHT_BORDER;
+    public float LOWER_BORDER;
+    public float UPPER_BORDER;
 
     private float translationalSpeed = 0.2f;
     private float rotationalSpeed = 360.0f;
