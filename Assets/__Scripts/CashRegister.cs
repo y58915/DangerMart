@@ -54,6 +54,8 @@ namespace __Scripts
                     images.GetChild(i).gameObject.SetActive(true);
                     CashRegisterUISlots[i].text = completable[i].ToString();
 
+                    ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[i]);
+
                 }
                 CashRegisterObj.SetActive(true);
             }

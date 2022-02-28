@@ -138,14 +138,13 @@ public class CharacterControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (invulernable)
-            return;
-
         if (other.gameObject.GetComponent<PowerUp>() != null)
         {
             switch(other.gameObject.GetComponent<PowerUp>().powerupItem.type)
             {
                 case PowerupItem.PowerUpAbility.SpeedBoost:
+                    if (invulernable)
+                        return;
                     SpeedUp();
                     break;
                 case PowerupItem.PowerUpAbility.WildCard:
