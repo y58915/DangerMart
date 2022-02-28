@@ -15,11 +15,25 @@ public class CharacterControl : MonoBehaviour
     public GameObject targetDestination;
     public LayerMask groundLayerMask;
     public LayerMask collectionLayerMask;
+    public float distance = 0f;
+    public int mouse_clicks = 0;
 
     private CollectionArea targetCollectionArea;
     private bool inputEnabled = true;
     private float originalSpeed;
+    private Vector3 last = Vector3.zero;
+    private InputAction leftMouseClick;
+    private void Awake()
+    {
+        leftMouseClick = new InputAction(binding: "<Mouse>/leftButton");
+        leftMouseClick.performed += ctx => LeftMouseClicked();
+        leftMouseClick.Enable();
+    }
 
+    private void LeftMouseClicked()
+    {
+        mouse_clicks += 1;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +43,12 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (last != Vector3.zero)
+        {
+            distance += Vector3.Distance(last, gameObject.transform.position);
+        } 
         UpdateAnimations();
+        last = gameObject.transform.position;
     }
 
     public void UpdateAnimations()
@@ -93,6 +112,8 @@ public class CharacterControl : MonoBehaviour
                 default:
                     break;
             }
+            AnalyticsResult analyticsResult_Enemies = Analytics.CustomEvent("Enemy Hit", new Dictionary<string, object> { { "Enemy", collision.gameObject.GetComponent<EnemyController>().enemyType } });
+            Debug.Log("Enemy Hit: " + analyticsResult_Enemies);
         }
     }
 
