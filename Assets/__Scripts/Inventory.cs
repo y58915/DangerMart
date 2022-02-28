@@ -40,13 +40,11 @@ public class Inventory : MonoBehaviour
     //we maybe dont need amount. Add item only happened once a time
     public void AddItem(Item _item)
     {
-        if (container.Contains(_item))
-        {
-            // container[_item]++;
+        int capacity = 6;
+        if (container.Count >= capacity) {
             return;
         }
-        else
-        {
+        else {
             container.Add(_item);
         }
 
