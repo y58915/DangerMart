@@ -14,9 +14,8 @@ public class EnergyBar : MonoBehaviour
     public float maximumNeeded = 3;
 
     public static EnergyBar instance;
-    
 
-    void Start()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -26,6 +25,11 @@ public class EnergyBar : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    void Start()
+    {
+
 
         ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(AddEnergy);
         UseEnergyBar.AddListener(CharacterControl.instance.UseEnergy);
