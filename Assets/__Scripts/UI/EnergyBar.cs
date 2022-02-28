@@ -9,7 +9,7 @@ public class EnergyBar : MonoBehaviour
     private float energyBarCount = 0;
     [HideInInspector] public UnityEvent<float,float> UpdateEnergyBar;
 
-    [HideInInspector] public UnityEvent UseEnergy;
+    [HideInInspector] public UnityEvent UseEnergyBar;
 
     public float maximumNeeded = 3;
 
@@ -18,8 +18,17 @@ public class EnergyBar : MonoBehaviour
 
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(AddEnergy);
-        UseEnergy.AddListener(CharacterControl.instance.UseEnergy);
+        UseEnergyBar.AddListener(CharacterControl.instance.UseEnergy);
     }
 
 
@@ -27,7 +36,7 @@ public class EnergyBar : MonoBehaviour
     {
         if (energyBarCount == maximumNeeded)
         {   
-            UseEnergy.Invoke();
+            UseEnergyBar.Invoke();
             energyBarCount = 0;
             UpdateEnergyBar.Invoke(energyBarCount, maximumNeeded);
         }

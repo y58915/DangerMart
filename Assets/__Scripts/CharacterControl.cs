@@ -36,6 +36,14 @@ public class CharacterControl : MonoBehaviour
         leftMouseClick = new InputAction(binding: "<Mouse>/leftButton");
         leftMouseClick.performed += ctx => LeftMouseClicked();
         leftMouseClick.Enable();
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     private void LeftMouseClicked()
@@ -141,7 +149,7 @@ public class CharacterControl : MonoBehaviour
                     AddWildCard();
                     break;
                 case PowerupItem.PowerUpAbility.EnergyDrink:
-                    IncreaseEnergy();
+                    //IncreaseEnergy();
                     break;
                 default:
                     break;

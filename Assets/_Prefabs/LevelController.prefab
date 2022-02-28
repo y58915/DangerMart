@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8100196777407145409}
   - component: {fileID: 3882915705407216889}
   - component: {fileID: 7050265536835639689}
+  - component: {fileID: 5162313865872693218}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAXSIZE: 8
+  MAXRATING: 4
   newListTimer: 5
   allItems:
   - {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
@@ -58,6 +60,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a826dd49c4bae4087b3f1a85f82b1abe, type: 2}
   - {fileID: 11400000, guid: 101793eda77944ffb8bcb68258e1cfec, type: 2}
   - {fileID: 11400000, guid: 637de000abae142ba9291e63ccb81d80, type: 2}
+  listsCompleted: 0
+  PRESET: []
   UpdateListsEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -78,6 +82,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: []
   addItemEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  itemUpdatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  updateInventoryEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &8100196777407145409
@@ -105,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a286eb6edc0455d45bb03475a2ab8d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentScore: 0
   UpdateScore:
     m_PersistentCalls:
       m_Calls: []
@@ -120,3 +131,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28ee2fb00bc8304c8b3740fb2a59588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startWithInventory: 0
+  inventory: []
+  startWithShoppingList: 0
+  shoppingListItems: []
+--- !u!114 &5162313865872693218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100196777407145413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1989642a773bbc4b8273b6daf10ad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpdateEnergyBar:
+    m_PersistentCalls:
+      m_Calls: []
+  UseEnergyBar:
+    m_PersistentCalls:
+      m_Calls: []
+  maximumNeeded: 3
