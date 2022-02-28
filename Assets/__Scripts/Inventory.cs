@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour
         }
 
         PrintInventory();
-        Score.instance.AddScore(list.score);
+        Score.instance.AddScore(list.rating);
         itemUpdatedEvent.Invoke();
     }
 
