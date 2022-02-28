@@ -31,11 +31,9 @@ namespace __Scripts
         public void CompleteAction(int completeIndex)
         {
             List<ShoppingList> completable = CompletableOptions();
-            shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
-            foreach (Item item in completable[completeIndex].itemList)
-            {
-                inventory.RemoveItem(item);
-            }
+            //shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
+
+            ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[completeIndex]);
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -54,7 +52,7 @@ namespace __Scripts
                     images.GetChild(i).gameObject.SetActive(true);
                     CashRegisterUISlots[i].text = completable[i].ToString();
 
-                    ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[i]);
+                    //Put when you to click
 
                 }
                 CashRegisterObj.SetActive(true);
