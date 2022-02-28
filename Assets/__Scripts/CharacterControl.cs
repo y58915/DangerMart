@@ -18,6 +18,9 @@ public class CharacterControl : MonoBehaviour
     public float distance = 0f;
     public int mouse_clicks = 0;
 
+    [SerializeField]
+    private Item wildCardRef;
+
     private CollectionArea targetCollectionArea;
     private bool inputEnabled = true;
     private float originalSpeed;
@@ -117,6 +120,27 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<PowerUp>() != null)
+        {
+            switch(other.gameObject.GetComponent<PowerUp>().powerupItem.type)
+            {
+                case PowerupItem.PowerUpAbility.SpeedBoost:
+                    SpeedUp();
+                    break;
+                case PowerupItem.PowerUpAbility.WildCard:
+                    AddWildCard();
+                    break;
+                case PowerupItem.PowerUpAbility.EnergyDrink:
+                    IncreaseEnergy();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void Stun()
     {
         playerNav.isStopped = true;
@@ -136,10 +160,17 @@ public class CharacterControl : MonoBehaviour
     {
         playerNav.speed = originalSpeed * 0.25f;
 
-        StartCoroutine(SlowTime(5.0f));
+        StartCoroutine(SpeedChange(5.0f));
     }
 
-    private IEnumerator SlowTime(float duration)
+    private void SpeedUp()
+    {
+        playerNav.speed = originalSpeed * 2.0f;
+
+        StartCoroutine(SpeedChange(5.0f));
+    }
+
+    private IEnumerator SpeedChange(float duration)
     {
         yield return new WaitForSeconds(duration);
         playerNav.speed = originalSpeed;
@@ -152,4 +183,16 @@ public class CharacterControl : MonoBehaviour
 
         Inventory.instance.RemoveItem(items[index]);
     }
+
+    private void AddWildCard()
+    {
+        print("You got a wildcard");
+        Inventory.instance.addItemEvent.Invoke(wildCardRef);
+    }
+
+    private void IncreaseEnergy()
+    {
+        // TODO: Implement once energy bar gets added 
+    }
+    
 }
