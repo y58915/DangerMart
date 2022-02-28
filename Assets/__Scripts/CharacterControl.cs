@@ -151,7 +151,7 @@ public class CharacterControl : MonoBehaviour
                     AddWildCard();
                     break;
                 case PowerupItem.PowerUpAbility.EnergyDrink:
-                    //IncreaseEnergy();
+                    IncreaseEnergy();
                     break;
                 default:
                     break;
@@ -204,8 +204,12 @@ public class CharacterControl : MonoBehaviour
 
     private void AddWildCard()
     {
-        print("You got a wildcard");
         Inventory.instance.addItemEvent.Invoke(wildCardRef);
+    }
+
+    private void IncreaseEnergy()
+    {
+        // ADD FUNCTIONALITY LATER 
     }
 
     public void UseEnergy()
