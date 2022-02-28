@@ -26,6 +26,11 @@ public class CharacterControl : MonoBehaviour
     private float originalSpeed;
     private Vector3 last = Vector3.zero;
     private InputAction leftMouseClick;
+    private bool invulernable = false;
+
+    public float invulernablityTime = 5f;
+    public static CharacterControl instance;
+
     private void Awake()
     {
         leftMouseClick = new InputAction(binding: "<Mouse>/leftButton");
@@ -99,6 +104,9 @@ public class CharacterControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (invulernable)
+            return;
+        
         if (collision.gameObject.GetComponent<EnemyController>() != null)
         {
             switch(collision.gameObject.GetComponent<EnemyController>().enemyType)
@@ -190,9 +198,18 @@ public class CharacterControl : MonoBehaviour
         Inventory.instance.addItemEvent.Invoke(wildCardRef);
     }
 
-    private void IncreaseEnergy()
+    public void UseEnergy()
     {
-        // TODO: Implement once energy bar gets added 
+        invulernable = true;
+        playerNav.speed = originalSpeed * 2.0f;
+        StartCoroutine("RemoveEnergyBuff");
+    }
+
+    IEnumerator RemoveEnergyBuff()
+    {
+        yield return new WaitForSeconds(invulernablityTime);
+        invulernable = false;
+        playerNav.speed = originalSpeed;
     }
     
 }
