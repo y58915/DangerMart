@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c18ec8c73305241ac5ef1d9424bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAXSIZE: 8
+  MAXSIZE: 5
   MAXRATING: 4
-  newListTimer: 5
+  newListTimer: 10
   allItems:
   - {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
   - {fileID: 11400000, guid: 78ccb0d16feef4bb3bd604f5304fed48, type: 2}
@@ -61,7 +61,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 101793eda77944ffb8bcb68258e1cfec, type: 2}
   - {fileID: 11400000, guid: 637de000abae142ba9291e63ccb81d80, type: 2}
   listsCompleted: 0
-  PRESET: []
+  PRESET:
+  - {fileID: 11400000, guid: 5e5987bbad384438dad20caf186e776d, type: 2}
+  - {fileID: 11400000, guid: 1ef440f635065420888db8f136e14fe0, type: 2}
+  - {fileID: 11400000, guid: f7b4887dba73d4dd3aeea49fa476316d, type: 2}
+  - {fileID: 11400000, guid: 9df58009f68fa447ebce9f102cce3c60, type: 2}
+  - {fileID: 11400000, guid: 77ccde586d44a4c4290d44bf8ac1428e, type: 2}
+  - {fileID: 11400000, guid: 03f58eafed56f6f48a5b95f73f1f621a, type: 2}
+  - {fileID: 11400000, guid: 0dbbec3849242e045af39d3454bde8fb, type: 2}
+  - {fileID: 11400000, guid: 6be1cd6c474d24043b82d17800ebc3b5, type: 2}
+  - {fileID: 11400000, guid: c8fb4b718e593374c86848cfd9cb77f0, type: 2}
+  - {fileID: 11400000, guid: 27c927c74f01f37499fb13d1c0d8750e, type: 2}
   UpdateListsEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -90,6 +100,7 @@ MonoBehaviour:
   updateInventoryEvent:
     m_PersistentCalls:
       m_Calls: []
+  movingIndex: 0
 --- !u!114 &8100196777407145409
 MonoBehaviour:
   m_ObjectHideFlags: 0

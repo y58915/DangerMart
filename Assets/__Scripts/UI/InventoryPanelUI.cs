@@ -62,9 +62,9 @@ public class InventoryPanelUI : MonoBehaviour
         inventory = Inventory.instance.GetInventory();
 
         int i = 0;
-        foreach (var entry in inventory)
+        foreach (var item in inventory)
         {
-            inventorySlotList[i].UpdateDisplay(entry);
+            inventorySlotList[i].SetItem(item);
             // inventoryCountList[i].text = entry.Value.ToString();
             // inventoryCountList[i].color = Color.black;
             i++;
@@ -72,10 +72,7 @@ public class InventoryPanelUI : MonoBehaviour
 
         for (int j = i; j < inventorySlotList.Length; j++)
         {
-            // inventorySlotList[j].sprite = null;
-            // inventoryImageList[j].color = Color.clear;
-            // inventoryCountList[j].text = "";
-            // inventoryCountList[j].color = Color.clear;
+            inventorySlotList[i].ClearItem();
         }
     }
 }

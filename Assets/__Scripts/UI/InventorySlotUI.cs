@@ -7,15 +7,29 @@ using UnityEngine.UI;
 public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
+    [SerializeField] private Image image;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
     public static int draggedIndex;
 
-    private void Awake() {
+    private void Start() {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        image = GetComponent<Image>();
         originalPosition = rectTransform.anchoredPosition;
+    }
+
+    public void SetItem(Item _item)
+    {
+        image.sprite = _item.itemImage;
+        image.color = Color.white;
+    }
+
+    public void ClearItem()
+    {
+        image.sprite = null;
+        image.color = Color.clear;
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
@@ -43,9 +57,5 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IBeginDragHan
         // Debug.Log("OnPointerDown");
     }
 
-    public void UpdateDisplay(Item _item) {
-        gameObject.GetComponent<Image>().sprite = _item.itemImage;
-        gameObject.GetComponent<Image>().color = Color.white;
-    }
 }
 
