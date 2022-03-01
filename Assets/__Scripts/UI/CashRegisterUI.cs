@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CashRegisterUI : MonoBehaviour
+public class CashRegisterUI : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] GameObject CashRegister;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,19 +18,8 @@ public class CashRegisterUI : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (other.CompareTag("Player"))
-        {
-            CashRegister.SetActive(true);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            CashRegister.SetActive(false);
-
-        }
+        
     }
 }

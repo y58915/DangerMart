@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace __Scripts
@@ -12,14 +14,15 @@ namespace __Scripts
         private ShoppingListManager shoppingList;
         [SerializeField] List<Text> CashRegisterUISlots;
         [SerializeField] GameObject CashRegisterObj;
-
+        [HideInInspector] public UnityEvent CashRegisterUpdate;
+        private List<ShoppingList> completable;
 
         // Start is called before the first frame update
         void Start()
         {
             inventory = Inventory.instance;
             shoppingList = ShoppingListManager.instance;
-
+            inventory.updateInventoryEvent.AddListener(CompletableOptions);
         }
 
         // Update is called once per frame
@@ -28,11 +31,10 @@ namespace __Scripts
         
         }
 
+        // temp solution for complete a shopping list
         public void CompleteAction(int completeIndex)
         {
-            List<ShoppingList> completable = CompletableOptions();
             shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
-
             ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[completeIndex]);
 
         }
@@ -40,20 +42,18 @@ namespace __Scripts
         {
             if (other.CompareTag("Player"))
             {
-                List<ShoppingList> completable = CompletableOptions();
                 if (completable.Count == 0)
                 {
                     return;
                 }
                 Transform images = CashRegisterObj.transform.GetChild(0);
                 Transform text = CashRegisterObj.transform.GetChild(1);
+                // Only show list can be complete
                 for (int i = 0; i < completable.Count; i++)
                 {
                     text.GetChild(i).gameObject.SetActive(true);
                     images.GetChild(i).gameObject.SetActive(true);
                     CashRegisterUISlots[i].text = completable[i].ToString();
-
-                    //Put when you to click
 
                 }
                 CashRegisterObj.SetActive(true);
@@ -67,9 +67,9 @@ namespace __Scripts
 
             }
         }
-        private List<ShoppingList> CompletableOptions()
+        private void CompletableOptions()
         {
-            List<ShoppingList> completable = new List<ShoppingList>();
+            completable = new List<ShoppingList>();
             List<Item> inventoryItems = inventory.container;
             foreach (ShoppingList shopList in shoppingList.GetAllShoppingLists())
             {
@@ -82,9 +82,7 @@ namespace __Scripts
                 if (count == cartItems.Count) completable.Add(shopList);
                 
             }
-
-            return completable;
-
+            CashRegisterUpdate.Invoke();
         }
     }
 }
