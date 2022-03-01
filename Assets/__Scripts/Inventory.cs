@@ -6,13 +6,14 @@ using UnityEngine.Analytics;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public List<Item> container;             //value: the number of the item in the inventory
-
+    [SerializeField] public List<Item> container;
     [HideInInspector] public UnityEvent<Item> addItemEvent;
     [HideInInspector] public UnityEvent itemUpdatedEvent;
     [HideInInspector] public UnityEvent updateInventoryEvent;
 
     public int movingIndex;
+
+    public int MAXSIZE = 6;
 
     #region Singleton
     public static Inventory instance;
@@ -42,46 +43,43 @@ public class Inventory : MonoBehaviour
     //we maybe dont need amount. Add item only happened once a time
     public void AddItem(Item _item)
     {
-        int capacity = 6;
-        if (container.Count >= capacity) {
+        if (container.Count >= MAXSIZE) {
             return;
         }
         else {
             container.Add(_item);
         }
-
-        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Picked Up", new Dictionary<string, object> { { _item.itemName, 1 } }); // TODO: remove?
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Picked Up", new Dictionary<string, object> { { _item.itemName, 1 } });
         // Debug.Log("New Items " + analyticsResult_Item);
-
-
         PrintInventory();
-
         itemUpdatedEvent.Invoke();
         updateInventoryEvent.Invoke();
     }
 
 
-    //remove a single item (maybe remove multiple at same time?)
+    //remove a single item (called when the shopping list is completed)
     public void RemoveItem(Item _item)
     {
         if (!container.Contains(_item))
         {
             return;
         }
-
         container.Remove(_item);
-        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { _item.itemName, 1 } }); // TODO: remove?
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { _item.itemName, 1 } }); // TODO: remove? this is called when list is compled, not when item is trashed
         // Debug.Log("Discarded Items " + analyticsResult_Item);
         updateInventoryEvent.Invoke();
     }
 
-    public void RemoveMovingItem()
+    public void DiscardItem()
     {
         Debug.Log(movingIndex);
         if (movingIndex == -1){
             return;
         }
-        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { container[movingIndex].itemName, 1 } }); // TODO: remove?
+        if (movingIndex >= container.Count){
+            return;
+        }
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { container[movingIndex].itemName, 1 } });
         container.RemoveAt(movingIndex);
         movingIndex = -1;
         updateInventoryEvent.Invoke();
@@ -95,7 +93,6 @@ public class Inventory : MonoBehaviour
         {
             RemoveItem(item);
         }
-
         PrintInventory();
         Score.instance.AddScore(list.rating);
         itemUpdatedEvent.Invoke();
@@ -103,7 +100,6 @@ public class Inventory : MonoBehaviour
 
     public List<Item> GetInventory()
     {
-        
         return container;
     }
 
@@ -122,7 +118,6 @@ public class Inventory : MonoBehaviour
             temp += entry.itemName;
             temp += ", ";
         }
-
         // Debug.Log(temp);
     }
 }
