@@ -45,19 +45,19 @@ public class CountdownTimerUI : MonoBehaviour
 
                 // Add analytics for High Score
                 AnalyticsResult analyticsResult_Score = Analytics.CustomEvent("High Score", new Dictionary<string, object> { { "Score", scoreReference.currentScore } });
-                Debug.Log("High Score: " + analyticsResult_Score);
+                // Debug.Log("High Score: " + analyticsResult_Score);
 
                 // Add analytics for Total Lists Complete
                 AnalyticsResult analyticsResult_Lists = Analytics.CustomEvent("Total Lists Complete", new Dictionary<string, object> { { "Lists", listManager.listsCompleted } });
-                Debug.Log("Total Lists Complete: " + analyticsResult_Lists);
+                // Debug.Log("Total Lists Complete: " + analyticsResult_Lists);
 
                 float dist = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<CharacterControl>().distance;
                 AnalyticsResult analyticsResult_Dist = Analytics.CustomEvent("Distance Traveled", new Dictionary<string, object> { { "Distance", dist } });
-                Debug.Log("Total Distance Traveled: " + analyticsResult_Dist);
+                // Debug.Log("Total Distance Traveled: " + analyticsResult_Dist);
 
                 int clicks = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<CharacterControl>().mouse_clicks;
                 AnalyticsResult analyticsResult_Clicks = Analytics.CustomEvent("Mouse Clicks", new Dictionary<string, object> { { "Clicks", clicks } }) ;
-                Debug.Log("Total Mouse Clicks: " + analyticsResult_Clicks);
+                // Debug.Log("Total Mouse Clicks: " + analyticsResult_Clicks);
             }
 
             int minute = (int)(currentTime / 60);

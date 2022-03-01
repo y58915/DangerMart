@@ -132,7 +132,7 @@ public class CharacterControl : MonoBehaviour
                     break;
             }
             AnalyticsResult analyticsResult_Enemies = Analytics.CustomEvent("Enemy Hit", new Dictionary<string, object> { { "Enemy", collision.gameObject.GetComponent<EnemyController>().enemyType } });
-            Debug.Log("Enemy Hit: " + analyticsResult_Enemies);
+            // Debug.Log("Enemy Hit: " + analyticsResult_Enemies);
         }
     }
 

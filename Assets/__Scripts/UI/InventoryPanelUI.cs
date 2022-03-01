@@ -7,18 +7,34 @@ public class InventoryPanelUI : MonoBehaviour
 {
     List<Item> inventory;
 
-    [SerializeField] GameObject inventoryImageParent;
+    [SerializeField] GameObject inventorySlotParent;
     [SerializeField] GameObject inventoryCountParent;
 
-    Image[] inventoryImageList;
+    public InventorySlotUI[] inventorySlotList;
     Text[] inventoryCountList;
 
     bool skipfirst = true;
 
+    #region Singleton
+    public static InventoryPanelUI instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-        inventoryImageList = inventoryImageParent.GetComponentsInChildren<Image>();
+        inventorySlotList = inventorySlotParent.GetComponentsInChildren<InventorySlotUI>();
         inventoryCountList = inventoryCountParent.GetComponentsInChildren<Text>();
 
         Inventory.instance.updateInventoryEvent.AddListener(UpdateDisplay);
@@ -48,16 +64,15 @@ public class InventoryPanelUI : MonoBehaviour
         int i = 0;
         foreach (var entry in inventory)
         {
-            inventoryImageList[i].sprite = entry.itemImage;
-            inventoryImageList[i].color = Color.white;
+            inventorySlotList[i].UpdateDisplay(entry);
             // inventoryCountList[i].text = entry.Value.ToString();
             // inventoryCountList[i].color = Color.black;
             i++;
         }
 
-        for (int j = i; j < inventoryImageList.Length; j++)
+        for (int j = i; j < inventorySlotList.Length; j++)
         {
-            inventoryImageList[j].sprite = null;
+            // inventorySlotList[j].sprite = null;
             // inventoryImageList[j].color = Color.clear;
             // inventoryCountList[j].text = "";
             // inventoryCountList[j].color = Color.clear;

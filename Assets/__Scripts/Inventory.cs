@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public UnityEvent itemUpdatedEvent;
     [HideInInspector] public UnityEvent updateInventoryEvent;
 
+    public int movingIndex;
+
     #region Singleton
     public static Inventory instance;
 
@@ -49,7 +51,7 @@ public class Inventory : MonoBehaviour
         }
 
         AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Picked Up", new Dictionary<string, object> { { _item.itemName, 1 } }); // TODO: remove?
-        Debug.Log("New Items " + analyticsResult_Item);
+        // Debug.Log("New Items " + analyticsResult_Item);
 
 
         PrintInventory();
@@ -69,7 +71,19 @@ public class Inventory : MonoBehaviour
 
         container.Remove(_item);
         AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { _item.itemName, 1 } }); // TODO: remove?
-        Debug.Log("Discarded Items " + analyticsResult_Item);
+        // Debug.Log("Discarded Items " + analyticsResult_Item);
+        updateInventoryEvent.Invoke();
+    }
+
+    public void RemoveMovingItem()
+    {
+        Debug.Log(movingIndex);
+        if (movingIndex == -1){
+            return;
+        }
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { container[movingIndex].itemName, 1 } }); // TODO: remove?
+        container.RemoveAt(movingIndex);
+        movingIndex = -1;
         updateInventoryEvent.Invoke();
     }
 
@@ -109,7 +123,7 @@ public class Inventory : MonoBehaviour
             temp += ", ";
         }
 
-        Debug.Log(temp);
+        // Debug.Log(temp);
     }
 }
 

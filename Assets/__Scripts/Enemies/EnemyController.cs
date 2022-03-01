@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
             if (transform.position.z > UPPER_BORDER || transform.position.z < LOWER_BORDER ||
                     transform.position.x > RIGHT_BORDER || transform.position.x < LEFT_BORDER) {
                 
-                Debug.LogFormat("Crossed border!!");
+                // Debug.LogFormat("Crossed border!!");
                 ReturnToFloor();
 
             }
@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
     private void ReturnToFloor() {
         
         float rotationY= transform.rotation.eulerAngles.y;
-        Debug.LogFormat("rotation Y " + rotationY);
+        // Debug.LogFormat("rotation Y " + rotationY);
 
         // once reachinging the border, the enemy reflects off it and returns to the map
         if (transform.position.z > UPPER_BORDER || transform.position.z < LOWER_BORDER) {

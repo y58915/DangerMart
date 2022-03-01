@@ -7,7 +7,12 @@ using UnityEngine.EventSystems;
 public class TrashCan : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData) {
-        List<Item> items = new List<Item>(Inventory.instance.container);
-        Inventory.instance.RemoveItem(items[0]);
+        // List<Item> items = new List<Item>(Inventory.instance.container);
+        // detect which index of inventory slots is dropped, and then remove it
+
+        Inventory.instance.RemoveMovingItem();
+        // if (InventorySlotUI.draggedIndex < items.Count) {
+        //     Inventory.instance.RemoveItem(items[InventorySlotUI.draggedIndex]);
+        // }
     }
 }
