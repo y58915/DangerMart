@@ -72,7 +72,7 @@ public class Inventory : MonoBehaviour
 
     public void DiscardItem()
     {
-        Debug.Log(movingIndex);
+        // Debug.Log(movingIndex);
         if (movingIndex == -1){
             return;
         }

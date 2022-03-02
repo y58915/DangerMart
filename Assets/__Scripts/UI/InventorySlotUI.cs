@@ -33,11 +33,11 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IBeginDragHan
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-        Debug.Log("Onbegin");
+        // Debug.Log("Onbegin");
         canvasGroup.alpha = 0.5f;
         canvasGroup.blocksRaycasts = false;
         Inventory.instance.movingIndex = System.Array.IndexOf(InventoryPanelUI.instance.inventorySlotList, this); //TODO: assign dragged items index
-        Debug.Log(Inventory.instance.movingIndex);
+        // Debug.Log(Inventory.instance.movingIndex);
     }
 
     public void OnDrag(PointerEventData eventData) {

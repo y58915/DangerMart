@@ -38,11 +38,11 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         keyboard = Keyboard.current;
-        InventoryButton.onClick.AddListener(ToggleInventoryPanel);
+        // InventoryButton.onClick.AddListener(ToggleInventoryPanel);
         PauseButton.onClick.AddListener(TogglePausePanel);
 
         ShoppingListPanel.SetActive(true);
-        InventoryPanel.SetActive(false);
+        InventoryPanel.SetActive(true);
         PausePanel.SetActive(false);
         CashRegister.SetActive(false);
     }
@@ -51,10 +51,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
     }
-    public void ToggleInventoryPanel()
-    {
-        InventoryPanel.SetActive(!InventoryPanel.activeInHierarchy);
-    }
+    // public void ToggleInventoryPanel()
+    // {
+    //     InventoryPanel.SetActive(!InventoryPanel.activeInHierarchy);
+    // }
 
     public void TogglePausePanel()
     {
