@@ -12,8 +12,8 @@ public class EnergyBarUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        energyBar = this.GetComponent<Slider>();
-        EnergyBar.instance.UpdateEnergyBar.AddListener(UpdateEnergyBarSlider);
+        //energyBar = this.GetComponent<Slider>();
+        //EnergyBar.instance.UpdateEnergyBar.AddListener(UpdateEnergyBarSlider);
     }
 
     // Update is called once per frame
@@ -24,6 +24,6 @@ public class EnergyBarUI : MonoBehaviour
 
     void UpdateEnergyBarSlider(float listCompeleted, float maximumNeeded)
     {
-        energyBar.value = listCompeleted / maximumNeeded;
+        //energyBar.value = listCompeleted / maximumNeeded;
     }
 }
