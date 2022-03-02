@@ -28,13 +28,14 @@ namespace __Scripts
         // Update is called once per frame
         void Update()
         {
-        
         }
 
         // temp solution for complete a shopping list
         public void CompleteAction(int completeIndex)
         {
-            shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
+            Debug.Log(completeIndex);
+            // shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
+            inventory.CompleteShoppingList(completable[completeIndex]);
             ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[completeIndex]);
 
         }
@@ -71,6 +72,8 @@ namespace __Scripts
         {
             completable = new List<ShoppingList>();
             List<Item> inventoryItems = inventory.container;
+            Debug.Log(inventory.ToString());
+
             foreach (ShoppingList shopList in shoppingList.GetAllShoppingLists())
             {
                 List<Item> cartItems = shopList.itemList;
@@ -82,7 +85,19 @@ namespace __Scripts
                 if (count == cartItems.Count) completable.Add(shopList);
                 
             }
+
+            completable.ForEach(data =>
+            {
+                List<string> l = new List<string>();
+                foreach (Item item in data.itemList)
+                {
+                    l.Add(item.itemName);
+                }
+                Debug.Log("Shop List："+string.Join(",", l) + "\n");
+            });
+
             CashRegisterUpdate.Invoke();
         }
+        
     }
 }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Analytics;
@@ -120,6 +122,18 @@ public class Inventory : MonoBehaviour
             temp += ", ";
         }
         // Debug.Log(temp);
+    }
+
+    public override string ToString()
+    {
+        List<string> itemNames = new List<string>();
+
+
+        foreach (Item item in container)
+        {
+            itemNames.Add(item.itemName);
+        }
+        return String.Join(",", itemNames);
     }
 }
 
