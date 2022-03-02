@@ -26,7 +26,7 @@ public class StarRatingUI : MonoBehaviour
                 child.gameObject.SetActive(true);
                 num -= 1;
             } else{
-                break;
+                child.gameObject.SetActive(false);
             }
                 
         }
