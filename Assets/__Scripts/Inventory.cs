@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour
             container.Add(_item);
         }
         AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Picked Up", new Dictionary<string, object> { { _item.itemName, 1 } });
-        // Debug.Log("New Items " + analyticsResult_Item);
+        // Debug.Log("New Item " + _item.itemName + analyticsResult_Item);
         PrintInventory();
         itemUpdatedEvent.Invoke();
         updateInventoryEvent.Invoke();
@@ -65,8 +65,6 @@ public class Inventory : MonoBehaviour
             return;
         }
         container.Remove(_item);
-        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { _item.itemName, 1 } }); // TODO: remove? this is called when list is compled, not when item is trashed
-        // Debug.Log("Discarded Items " + analyticsResult_Item);
         updateInventoryEvent.Invoke();
     }
 
@@ -80,6 +78,7 @@ public class Inventory : MonoBehaviour
             return;
         }
         AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { container[movingIndex].itemName, 1 } });
+        // Debug.Log("Discarded Item "+ container[movingIndex].itemName + analyticsResult_Item);
         container.RemoveAt(movingIndex);
         movingIndex = -1;
         updateInventoryEvent.Invoke();
@@ -92,6 +91,8 @@ public class Inventory : MonoBehaviour
         foreach (Item item in list.itemList)
         {
             RemoveItem(item);
+            AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Completed", new Dictionary<string, object> { { item.itemName, 1 } });
+            // Debug.Log("Completed Item " + item.itemName + analyticsResult_Item);
         }
         PrintInventory();
         Score.instance.AddScore(list.rating);
