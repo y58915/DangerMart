@@ -63,7 +63,7 @@ public class CountdownTimerUI : MonoBehaviour
             int minute = (int)(currentTime / 60);
             int seconds = (int)(currentTime % 60);
 
-            string secondsTextFormat = (seconds > 10) ? seconds.ToString() : "0" + seconds.ToString();
+            string secondsTextFormat = (seconds >= 10) ? seconds.ToString() : "0" + seconds.ToString();
 
             timerText.text = minute.ToString() + ":" + secondsTextFormat;
         }

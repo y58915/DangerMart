@@ -101,6 +101,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   movingIndex: 0
+  MAXSIZE: 6
 --- !u!114 &8100196777407145409
 MonoBehaviour:
   m_ObjectHideFlags: 0
