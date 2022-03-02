@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfb3f1226b79349b88ecb09d394a75d8, type: 3}
-  m_Name: Egg
+  m_Name: Water
   m_EditorClassIdentifier: 
-  itemName: Egg
+  itemName: Water
   itemCategory: 1
   itemDescription: 
-  itemImage: {fileID: 21300000, guid: 2da04bd9ff292e7418cae5cd614255f0, type: 3}
-  itemModelPrefab: {fileID: 3635606160918801101, guid: 2e552caf3eaa3934ab3e593fd9ec47d6, type: 3}
+  itemImage: {fileID: 21300000, guid: 070a050cb65c12948934ec856cc51d16, type: 3}
+  itemModelPrefab: {fileID: 3635606160918801101, guid: dca7a9098b1a94347968092b4795ddbe, type: 3}
   score: 10
   restoreHealthValue: 0
