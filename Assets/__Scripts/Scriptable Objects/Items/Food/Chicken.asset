@@ -17,5 +17,5 @@ MonoBehaviour:
   itemDescription: 
   itemImage: {fileID: 21300000, guid: 5db2bf6627f97e248bbc33e432abf497, type: 3}
   itemModelPrefab: {fileID: 3635606160918801101, guid: 6ee7e3ea52f76f345b8896ff1a8a7222, type: 3}
-  score: 10
+  score: 100
   restoreHealthValue: 0

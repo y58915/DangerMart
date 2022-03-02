@@ -95,7 +95,7 @@ public class Inventory : MonoBehaviour
             // Debug.Log("Completed Item " + item.itemName + analyticsResult_Item);
         }
         PrintInventory();
-        Score.instance.AddScore(list.rating);
+        Score.instance.AddScore(list.rating * 100);
         itemUpdatedEvent.Invoke();
     }
 

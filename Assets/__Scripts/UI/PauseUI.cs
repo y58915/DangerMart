@@ -7,7 +7,6 @@ public class PauseUI : MonoBehaviour
 {
     [SerializeField] Button resumeButton;
     [SerializeField] Button restartButton;
-    [SerializeField] Button mainMenuButton;
     [SerializeField] Button quitButton;
 
     // Start is called before the first frame update
@@ -15,7 +14,6 @@ public class PauseUI : MonoBehaviour
     {
         resumeButton.onClick.AddListener(OnResume);
         restartButton.onClick.AddListener(OnRestart);
-        mainMenuButton.onClick.AddListener(OnMainMenu);
         quitButton.onClick.AddListener(OnQuit);
     }
 
@@ -32,11 +30,6 @@ public class PauseUI : MonoBehaviour
 
     void OnRestart()
     {
-
-    }
-
-    void OnMainMenu()
-    { 
 
     }
 

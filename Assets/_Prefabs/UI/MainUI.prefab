@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1082462932}
   - component: {fileID: 1082462931}
   m_Layer: 5
-  m_Name: GameOverScreen
+  m_Name: GameOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2217,6 +2217,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6008013154396138513}
     m_Modifications:
+    - target: {fileID: 847102797768667845, guid: d83521d6db93b4d4bb8cb77e58090b4c, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 847102797768667845, guid: d83521d6db93b4d4bb8cb77e58090b4c, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 847102797768667845, guid: d83521d6db93b4d4bb8cb77e58090b4c, type: 3}
+      propertyPath: m_FillMethod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 853991054289379344, guid: d83521d6db93b4d4bb8cb77e58090b4c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

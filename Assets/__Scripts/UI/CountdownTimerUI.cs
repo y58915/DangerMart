@@ -19,6 +19,26 @@ public class CountdownTimerUI : MonoBehaviour
     private Score scoreReference;
     private ShoppingListManager listManager;
 
+    public bool noTimeOver = false;
+
+
+    #region Singleton
+    public static CountdownTimerUI instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    #endregion
+
+
     private void Start()
     {
         currentTime = LevelController.instance.GetLevelTimer();
@@ -30,6 +50,8 @@ public class CountdownTimerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (noTimeOver) return;
+
         if (!timerPaused)
         {
             currentTime -= Time.deltaTime;

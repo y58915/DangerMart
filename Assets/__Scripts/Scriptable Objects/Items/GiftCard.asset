@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GiftCard
   m_EditorClassIdentifier: 
   itemName: Gift Card
-  itemCategory: 2
+  itemCategory: 3
   itemDescription: 
   itemImage: {fileID: 21300000, guid: 77bb3f9d3c0642c4685e7758116675ed, type: 3}
   itemModelPrefab: {fileID: 3635606160918801101, guid: 6bb6c74c28fd8004389e79cf1f5eb49b, type: 3}
-  score: 3
+  score: 300

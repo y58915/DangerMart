@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pen
   m_EditorClassIdentifier: 
   itemName: Pen
-  itemCategory: 2
+  itemCategory: 3
   itemDescription: 
   itemImage: {fileID: 21300000, guid: f18e26c2fbec20d4e9edfbd08b32d821, type: 3}
   itemModelPrefab: {fileID: 3635606160918801101, guid: db5e01164609d7c44a472fb8e7cdef02, type: 3}
-  score: 4
+  score: 400

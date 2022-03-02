@@ -6,12 +6,14 @@ using TMPro;
 
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI scoreText; 
+    [SerializeField] RectTransform scoreImage;
+    [SerializeField] float maxScore = 2000;
 
     // Start is called before the first frame update
     void Start()
     {
         Score.instance.UpdateScore.AddListener(UpdateScoreUI);
+        UpdateScoreUI(0);
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class ScoreUI : MonoBehaviour
 
     void UpdateScoreUI(float score)
     {
-        scoreText.text = "Score: " + score.ToString();
+        float temp = Mathf.Clamp(score / maxScore, 0, 1);
+        scoreImage.anchorMax = new Vector2(1, temp);
     }
 }

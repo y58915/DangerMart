@@ -8,6 +8,9 @@ public class DevCheat : MonoBehaviour
     [SerializeField] List<Item> inventory;
     [SerializeField] bool startWithShoppingList;
     [SerializeField] List<Item> shoppingListItems;
+
+
+    [SerializeField] bool NoGameOver;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,11 @@ public class DevCheat : MonoBehaviour
         if (startWithShoppingList)
         {
             ShoppingListManager.instance.AddSpecificList(shoppingListItems);
+        }
+
+        if (NoGameOver)
+        {
+            CountdownTimerUI.instance.noTimeOver = true;
         }
     }
 }

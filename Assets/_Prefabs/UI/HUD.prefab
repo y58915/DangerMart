@@ -477,6 +477,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18754e7760354ff42a07e9e685a05054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstBar: {fileID: 5246973266124496946}
+  secondBar: {fileID: 1997140844347319728}
+  thirdBar: {fileID: 1108014023305434075}
 --- !u!1 &3198977554852592034
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0dbd70c96936a42aec43054a1dbfb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  scoreImage: {fileID: 8811914032639673038}
+  maxScore: 2000
 --- !u!1 &3607581220529485534
 GameObject:
   m_ObjectHideFlags: 0

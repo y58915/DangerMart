@@ -17,5 +17,5 @@ MonoBehaviour:
   itemDescription: 
   itemImage: {fileID: 21300000, guid: a62b3e0e9b44ede48b2602173506e312, type: 3}
   itemModelPrefab: {fileID: 3635606160918801101, guid: c6594509461060f4db74f688b445df9c, type: 3}
-  score: 5
+  score: 500
   usage: 

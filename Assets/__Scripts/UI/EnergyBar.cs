@@ -6,12 +6,12 @@ using UnityEngine.Events;
 
 public class EnergyBar : MonoBehaviour
 {
-    private float energyBarCount = 0;
-    [HideInInspector] public UnityEvent<float,float> UpdateEnergyBar;
+    private int energyBarCount = 0;
+    [HideInInspector] public UnityEvent<int> UpdateEnergyBar;
 
     [HideInInspector] public UnityEvent UseEnergyBar;
 
-    public float maximumNeeded = 3;
+    public int maximumNeeded = 3;
 
     public static EnergyBar instance;
 
@@ -29,8 +29,6 @@ public class EnergyBar : MonoBehaviour
 
     void Start()
     {
-
-
         ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(AddEnergy);
         UseEnergyBar.AddListener(CharacterControl.instance.UseEnergy);
     }
@@ -38,12 +36,6 @@ public class EnergyBar : MonoBehaviour
 
     private void Update()
     {
-        if (energyBarCount == maximumNeeded)
-        {   
-            UseEnergyBar.Invoke();
-            energyBarCount = 0;
-            UpdateEnergyBar.Invoke(energyBarCount, maximumNeeded);
-        }
     }
 
     private void AddEnergy(ShoppingList list)
@@ -51,11 +43,23 @@ public class EnergyBar : MonoBehaviour
         if (energyBarCount < 3)
         {
             energyBarCount += 1;
-            UpdateEnergyBar.Invoke(energyBarCount,maximumNeeded);
+            UpdateEnergyBar.Invoke(energyBarCount);
+        }
+
+        if (energyBarCount == maximumNeeded)
+        {
+            StartCoroutine(ActivateEnergy());
         }
     }
 
+    IEnumerator ActivateEnergy()
+    {
+        yield return new WaitForSeconds(1);
 
+        UseEnergyBar.Invoke();
+        energyBarCount = 0;
+        UpdateEnergyBar.Invoke(energyBarCount);
+    }
 
 
 }

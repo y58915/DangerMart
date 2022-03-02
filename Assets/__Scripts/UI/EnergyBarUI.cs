@@ -7,13 +7,15 @@ using UnityEngine.Events;
 public class EnergyBarUI : MonoBehaviour
 {
 
-    private Slider energyBar;
+    [SerializeField]private Image firstBar;
+    [SerializeField]private Image secondBar;
+    [SerializeField]private Image thirdBar;
     
     // Start is called before the first frame update
     void Start()
     {
-        //energyBar = this.GetComponent<Slider>();
-        //EnergyBar.instance.UpdateEnergyBar.AddListener(UpdateEnergyBarSlider);
+        EnergyBar.instance.UpdateEnergyBar.AddListener(UpdateUI);
+        UpdateUI(0);
     }
 
     // Update is called once per frame
@@ -22,8 +24,14 @@ public class EnergyBarUI : MonoBehaviour
         
     }
 
-    void UpdateEnergyBarSlider(float listCompeleted, float maximumNeeded)
+    void UpdateUI(int i)
     {
-        //energyBar.value = listCompeleted / maximumNeeded;
+        switch (i)
+        {
+            case 1: firstBar.color = Color.yellow; secondBar.color = Color.white; thirdBar.color = Color.white; break;
+            case 2: firstBar.color = Color.yellow; secondBar.color = new Color(1, 0.6f, 0, 1); thirdBar.color = Color.white; break;
+            case 3: firstBar.color = Color.yellow; secondBar.color = new Color(1, 0.6f, 0, 1); thirdBar.color = Color.red; break;
+            default: firstBar.color = Color.white; secondBar.color = Color.white; thirdBar.color = Color.white; break;
+        }
     }
 }
