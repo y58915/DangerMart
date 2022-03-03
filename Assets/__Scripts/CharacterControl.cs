@@ -69,8 +69,9 @@ public class CharacterControl : MonoBehaviour
 
     public void UpdateAnimations()
     {
+        Debug.Log("sqrtMagnitude => " + playerNav.velocity.sqrMagnitude);
         //Change animator variables
-        if (playerNav.velocity.sqrMagnitude < 0.5f)
+        if (playerNav.velocity.sqrMagnitude < 0.1f)
         {
             playerAnim.SetBool("isWalking", false);
         }
