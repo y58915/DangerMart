@@ -19,6 +19,7 @@ public class CollectionArea : MonoBehaviour
     void Start()
     {
         myItem = Instantiate(item.itemModelPrefab, this.transform.position, Quaternion.identity);
+        myItem.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
         collectionTrigger = GetComponent<SphereCollider>();
         collectionTrigger.enabled = false;

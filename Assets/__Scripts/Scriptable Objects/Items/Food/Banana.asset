@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfb3f1226b79349b88ecb09d394a75d8, type: 3}
-  m_Name: Chicken
+  m_Name: Banana
   m_EditorClassIdentifier: 
-  itemName: Chicken
+  itemName: Banana
   itemCategory: 1
   itemDescription: 
-  itemImage: {fileID: 21300102, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
-  itemModelPrefab: {fileID: 1000010917563242, guid: 6e2574af69e1ddd4497a11adb45777a1, type: 3}
+  itemImage: {fileID: 21300020, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
+  itemModelPrefab: {fileID: 1000012997751318, guid: 0550765fb22bb954ea0412b7153ff417, type: 3}
   score: 100
   restoreHealthValue: 0
