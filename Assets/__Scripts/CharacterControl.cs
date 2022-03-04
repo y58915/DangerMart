@@ -70,7 +70,7 @@ public class CharacterControl : MonoBehaviour
 
     public void UpdateAnimations()
     {
-        Debug.Log("sqrtMagnitude => " + playerNav.velocity.sqrMagnitude);
+        // Debug.Log("sqrtMagnitude => " + playerNav.velocity.sqrMagnitude);
         //Change animator variables
         if (playerNav.velocity.sqrMagnitude < 0.1f)
         {
@@ -203,6 +203,10 @@ public class CharacterControl : MonoBehaviour
     private void LoseItem()
     {
         List<Item> items = new List<Item>(Inventory.instance.container);
+        if (items.Count == 0)
+        {
+            return;
+        }
         int index = Random.Range(0, items.Count);
 
         Inventory.instance.RemoveItem(items[index]);
