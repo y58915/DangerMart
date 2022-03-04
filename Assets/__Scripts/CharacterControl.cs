@@ -31,7 +31,6 @@ public class CharacterControl : MonoBehaviour
 
     public float invulernablityTime = 5f;
     public static CharacterControl instance;
-    public PowerupSpawner PowerupSpawner;
 
     private void Awake()
     {
@@ -71,10 +70,7 @@ public class CharacterControl : MonoBehaviour
 
     public void UpdateAnimations()
     {
-<<<<<<< HEAD
-=======
         // Debug.Log("sqrtMagnitude => " + playerNav.velocity.sqrMagnitude);
->>>>>>> 215175ab0498f171aef1c909af2cde3bd51cb0ae
         //Change animator variables
         if (playerNav.velocity.sqrMagnitude < 0.1f)
         {
@@ -166,8 +162,6 @@ public class CharacterControl : MonoBehaviour
                 default:
                     break;
             }
-            PowerupSpawner.DecrementNumberOfPowerUps();
-            Destroy(other.gameObject);
         }
     }
 
