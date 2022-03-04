@@ -31,6 +31,7 @@ public class CharacterControl : MonoBehaviour
 
     public float invulernablityTime = 5f;
     public static CharacterControl instance;
+    public PowerupSpawner PowerupSpawner;
 
     private void Awake()
     {
@@ -70,7 +71,10 @@ public class CharacterControl : MonoBehaviour
 
     public void UpdateAnimations()
     {
-        Debug.Log("sqrtMagnitude => " + playerNav.velocity.sqrMagnitude);
+<<<<<<< HEAD
+=======
+        // Debug.Log("sqrtMagnitude => " + playerNav.velocity.sqrMagnitude);
+>>>>>>> 215175ab0498f171aef1c909af2cde3bd51cb0ae
         //Change animator variables
         if (playerNav.velocity.sqrMagnitude < 0.1f)
         {
@@ -162,6 +166,8 @@ public class CharacterControl : MonoBehaviour
                 default:
                     break;
             }
+            PowerupSpawner.DecrementNumberOfPowerUps();
+            Destroy(other.gameObject);
         }
     }
 
@@ -203,6 +209,10 @@ public class CharacterControl : MonoBehaviour
     private void LoseItem()
     {
         List<Item> items = new List<Item>(Inventory.instance.container);
+        if (items.Count == 0)
+        {
+            return;
+        }
         int index = Random.Range(0, items.Count);
 
         Inventory.instance.RemoveItem(items[index]);
