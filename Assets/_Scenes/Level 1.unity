@@ -10228,11 +10228,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: NoGameOver
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: Inventory.Array.size
@@ -12057,6 +12057,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fbfd3a347452df84287ad428672b7014, type: 2}
+    - target: {fileID: 65677426015555730, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 65677426015555730, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 65677426015555730, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
       propertyPath: m_IsTrigger
       value: 1

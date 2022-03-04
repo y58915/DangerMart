@@ -94,7 +94,9 @@ public class CharacterControl : MonoBehaviour
             targetCollectionArea = hitPoint.collider.gameObject.GetComponent<CollectionArea>();
 
             // Move in fron of collection area to collect item
-            targetDestination.transform.position = targetCollectionArea.collectionPosition.position;
+            targetDestination.transform.position = new Vector3(targetCollectionArea.collectionPosition.position.x, 
+                targetCollectionArea.collectionPosition.position.y - 1.0f, 
+                targetCollectionArea.collectionPosition.position.z);
             playerNav.SetDestination(targetCollectionArea.collectionPosition.position);
 
             // Activate collection trigger
