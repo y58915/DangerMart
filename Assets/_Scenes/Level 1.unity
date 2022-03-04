@@ -3823,8 +3823,8 @@ MonoBehaviour:
   distance: 0
   mouse_clicks: 0
   wildCardRef: {fileID: 11400000, guid: 92ea3010738948e4ca088d6aea7347b4, type: 2}
+  powerupSpawner: {fileID: 1940718582}
   invulernablityTime: 5
-  PowerupSpawner: {fileID: 1940718582}
 --- !u!54 &628254687
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -21,13 +21,16 @@ public class CharacterControl : MonoBehaviour
 
     [SerializeField]
     private Item wildCardRef;
-
+    [SerializeField]
+    public PowerupSpawner powerupSpawner; 
+    
     private CollectionArea targetCollectionArea;
     private bool inputEnabled = true;
     private float originalSpeed;
     private Vector3 last = Vector3.zero;
     private InputAction leftMouseClick;
     private bool invulernable = false;
+
 
     public float invulernablityTime = 5f;
     public static CharacterControl instance;
@@ -111,8 +114,6 @@ public class CharacterControl : MonoBehaviour
             targetDestination.transform.position = hitPoint.point;
             playerNav.SetDestination(hitPoint.point);
         }
-
-        
     }
 
 
@@ -162,6 +163,8 @@ public class CharacterControl : MonoBehaviour
                 default:
                     break;
             }
+            Destroy(other.gameObject);
+            powerupSpawner.DecrementNumberOfPowerUps();
         }
     }
 

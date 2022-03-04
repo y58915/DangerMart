@@ -18,7 +18,6 @@ public class PowerupSpawner : MonoBehaviour
     private float OBSTACLE_CHECK_RADIUS = 0.49f;
     private bool isSpawning = false;
 
-    // Start is called before the first frame update
     void Start()
     {
     }
@@ -55,7 +54,6 @@ public class PowerupSpawner : MonoBehaviour
             
             Instantiate(powerUp, position, Quaternion.identity);
 
-            // Wait random amount of time before spawning next powerup 
             numberOfPowerups += 1;
         }
 
