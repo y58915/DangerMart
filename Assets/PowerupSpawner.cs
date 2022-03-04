@@ -5,7 +5,9 @@ using UnityEngine;
 public class PowerupSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> powerUpList;
-    public int MAX_NUMBER_OF_POWERUPS_ON_MAP = 5;
+    [SerializeField] private int MAX_NUMBER_OF_POWERUPS_ON_MAP = 5;
+    [SerializeField] private int AVERAGE_SPAWNING_TIME = 15;
+
     private int MAP_LEFT_BOARDER = -10;
     private int MAP_RIGHT_BOARDER = 3;
     private int MAP_LOWER_BOARDER = -6;
@@ -36,7 +38,7 @@ public class PowerupSpawner : MonoBehaviour
         while (numberOfPowerups < MAX_NUMBER_OF_POWERUPS_ON_MAP) {
             
             // Wait 15 - 20 seconds before creating next powerup
-            yield return new WaitForSeconds(Random.Range(15, 20));
+            yield return new WaitForSeconds(AVERAGE_SPAWNING_TIME+Random.Range(-3, 4));
 
             int index = Random.Range(0, powerUpList.Count);
             GameObject powerUp = powerUpList[index];
