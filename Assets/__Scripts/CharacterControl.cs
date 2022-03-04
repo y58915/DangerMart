@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Analytics;
@@ -84,6 +85,8 @@ public class CharacterControl : MonoBehaviour
     public void OnMove()
     {
         //Debug.Log("Move to: " + Mouse.current.position.ReadValue());
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
 
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hitPoint;
