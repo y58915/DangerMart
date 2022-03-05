@@ -1,0 +1,991 @@
+Index: Assets/__Scripts/ShoppingList/ShoppingListManager.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing UnityEngine.Events;\n\npublic class ShoppingListManager : MonoBehaviour\n{\n    public int MAXSIZE = 5;\n    public int MAXRATING = 4;\n    public float newListTimer = 5f;\n    public Item[] allItems;\n    public int listsCompleted = 0;\n    private float timer;\n\n    public List<ShoppingList> PRESET;\n\n    List<ShoppingList> shoppingLists;\n\n    [HideInInspector] public UnityEvent<List<ShoppingList>> UpdateListsEvent;\n    [HideInInspector] public UnityEvent<ShoppingList> ShoppingListCompleteEvent;          //Link: inventory remove item, score add score\n\n    #region Singleton\n    public static ShoppingListManager instance;\n\n    private void Awake()\n    {\n        if (instance == null)\n        {\n            instance = this;\n        }\n        else\n        {\n            Destroy(this);\n        }\n    }\n    #endregion\n\n    \n\n\n\n    // Start is called before the first frame update\n    void Start()\n    {\n        shoppingLists = new List<ShoppingList>();\n\n        Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);\n\n        // prepopulate the list to maxsize-1 and let update() add the remaining list so that the UI can be automatically updated\n        for (int i = 0; i < MAXSIZE-1; i++)\n        {\n            NewShoppingList();\n        }\n        timer = newListTimer;\n    }\n\n    // Update is called once per frame\n    void Update()\n    {\n        if (shoppingLists.Count < MAXSIZE)\n            NewShoppingList();\n    }\n\n    public void AddList(ShoppingList newList)\n    {\n        shoppingLists.Add(newList);\n\n        UpdateListsEvent.Invoke(shoppingLists);\n    }\n\n    public void RemoveList(int i)\n    {\n        shoppingLists.RemoveAt(i);\n        UpdateListsEvent.Invoke(shoppingLists);\n    }\n\n    public int FindShoppingListIndex(ShoppingList shopList)\n    {\n        return shoppingLists.FindIndex(obj => obj == shopList);\n    }\n\n    public List<ShoppingList> GetAllShoppingLists()\n    {\n        return shoppingLists;\n    }\n\n\n    private void NewShoppingList()\n    {\n        AddList(PRESET[Random.Range(0, PRESET.Count)]);\n    }\n\n    private void NewShoppingList(int i){\n        AddList(PRESET[i]);\n    }\n\n    \n    //update shoppinglist based on the inventory\n    private void NewItemAdded()\n    {\n    }\n\n    public void AddSpecificList(List<Item> list)\n    {\n        ShoppingList temp = new ShoppingList();\n        foreach (Item item in list)\n        {\n            temp.Add(item);\n        }\n        shoppingLists.Add(temp);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/__Scripts/ShoppingList/ShoppingListManager.cs b/Assets/__Scripts/ShoppingList/ShoppingListManager.cs
+--- a/Assets/__Scripts/ShoppingList/ShoppingListManager.cs	(revision 82ec1a0d36192ce7a40eee7b235b5d18fa4d1d47)
++++ b/Assets/__Scripts/ShoppingList/ShoppingListManager.cs	(date 1646181303503)
+@@ -78,7 +78,6 @@
+     {
+         return shoppingLists.FindIndex(obj => obj == shopList);
+     }
+-
+     public List<ShoppingList> GetAllShoppingLists()
+     {
+         return shoppingLists;
+Index: Assets/__Scripts/CashRegister.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing UnityEngine;\nusing UnityEngine.Events;\nusing UnityEngine.EventSystems;\nusing UnityEngine.UI;\n\nnamespace __Scripts\n{\n    public class CashRegister : MonoBehaviour\n    {\n        private Inventory inventory;\n        private ShoppingListManager shoppingList;\n        [SerializeField] List<Text> CashRegisterUISlots;\n        [SerializeField] GameObject CashRegisterObj;\n        [HideInInspector] public UnityEvent CashRegisterUpdate;\n        private List<ShoppingList> completable;\n\n        // Start is called before the first frame update\n        void Start()\n        {\n            inventory = Inventory.instance;\n            shoppingList = ShoppingListManager.instance;\n            inventory.updateInventoryEvent.AddListener(CompletableOptions);\n        }\n\n        // Update is called once per frame\n        void Update()\n        {\n        }\n\n        // temp solution for complete a shopping list\n        public void CompleteAction(int completeIndex)\n        {\n            Debug.Log(completeIndex);\n            // shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));\n            inventory.CompleteShoppingList(completable[completeIndex]);\n            ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[completeIndex]);\n\n        }\n        private void OnTriggerEnter(Collider other)\n        {\n            if (other.CompareTag(\"Player\"))\n            {\n                if (completable.Count == 0)\n                {\n                    return;\n                }\n                Transform images = CashRegisterObj.transform.GetChild(0);\n                Transform text = CashRegisterObj.transform.GetChild(1);\n                // Only show list can be complete\n                for (int i = 0; i < completable.Count; i++)\n                {\n                    text.GetChild(i).gameObject.SetActive(true);\n                    images.GetChild(i).gameObject.SetActive(true);\n                    CashRegisterUISlots[i].text = completable[i].ToString();\n\n                }\n                CashRegisterObj.SetActive(true);\n            }\n        }\n        private void OnTriggerExit(Collider other)\n        {\n            if (other.CompareTag(\"Player\"))\n            {\n                CashRegisterObj.SetActive(false);\n\n            }\n        }\n        private void CompletableOptions()\n        {\n            completable = new List<ShoppingList>();\n            List<Item> inventoryItems = inventory.container;\n            Debug.Log(inventory.ToString());\n\n            foreach (ShoppingList shopList in shoppingList.GetAllShoppingLists())\n            {\n                List<Item> cartItems = shopList.itemList;\n                int count = 0;\n                foreach (Item item in cartItems)\n                {\n                    if (inventoryItems.Contains(item)) count++;\n                }\n                if (count == cartItems.Count) completable.Add(shopList);\n                \n            }\n\n            completable.ForEach(data =>\n            {\n                List<string> l = new List<string>();\n                foreach (Item item in data.itemList)\n                {\n                    l.Add(item.itemName);\n                }\n                Debug.Log(\"Shop List：\"+string.Join(\",\", l) + \"\\n\");\n            });\n\n            CashRegisterUpdate.Invoke();\n        }\n        \n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/__Scripts/CashRegister.cs b/Assets/__Scripts/CashRegister.cs
+--- a/Assets/__Scripts/CashRegister.cs	(revision 82ec1a0d36192ce7a40eee7b235b5d18fa4d1d47)
++++ b/Assets/__Scripts/CashRegister.cs	(date 1646186191698)
+@@ -12,10 +12,11 @@
+     {
+         private Inventory inventory;
+         private ShoppingListManager shoppingList;
+-        [SerializeField] List<Text> CashRegisterUISlots;
+-        [SerializeField] GameObject CashRegisterObj;
++        [SerializeField] GameObject ShoppingListPanel;
++        // [SerializeField] GameObject CashRegisterObj;
+         [HideInInspector] public UnityEvent CashRegisterUpdate;
+         private List<ShoppingList> completable;
++        private List<int> completeableShoppingListIdx;
+ 
+         // Start is called before the first frame update
+         void Start()
+@@ -31,13 +32,22 @@
+         }
+ 
+         // temp solution for complete a shopping list
+-        public void CompleteAction(int completeIndex)
++        public void CompleteAction(int index)
+         {
+-            Debug.Log(completeIndex);
+-            // shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
+-            inventory.CompleteShoppingList(completable[completeIndex]);
+-            ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[completeIndex]);
++            Debug.Log(index);
++            shoppingList.RemoveList(index);
++            inventory.CompleteShoppingList(shoppingList.GetAllShoppingLists()[index]);
++            ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(shoppingList.GetAllShoppingLists()[index]);
++            UIUpdate(index, false);
++            completeableShoppingListIdx.Remove(index);
++        }
+ 
++        private void UIUpdate(int index, bool isSelect)
++        {
++            Transform shoppingListSlot = ShoppingListPanel.transform.GetChild(index);
++            shoppingListSlot.GetComponent<Outline>().enabled = isSelect;
++            shoppingListSlot.GetComponent<Image>().enabled = isSelect;
++            shoppingListSlot.GetComponent<Button>().enabled = isSelect;
+         }
+         private void OnTriggerEnter(Collider other)
+         {
+@@ -47,25 +57,29 @@
+                 {
+                     return;
+                 }
+-                Transform images = CashRegisterObj.transform.GetChild(0);
+-                Transform text = CashRegisterObj.transform.GetChild(1);
+-                // Only show list can be complete
+-                for (int i = 0; i < completable.Count; i++)
++
++                completeableShoppingListIdx = new List<int>();
++                for (int i = 0; i < shoppingList.GetAllShoppingLists().Count; i++)
+                 {
+-                    text.GetChild(i).gameObject.SetActive(true);
+-                    images.GetChild(i).gameObject.SetActive(true);
+-                    CashRegisterUISlots[i].text = completable[i].ToString();
++                    ShoppingList list = shoppingList.GetAllShoppingLists()[i];
++                    if (completable.Contains(list)) completeableShoppingListIdx.Add(i);
++                }
+ 
++                foreach (int idx in completeableShoppingListIdx)
++                {
++                    UIUpdate(idx, true);
+                 }
+-                CashRegisterObj.SetActive(true);
++                Debug.Log(completeableShoppingListIdx.ToString());
+             }
+         }
+         private void OnTriggerExit(Collider other)
+         {
+             if (other.CompareTag("Player"))
+             {
+-                CashRegisterObj.SetActive(false);
+-
++                foreach (int i in completeableShoppingListIdx)
++                {
++                    UIUpdate(i, false);
++                }
+             }
+         }
+         private void CompletableOptions()
+@@ -73,7 +87,7 @@
+             completable = new List<ShoppingList>();
+             List<Item> inventoryItems = inventory.container;
+             Debug.Log(inventory.ToString());
+-
++            completeableShoppingListIdx = new List<int>();
+             foreach (ShoppingList shopList in shoppingList.GetAllShoppingLists())
+             {
+                 List<Item> cartItems = shopList.itemList;
+@@ -82,20 +96,13 @@
+                 {
+                     if (inventoryItems.Contains(item)) count++;
+                 }
+-                if (count == cartItems.Count) completable.Add(shopList);
+-                
+-            }
+-
+-            completable.ForEach(data =>
+-            {
+-                List<string> l = new List<string>();
+-                foreach (Item item in data.itemList)
+-                {
+-                    l.Add(item.itemName);
+-                }
+-                Debug.Log("Shop List："+string.Join(",", l) + "\n");
+-            });
+-
++                if (count == cartItems.Count)
++                {
++                    completable.Add(shopList);
++                    completeableShoppingListIdx.Add(shoppingList.GetAllShoppingLists().IndexOf(shopList));
++                }
++                
++            }
+             CashRegisterUpdate.Invoke();
+         }
+         
+Index: .idea/.idea.Instacart-Simulator/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"3cda7ddd-80c2-4e1c-8428-b89fe042978e\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/Assets/_Prefabs/UI/CashRegister.prefab\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/_Prefabs/UI/CashRegister.prefab.meta\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/_Scenes/Level 1.meta\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/_Scenes/Level 1/NavMesh.asset\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/_Scenes/Level 1/NavMesh.asset.meta\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs.meta\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs.meta\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Assets/_Prefabs/UI/MainUI.prefab\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Assets/_Prefabs/UI/MainUI.prefab\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Assets/_Scenes/Level 1.unity\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Assets/_Scenes/Level 1.unity\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Assets/__Scripts/UI/UIManager.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Assets/__Scripts/UI/UIManager.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/UserSettings/EditorUserSettings.asset\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/UserSettings/EditorUserSettings.asset\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"24cwGPq5ZzNrUYtmdlBObR5VO2Z\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"Discover.Launch.Via.Unity\" value=\"true\" />\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"rider.run.widget.enabled.cache\" value=\"false\" />\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\n  </component>\n  <component name=\"RunManager\" selected=\"Attach to Unity Editor.Attach to Unity Editor\">\n    <configuration name=\"Attach to Unity Editor &amp; Play\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"UNITY_ATTACH_AND_PLAY\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"pid\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Attach to Unity Editor\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"Unity Debug\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"pid\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"3cda7ddd-80c2-4e1c-8428-b89fe042978e\" name=\"Changes\" comment=\"\" />\n      <created>1643943088392</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1643943088392</updated>\n      <workItem from=\"1643943093312\" duration=\"2094000\" />\n      <workItem from=\"1644632917709\" duration=\"1650000\" />\n      <workItem from=\"1644965610062\" duration=\"2140000\" />\n      <workItem from=\"1645246894792\" duration=\"2415000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"true\" />\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"true\" />\n  <component name=\"UnityUnitTestConfiguration\" currentTestLauncher=\"EditMode\" />\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.Instacart-Simulator/.idea/workspace.xml b/.idea/.idea.Instacart-Simulator/.idea/workspace.xml
+--- a/.idea/.idea.Instacart-Simulator/.idea/workspace.xml	(revision 82ec1a0d36192ce7a40eee7b235b5d18fa4d1d47)
++++ b/.idea/.idea.Instacart-Simulator/.idea/workspace.xml	(date 1646186191826)
+@@ -7,21 +7,32 @@
+       <change afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1.meta" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1/NavMesh.asset" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1/NavMesh.asset.meta" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs.meta" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs.meta" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/UI/MainUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Prefabs/UI/MainUI.prefab" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1.unity" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/UIManager.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="GitSEFilterConfiguration">
++    <file-type-list>
++      <filtered-out-file-type name="LOCAL_BRANCH" />
++      <filtered-out-file-type name="REMOTE_BRANCH" />
++      <filtered-out-file-type name="TAG" />
++      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
++    </file-type-list>
++  </component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Selectable.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d4bb098cce9a4793afcca824c1d0ea0113c000/d7/20d927a1/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Attributes/TrackColorAttribute.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Utility/ReflectionMethodsCache.cs" root0="SKIP_HIGHLIGHTING" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+Index: Assets/_Scenes/Level 1.unity
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/_Scenes/Level 1.unity b/Assets/_Scenes/Level 1.unity
+--- a/Assets/_Scenes/Level 1.unity	(revision 82ec1a0d36192ce7a40eee7b235b5d18fa4d1d47)
++++ b/Assets/_Scenes/Level 1.unity	(date 1646344413368)
+@@ -38,7 +38,7 @@
+   m_ReflectionIntensity: 1
+   m_CustomReflection: {fileID: 0}
+   m_Sun: {fileID: 705507994}
+-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
++  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+   m_UseRadianceAmbientProbe: 0
+ --- !u!157 &3
+ LightmapSettings:
+@@ -247,6 +247,112 @@
+   m_CorrespondingSourceObject: {fileID: 4115408997890500, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
+   m_PrefabInstance: {fileID: 53739952}
+   m_PrefabAsset: {fileID: 0}
++--- !u!1 &58127638 stripped
++GameObject:
++  m_CorrespondingSourceObject: {fileID: 8965792553832571495, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++  m_PrefabInstance: {fileID: 1271731092}
++  m_PrefabAsset: {fileID: 0}
++--- !u!114 &58127639
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 58127638}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Navigation:
++    m_Mode: 3
++    m_WrapAround: 0
++    m_SelectOnUp: {fileID: 0}
++    m_SelectOnDown: {fileID: 0}
++    m_SelectOnLeft: {fileID: 0}
++    m_SelectOnRight: {fileID: 0}
++  m_Transition: 1
++  m_Colors:
++    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
++    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
++    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
++    m_ColorMultiplier: 1
++    m_FadeDuration: 0.1
++  m_SpriteState:
++    m_HighlightedSprite: {fileID: 0}
++    m_PressedSprite: {fileID: 0}
++    m_SelectedSprite: {fileID: 0}
++    m_DisabledSprite: {fileID: 0}
++  m_AnimationTriggers:
++    m_NormalTrigger: Normal
++    m_HighlightedTrigger: Highlighted
++    m_PressedTrigger: Pressed
++    m_SelectedTrigger: Selected
++    m_DisabledTrigger: Disabled
++  m_Interactable: 1
++  m_TargetGraphic: {fileID: 58127641}
++  m_OnClick:
++    m_PersistentCalls:
++      m_Calls:
++      - m_Target: {fileID: 1940953950}
++        m_TargetAssemblyTypeName: __Scripts.CashRegister, Assembly-CSharp
++        m_MethodName: CompleteAction
++        m_Mode: 3
++        m_Arguments:
++          m_ObjectArgument: {fileID: 0}
++          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
++          m_IntArgument: 3
++          m_FloatArgument: 0
++          m_StringArgument: 
++          m_BoolArgument: 0
++        m_CallState: 2
++--- !u!114 &58127640
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 58127638}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_EffectColor: {r: 0.13686244, g: 0.5377358, b: 0, a: 1}
++  m_EffectDistance: {x: 5, y: 5}
++  m_UseGraphicAlpha: 0
++--- !u!114 &58127641
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 58127638}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
++  m_RaycastTarget: 1
++  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 0}
++  m_Type: 0
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 4
++  m_FillAmount: 1
++  m_FillClockwise: 1
++  m_FillOrigin: 0
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
+ --- !u!1001 &58412741
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -643,17 +749,6 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 125531854}
+   m_PrefabAsset: {fileID: 0}
+---- !u!114 &126202524 stripped
+-MonoBehaviour:
+-  m_CorrespondingSourceObject: {fileID: 3619337626769740222, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+-  m_PrefabInstance: {fileID: 1271731092}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 0}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+ --- !u!1001 &128249940
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -2468,17 +2563,6 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 389432267}
+   m_PrefabAsset: {fileID: 0}
+---- !u!114 &389530331 stripped
+-MonoBehaviour:
+-  m_CorrespondingSourceObject: {fileID: 4365651429204470506, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+-  m_PrefabInstance: {fileID: 1271731092}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 0}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+ --- !u!1001 &400458305
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -3050,6 +3134,11 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 498365980}
+   m_PrefabAsset: {fileID: 0}
++--- !u!1 &508493387 stripped
++GameObject:
++  m_CorrespondingSourceObject: {fileID: 8335450635830343157, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++  m_PrefabInstance: {fileID: 1271731092}
++  m_PrefabAsset: {fileID: 0}
+ --- !u!1001 &524388242
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -5563,17 +5652,6 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 829231253}
+   m_PrefabAsset: {fileID: 0}
+---- !u!114 &875072721 stripped
+-MonoBehaviour:
+-  m_CorrespondingSourceObject: {fileID: 156198368552989822, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+-  m_PrefabInstance: {fileID: 1271731092}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 0}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+ --- !u!1001 &881139963
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -5895,6 +5973,112 @@
+   m_CorrespondingSourceObject: {fileID: 4115408997890500, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
+   m_PrefabInstance: {fileID: 912430013}
+   m_PrefabAsset: {fileID: 0}
++--- !u!1 &921788304 stripped
++GameObject:
++  m_CorrespondingSourceObject: {fileID: 3814414508236528045, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++  m_PrefabInstance: {fileID: 1271731092}
++  m_PrefabAsset: {fileID: 0}
++--- !u!114 &921788305
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 921788304}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Navigation:
++    m_Mode: 3
++    m_WrapAround: 0
++    m_SelectOnUp: {fileID: 0}
++    m_SelectOnDown: {fileID: 0}
++    m_SelectOnLeft: {fileID: 0}
++    m_SelectOnRight: {fileID: 0}
++  m_Transition: 1
++  m_Colors:
++    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
++    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
++    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
++    m_ColorMultiplier: 1
++    m_FadeDuration: 0.1
++  m_SpriteState:
++    m_HighlightedSprite: {fileID: 0}
++    m_PressedSprite: {fileID: 0}
++    m_SelectedSprite: {fileID: 0}
++    m_DisabledSprite: {fileID: 0}
++  m_AnimationTriggers:
++    m_NormalTrigger: Normal
++    m_HighlightedTrigger: Highlighted
++    m_PressedTrigger: Pressed
++    m_SelectedTrigger: Selected
++    m_DisabledTrigger: Disabled
++  m_Interactable: 1
++  m_TargetGraphic: {fileID: 921788307}
++  m_OnClick:
++    m_PersistentCalls:
++      m_Calls:
++      - m_Target: {fileID: 1940953950}
++        m_TargetAssemblyTypeName: __Scripts.CashRegister, Assembly-CSharp
++        m_MethodName: CompleteAction
++        m_Mode: 3
++        m_Arguments:
++          m_ObjectArgument: {fileID: 0}
++          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
++          m_IntArgument: 0
++          m_FloatArgument: 0
++          m_StringArgument: 
++          m_BoolArgument: 0
++        m_CallState: 2
++--- !u!114 &921788306
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 921788304}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_EffectColor: {r: 0.13686244, g: 0.5377358, b: 0, a: 1}
++  m_EffectDistance: {x: 5, y: 5}
++  m_UseGraphicAlpha: 0
++--- !u!114 &921788307
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 921788304}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
++  m_RaycastTarget: 1
++  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 0}
++  m_Type: 0
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 4
++  m_FillAmount: 1
++  m_FillClockwise: 1
++  m_FillOrigin: 0
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
+ --- !u!1001 &923493342
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -6124,6 +6308,112 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 957905098}
+   m_PrefabAsset: {fileID: 0}
++--- !u!1 &964765499 stripped
++GameObject:
++  m_CorrespondingSourceObject: {fileID: 8965792553385512300, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++  m_PrefabInstance: {fileID: 1271731092}
++  m_PrefabAsset: {fileID: 0}
++--- !u!114 &964765500
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 964765499}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Navigation:
++    m_Mode: 3
++    m_WrapAround: 0
++    m_SelectOnUp: {fileID: 0}
++    m_SelectOnDown: {fileID: 0}
++    m_SelectOnLeft: {fileID: 0}
++    m_SelectOnRight: {fileID: 0}
++  m_Transition: 1
++  m_Colors:
++    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
++    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
++    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
++    m_ColorMultiplier: 1
++    m_FadeDuration: 0.1
++  m_SpriteState:
++    m_HighlightedSprite: {fileID: 0}
++    m_PressedSprite: {fileID: 0}
++    m_SelectedSprite: {fileID: 0}
++    m_DisabledSprite: {fileID: 0}
++  m_AnimationTriggers:
++    m_NormalTrigger: Normal
++    m_HighlightedTrigger: Highlighted
++    m_PressedTrigger: Pressed
++    m_SelectedTrigger: Selected
++    m_DisabledTrigger: Disabled
++  m_Interactable: 1
++  m_TargetGraphic: {fileID: 964765502}
++  m_OnClick:
++    m_PersistentCalls:
++      m_Calls:
++      - m_Target: {fileID: 1940953950}
++        m_TargetAssemblyTypeName: __Scripts.CashRegister, Assembly-CSharp
++        m_MethodName: CompleteAction
++        m_Mode: 3
++        m_Arguments:
++          m_ObjectArgument: {fileID: 0}
++          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
++          m_IntArgument: 4
++          m_FloatArgument: 0
++          m_StringArgument: 
++          m_BoolArgument: 0
++        m_CallState: 2
++--- !u!114 &964765501
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 964765499}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_EffectColor: {r: 0.13686244, g: 0.5377358, b: 0, a: 1}
++  m_EffectDistance: {x: 5, y: 5}
++  m_UseGraphicAlpha: 0
++--- !u!114 &964765502
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 964765499}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
++  m_RaycastTarget: 1
++  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 0}
++  m_Type: 0
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 4
++  m_FillAmount: 1
++  m_FillClockwise: 1
++  m_FillOrigin: 0
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
+ --- !u!1001 &972911660
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -6190,6 +6480,112 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 972911660}
+   m_PrefabAsset: {fileID: 0}
++--- !u!1 &1001640450 stripped
++GameObject:
++  m_CorrespondingSourceObject: {fileID: 8965792553425547827, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++  m_PrefabInstance: {fileID: 1271731092}
++  m_PrefabAsset: {fileID: 0}
++--- !u!114 &1001640451
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1001640450}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Navigation:
++    m_Mode: 3
++    m_WrapAround: 0
++    m_SelectOnUp: {fileID: 0}
++    m_SelectOnDown: {fileID: 0}
++    m_SelectOnLeft: {fileID: 0}
++    m_SelectOnRight: {fileID: 0}
++  m_Transition: 1
++  m_Colors:
++    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
++    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
++    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
++    m_ColorMultiplier: 1
++    m_FadeDuration: 0.1
++  m_SpriteState:
++    m_HighlightedSprite: {fileID: 0}
++    m_PressedSprite: {fileID: 0}
++    m_SelectedSprite: {fileID: 0}
++    m_DisabledSprite: {fileID: 0}
++  m_AnimationTriggers:
++    m_NormalTrigger: Normal
++    m_HighlightedTrigger: Highlighted
++    m_PressedTrigger: Pressed
++    m_SelectedTrigger: Selected
++    m_DisabledTrigger: Disabled
++  m_Interactable: 1
++  m_TargetGraphic: {fileID: 1001640453}
++  m_OnClick:
++    m_PersistentCalls:
++      m_Calls:
++      - m_Target: {fileID: 1940953950}
++        m_TargetAssemblyTypeName: __Scripts.CashRegister, Assembly-CSharp
++        m_MethodName: CompleteAction
++        m_Mode: 3
++        m_Arguments:
++          m_ObjectArgument: {fileID: 0}
++          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
++          m_IntArgument: 2
++          m_FloatArgument: 0
++          m_StringArgument: 
++          m_BoolArgument: 0
++        m_CallState: 2
++--- !u!114 &1001640452
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1001640450}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_EffectColor: {r: 0.13686244, g: 0.5377358, b: 0, a: 1}
++  m_EffectDistance: {x: 5, y: 5}
++  m_UseGraphicAlpha: 0
++--- !u!114 &1001640453
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1001640450}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
++  m_RaycastTarget: 1
++  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 0}
++  m_Type: 0
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 4
++  m_FillAmount: 1
++  m_FillClockwise: 1
++  m_FillOrigin: 0
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
+ --- !u!1001 &1017222568
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -6529,17 +6925,6 @@
+   m_CorrespondingSourceObject: {fileID: 4115408997890500, guid: ff78edb367a079b4a8f8ae2d128c581f, type: 3}
+   m_PrefabInstance: {fileID: 1141635297}
+   m_PrefabAsset: {fileID: 0}
+---- !u!114 &1158384026 stripped
+-MonoBehaviour:
+-  m_CorrespondingSourceObject: {fileID: 2578502838326006308, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+-  m_PrefabInstance: {fileID: 1271731092}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 0}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+ --- !u!1001 &1167467704
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -7261,6 +7646,112 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 1253013630}
+   m_PrefabAsset: {fileID: 0}
++--- !u!1 &1263312583 stripped
++GameObject:
++  m_CorrespondingSourceObject: {fileID: 8965792553547626747, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++  m_PrefabInstance: {fileID: 1271731092}
++  m_PrefabAsset: {fileID: 0}
++--- !u!114 &1263312584
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1263312583}
++  m_Enabled: 1
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Navigation:
++    m_Mode: 3
++    m_WrapAround: 0
++    m_SelectOnUp: {fileID: 0}
++    m_SelectOnDown: {fileID: 0}
++    m_SelectOnLeft: {fileID: 0}
++    m_SelectOnRight: {fileID: 0}
++  m_Transition: 1
++  m_Colors:
++    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
++    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
++    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
++    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
++    m_ColorMultiplier: 1
++    m_FadeDuration: 0.1
++  m_SpriteState:
++    m_HighlightedSprite: {fileID: 0}
++    m_PressedSprite: {fileID: 0}
++    m_SelectedSprite: {fileID: 0}
++    m_DisabledSprite: {fileID: 0}
++  m_AnimationTriggers:
++    m_NormalTrigger: Normal
++    m_HighlightedTrigger: Highlighted
++    m_PressedTrigger: Pressed
++    m_SelectedTrigger: Selected
++    m_DisabledTrigger: Disabled
++  m_Interactable: 1
++  m_TargetGraphic: {fileID: 1263312586}
++  m_OnClick:
++    m_PersistentCalls:
++      m_Calls:
++      - m_Target: {fileID: 1940953950}
++        m_TargetAssemblyTypeName: __Scripts.CashRegister, Assembly-CSharp
++        m_MethodName: CompleteAction
++        m_Mode: 3
++        m_Arguments:
++          m_ObjectArgument: {fileID: 0}
++          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
++          m_IntArgument: 1
++          m_FloatArgument: 0
++          m_StringArgument: 
++          m_BoolArgument: 0
++        m_CallState: 2
++--- !u!114 &1263312585
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1263312583}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_EffectColor: {r: 0.13686244, g: 0.5377358, b: 0, a: 1}
++  m_EffectDistance: {x: 5, y: 5}
++  m_UseGraphicAlpha: 0
++--- !u!114 &1263312586
++MonoBehaviour:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 1263312583}
++  m_Enabled: 0
++  m_EditorHideFlags: 0
++  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
++  m_Name: 
++  m_EditorClassIdentifier: 
++  m_Material: {fileID: 0}
++  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
++  m_RaycastTarget: 1
++  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
++  m_Maskable: 1
++  m_OnCullStateChanged:
++    m_PersistentCalls:
++      m_Calls: []
++  m_Sprite: {fileID: 0}
++  m_Type: 0
++  m_PreserveAspect: 0
++  m_FillCenter: 1
++  m_FillMethod: 4
++  m_FillAmount: 1
++  m_FillClockwise: 1
++  m_FillOrigin: 0
++  m_UseSpriteMesh: 0
++  m_PixelsPerUnitMultiplier: 1
+ --- !u!1001 &1271708121
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -7522,13 +8013,32 @@
+       propertyPath: m_AnchoredPosition.y
+       value: -20
+       objectReference: {fileID: 0}
++    - target: {fileID: 8245094254721597316, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++      propertyPath: m_AnchoredPosition.x
++      value: 843
++      objectReference: {fileID: 0}
++    - target: {fileID: 8245094254721597316, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++      propertyPath: m_AnchoredPosition.y
++      value: 0
++      objectReference: {fileID: 0}
++    - target: {fileID: 8245094254832779483, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++      propertyPath: m_AnchoredPosition.x
++      value: 421
++      objectReference: {fileID: 0}
++    - target: {fileID: 8245094254832779483, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++      propertyPath: m_AnchoredPosition.y
++      value: 0
++      objectReference: {fileID: 0}
++    - target: {fileID: 8245094254954007059, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++      propertyPath: m_AnchoredPosition.x
++      value: 209
++      objectReference: {fileID: 0}
++    - target: {fileID: 8245094255238959247, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
++      propertyPath: m_AnchoredPosition.x
++      value: 633
++      objectReference: {fileID: 0}
+     m_RemovedComponents: []
+   m_SourcePrefab: {fileID: 100100000, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+---- !u!1 &1271731093 stripped
+-GameObject:
+-  m_CorrespondingSourceObject: {fileID: 2801629183136213463, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+-  m_PrefabInstance: {fileID: 1271731092}
+-  m_PrefabAsset: {fileID: 0}
+ --- !u!1001 &1302948558
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -8163,15 +8673,15 @@
+       objectReference: {fileID: 0}
+     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+       propertyPath: m_LocalPosition.x
+-      value: 7.186275
++      value: 7.1073647
+       objectReference: {fileID: 0}
+     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+       propertyPath: m_LocalPosition.y
+-      value: 3.9073532
++      value: 3.8974025
+       objectReference: {fileID: 0}
+     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+       propertyPath: m_LocalPosition.z
+-      value: -3.8431904
++      value: -4.034301
+       objectReference: {fileID: 0}
+     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
+       propertyPath: m_LocalRotation.w
+@@ -8253,15 +8763,15 @@
+       objectReference: {fileID: 0}
+     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+       propertyPath: m_LocalPosition.x
+-      value: 7.186275
++      value: 7.1073647
+       objectReference: {fileID: 0}
+     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+       propertyPath: m_LocalPosition.y
+-      value: 3.9073532
++      value: 3.8974025
+       objectReference: {fileID: 0}
+     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+       propertyPath: m_LocalPosition.z
+-      value: -3.8431904
++      value: -4.034301
+       objectReference: {fileID: 0}
+     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+       propertyPath: m_LocalRotation.w
+@@ -9152,17 +9662,6 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 1529489547}
+   m_PrefabAsset: {fileID: 0}
+---- !u!114 &1549731077 stripped
+-MonoBehaviour:
+-  m_CorrespondingSourceObject: {fileID: 4714440067765543392, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+-  m_PrefabInstance: {fileID: 1271731092}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 0}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+ --- !u!1001 &1553387913
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -9483,17 +9982,6 @@
+   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
+   m_PrefabInstance: {fileID: 1608874399}
+   m_PrefabAsset: {fileID: 0}
+---- !u!114 &1613081425 stripped
+-MonoBehaviour:
+-  m_CorrespondingSourceObject: {fileID: 4641630614879847321, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+-  m_PrefabInstance: {fileID: 1271731092}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 0}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+ --- !u!1001 &1617917663
+ PrefabInstance:
+   m_ObjectHideFlags: 0
+@@ -11484,14 +11972,10 @@
+   m_Script: {fileID: 11500000, guid: f0ba158d4cef4bfc84885d2760e85964, type: 3}
+   m_Name: 
+   m_EditorClassIdentifier: 
+-  CashRegisterUISlots:
+-  - {fileID: 1158384026}
+-  - {fileID: 875072721}
+-  - {fileID: 1549731077}
+-  - {fileID: 1613081425}
+-  - {fileID: 126202524}
+-  - {fileID: 389530331}
+-  CashRegisterObj: {fileID: 1271731093}
++  ShoppingListPanel: {fileID: 508493387}
++  CashRegisterUpdate:
++    m_PersistentCalls:
++      m_Calls: []
+ --- !u!1001 &1945063586
+ PrefabInstance:
+   m_ObjectHideFlags: 0

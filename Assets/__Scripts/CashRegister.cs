@@ -12,68 +12,91 @@ namespace __Scripts
     {
         private Inventory inventory;
         private ShoppingListManager shoppingList;
-        [SerializeField] List<Text> CashRegisterUISlots;
-        [SerializeField] GameObject CashRegisterObj;
+        [SerializeField] GameObject ShoppingListPanel;
+        // [SerializeField] GameObject CashRegisterObj;
         [HideInInspector] public UnityEvent CashRegisterUpdate;
         private List<ShoppingList> completable;
+        private List<int> completeableShoppingListIdx;
 
         // Start is called before the first frame update
         void Start()
         {
             inventory = Inventory.instance;
             shoppingList = ShoppingListManager.instance;
-            inventory.updateInventoryEvent.AddListener(CompletableOptions);
+            // inventory.updateInventoryEvent.AddListener(CompletableOptions);
         }
 
         // Update is called once per frame
         void Update()
         {
+            
         }
 
         // temp solution for complete a shopping list
-        public void CompleteAction(int completeIndex)
+        public void CompleteAction(int index)
         {
-            Debug.Log(completeIndex);
-            // shoppingList.RemoveList(shoppingList.FindShoppingListIndex(completable[completeIndex]));
-            inventory.CompleteShoppingList(completable[completeIndex]);
-            ShoppingListManager.instance.ShoppingListCompleteEvent.Invoke(completable[completeIndex]);
+            UIUpdate(Enumerable.Range(0, shoppingList.MAXSIZE).ToList(), false);
+            // shoppingList.RemoveList(index);
+            Debug.Log(index);
+            ShoppingList shopList = shoppingList.GetShoppingListByIndex(index);
+            // // Debug.Log(shopList);
+            // // Debug.Log(shoppingList.ToString());
+            //
+            Debug.Log("Try to remove: "+shopList.ToString());
+            inventory.CompleteShoppingList(shopList);
+            shoppingList.RemoveList(shopList);
+            // Debug.Log($"Updated List Size: {shoppingList.GetAllShoppingLists().Count}");
+            shoppingList.UpdateListsEvent.Invoke(shoppingList.GetAllShoppingLists());
+            CompletableOptions();
+            UIUpdate(completeableShoppingListIdx, true);
 
+        }
+
+        private void UIUpdate(List<int> indices, bool isSelect)
+        {
+            foreach (int idx in indices)
+            {
+                Transform shoppingListSlot = ShoppingListPanel.transform.GetChild(idx);
+                shoppingListSlot.GetComponent<Outline>().enabled = isSelect;
+                shoppingListSlot.GetComponent<Image>().enabled = isSelect;
+                shoppingListSlot.GetComponent<Button>().enabled = isSelect;
+            }
+            
         }
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                if (completable.Count == 0)
+                CompletableOptions();
+                if (completeableShoppingListIdx.Count == 0)
                 {
                     return;
                 }
-                Transform images = CashRegisterObj.transform.GetChild(0);
-                Transform text = CashRegisterObj.transform.GetChild(1);
-                // Only show list can be complete
-                for (int i = 0; i < completable.Count; i++)
-                {
-                    text.GetChild(i).gameObject.SetActive(true);
-                    images.GetChild(i).gameObject.SetActive(true);
-                    CashRegisterUISlots[i].text = completable[i].ToString();
+                Debug.Log( "Shopping List: \n"+shoppingList.ToString());
 
-                }
-                CashRegisterObj.SetActive(true);
+                // completeableShoppingListIdx = new List<int>();
+                // for (int i = 0; i < shoppingList.GetAllShoppingLists().Count; i++)
+                // {
+                //     ShoppingList list = shoppingList.GetAllShoppingLists()[i];
+                //     if (completable.Contains(list)) completeableShoppingListIdx.Add(i);
+                // }
+                UIUpdate(completeableShoppingListIdx, true);
+                Debug.Log(completeableShoppingListIdx.ToString());
             }
         }
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                CashRegisterObj.SetActive(false);
-
+                UIUpdate(Enumerable.Range(0, shoppingList.MAXSIZE).ToList(), false);
             }
         }
         private void CompletableOptions()
         {
             completable = new List<ShoppingList>();
             List<Item> inventoryItems = inventory.container;
-            Debug.Log(inventory.ToString());
-
+            completeableShoppingListIdx = new List<int>();
+            int idx = 0;
             foreach (ShoppingList shopList in shoppingList.GetAllShoppingLists())
             {
                 List<Item> cartItems = shopList.itemList;
@@ -82,19 +105,15 @@ namespace __Scripts
                 {
                     if (inventoryItems.Contains(item)) count++;
                 }
-                if (count == cartItems.Count) completable.Add(shopList);
-                
-            }
-
-            completable.ForEach(data =>
-            {
-                List<string> l = new List<string>();
-                foreach (Item item in data.itemList)
+                if (count == cartItems.Count)
                 {
-                    l.Add(item.itemName);
+                    completable.Add(shopList);
+                    completeableShoppingListIdx.Add(idx);
                 }
-                Debug.Log("Shop List："+string.Join(",", l) + "\n");
-            });
+
+                idx++;
+            }
+            // Debug.Log($"completable: {completable.ToString()}");
 
             CashRegisterUpdate.Invoke();
         }

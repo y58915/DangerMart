@@ -2,26 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cda7ddd-80c2-4e1c-8428-b89fe042978e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_Prefabs/UI/CashRegister.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Prefabs/UI/CashRegister.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1/NavMesh.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1/NavMesh.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Prefabs/UI/MainUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Prefabs/UI/MainUI.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/UI/ShoppingListPanelUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/ShoppingListPanelUI.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Selectable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d4bb098cce9a4793afcca824c1d0ea0113c000/d7/20d927a1/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Runtime/Attributes/TrackColorAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Utility/ReflectionMethodsCache.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

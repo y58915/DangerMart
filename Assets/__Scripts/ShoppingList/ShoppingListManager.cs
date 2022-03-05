@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -44,7 +45,7 @@ public class ShoppingListManager : MonoBehaviour
     {
         shoppingLists = new List<ShoppingList>();
 
-        Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);
+        // Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);
 
         // prepopulate the list to maxsize-1 and let update() add the remaining list so that the UI can be automatically updated
         for (int i = 0; i < MAXSIZE-1; i++)
@@ -58,7 +59,11 @@ public class ShoppingListManager : MonoBehaviour
     void Update()
     {
         if (shoppingLists.Count < MAXSIZE)
+        {
+            Debug.Log("New shopping list");
             NewShoppingList();
+        }
+            
     }
 
     public void AddList(ShoppingList newList)
@@ -68,17 +73,15 @@ public class ShoppingListManager : MonoBehaviour
         UpdateListsEvent.Invoke(shoppingLists);
     }
 
-    public void RemoveList(int i)
+    public void RemoveList(ShoppingList shoppingList)
     {
-        shoppingLists.RemoveAt(i);
+        shoppingLists.Remove(shoppingList);
         UpdateListsEvent.Invoke(shoppingLists);
     }
-
-    public int FindShoppingListIndex(ShoppingList shopList)
+    public ShoppingList GetShoppingListByIndex(int index)
     {
-        return shoppingLists.FindIndex(obj => obj == shopList);
+        return shoppingLists[index];
     }
-
     public List<ShoppingList> GetAllShoppingLists()
     {
         return shoppingLists;
@@ -108,5 +111,23 @@ public class ShoppingListManager : MonoBehaviour
             temp.Add(item);
         }
         shoppingLists.Add(temp);
+    }
+
+    public override string ToString()
+    {
+        string final = "";
+        foreach (ShoppingList shoppingList in shoppingLists)
+        {
+            List<string> tmp = new List<string>();
+            foreach (Item item in shoppingList.itemList)
+            {
+                tmp.Add(item.itemName);
+            }
+
+            tmp[tmp.Count - 1] += "\n";
+            final += string.Join(",", tmp);
+        }
+
+        return final;
     }
 }

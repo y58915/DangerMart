@@ -26,12 +26,27 @@ public class ShoppingListPanelUI : MonoBehaviour
         
     }
 
+    void UpdatePanelAfterCompletion()
+    {
+        List<ShoppingList> list = ShoppingListManager.instance.GetAllShoppingLists();
+        foreach (ShoppingList shoppingList in list)
+        {
+            
+        }
+    }
+
     void UpdateShoppingListPanel(List<ShoppingList> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
+            shoppingListUIArray[i].enabled = true;
             shoppingListUIArray[i].UpdateText(list[i]);
             ratingUIs[i].SetStar(list[i].rating);
+        }
+
+        for (int i = list.Count-1; i < ShoppingListManager.instance.MAXSIZE-list.Count; i++)
+        {
+            shoppingListUIArray[i].enabled = false;
         }
     }
 }
