@@ -37,12 +37,10 @@ namespace __Scripts
         {
             UIUpdate(Enumerable.Range(0, shoppingList.MAXSIZE).ToList(), false);
             // shoppingList.RemoveList(index);
-            Debug.Log(index);
             ShoppingList shopList = shoppingList.GetShoppingListByIndex(index);
             // // Debug.Log(shopList);
             // // Debug.Log(shoppingList.ToString());
             //
-            Debug.Log("Try to remove: "+shopList.ToString());
             inventory.CompleteShoppingList(shopList);
             shoppingList.RemoveList(shopList);
             // Debug.Log($"Updated List Size: {shoppingList.GetAllShoppingLists().Count}");
@@ -72,7 +70,6 @@ namespace __Scripts
                 {
                     return;
                 }
-                Debug.Log( "Shopping List: \n"+shoppingList.ToString());
 
                 // completeableShoppingListIdx = new List<int>();
                 // for (int i = 0; i < shoppingList.GetAllShoppingLists().Count; i++)
@@ -81,7 +78,6 @@ namespace __Scripts
                 //     if (completable.Contains(list)) completeableShoppingListIdx.Add(i);
                 // }
                 UIUpdate(completeableShoppingListIdx, true);
-                Debug.Log(completeableShoppingListIdx.ToString());
             }
         }
         private void OnTriggerExit(Collider other)

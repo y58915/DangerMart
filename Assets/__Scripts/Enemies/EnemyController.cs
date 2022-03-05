@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 
 public class EnemyController : MonoBehaviour
@@ -75,10 +77,16 @@ public class EnemyController : MonoBehaviour
 
         transform.position += transform.forward * Time.fixedDeltaTime * translationalSpeed;
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isTurning = true;
+        }
+    }
 
     private IEnumerator Wander() {
-    
         // Wandering starts with Walking for a random number seconds
         isWalking = true;
         yield return new WaitForSeconds(Random.Range(2, 10));

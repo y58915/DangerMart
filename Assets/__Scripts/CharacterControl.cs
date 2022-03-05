@@ -171,9 +171,11 @@ public class CharacterControl : MonoBehaviour
     private void Stun()
     {
         playerNav.isStopped = true;
+        playerAnim.enabled = false;
         inputEnabled = false;
 
         StartCoroutine(StunTime(5.0f));
+        playerAnim.enabled = true;
     }
 
     private IEnumerator StunTime(float duration)
