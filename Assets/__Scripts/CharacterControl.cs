@@ -180,12 +180,15 @@ public class CharacterControl : MonoBehaviour
 
     private void Stun()
     {
+        DebuffUI.instance.SetDebuff("Stun");
+
         playerNav.isStopped = true;
         playerAnim.enabled = false;
         inputEnabled = false;
 
         StartCoroutine(StunTime(5.0f));
         playerAnim.enabled = true;
+
     }
 
     private IEnumerator StunTime(float duration)
@@ -193,13 +196,18 @@ public class CharacterControl : MonoBehaviour
         yield return new WaitForSeconds(duration);
         playerNav.isStopped = false;
         inputEnabled = true;
+
+        DebuffUI.instance.CleanDebuff();
     }
 
     private void SlowDown()
     {
+        DebuffUI.instance.SetDebuff("Slow");
+
         playerNav.speed = originalSpeed * 0.25f;
 
         StartCoroutine(SpeedChange(5.0f));
+
     }
 
     private void SpeedUp()
@@ -213,6 +221,8 @@ public class CharacterControl : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         playerNav.speed = originalSpeed;
+
+        DebuffUI.instance.CleanDebuff();
     }
 
     private void LoseItem()
@@ -225,6 +235,8 @@ public class CharacterControl : MonoBehaviour
         int index = Random.Range(0, items.Count);
 
         Inventory.instance.RemoveItem(items[index]);
+
+        DebuffUI.instance.SetDebuff("Steal", 1f);
     }
 
     private void AddWildCard()
