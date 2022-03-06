@@ -11,11 +11,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject InventoryPanel;
     [SerializeField] GameObject PausePanel;
     [SerializeField] GameObject CashRegister;
+    [SerializeField] GameObject GameOverPanel;
 
-    [SerializeField] Button InventoryButton;
     [SerializeField] Button PauseButton;
-
-    Keyboard keyboard;
 
     #region Singleton
     public static UIManager instance;
@@ -37,14 +35,15 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        keyboard = Keyboard.current;
-        // InventoryButton.onClick.AddListener(ToggleInventoryPanel);
         PauseButton.onClick.AddListener(TogglePausePanel);
+
+        LevelController.instance.gameOverEvent.AddListener(ToggleGameOverPanel);
 
         ShoppingListPanel.SetActive(true);
         InventoryPanel.SetActive(true);
         PausePanel.SetActive(false);
         CashRegister.SetActive(false);
+        GameOverPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,6 +57,15 @@ public class UIManager : MonoBehaviour
 
     public void TogglePausePanel()
     {
+        if (GameOverPanel.activeInHierarchy) return;
+
         PausePanel.SetActive(!PausePanel.activeInHierarchy);
+
+        LevelController.instance.SetPause(PausePanel.activeInHierarchy);
+    }
+
+    public void ToggleGameOverPanel()
+    {
+        GameOverPanel.SetActive(!GameOverPanel.activeInHierarchy);
     }
 }

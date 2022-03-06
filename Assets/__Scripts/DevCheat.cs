@@ -11,11 +11,15 @@ public class DevCheat : MonoBehaviour
 
 
     [SerializeField] bool NoGameOver;
+
+
+#if UNITY_EDITOR
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SetCheat());
     }
+#endif
 
     // Update is called once per frame
     void Update()
@@ -42,7 +46,7 @@ public class DevCheat : MonoBehaviour
 
         if (NoGameOver)
         {
-            CountdownTimerUI.instance.noTimeOver = true;
+            LevelController.instance.SetNoGameOver(NoGameOver);
         }
     }
 }

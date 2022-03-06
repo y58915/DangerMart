@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (LevelController.instance.gamePaused) return;
         if (isWandering == false) {
             
             isWandering = true;

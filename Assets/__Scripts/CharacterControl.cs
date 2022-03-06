@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.Analytics;
-using System.Linq;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -66,9 +65,18 @@ public class CharacterControl : MonoBehaviour
         if (last != Vector3.zero)
         {
             distance += Vector3.Distance(last, gameObject.transform.position);
-        } 
+        }
         UpdateAnimations();
         last = gameObject.transform.position;
+
+        if (LevelController.instance.gamePaused)
+        {
+            playerNav.isStopped = true;
+        }
+        else
+        {
+            playerNav.isStopped = false;
+        }
     }
 
     public void UpdateAnimations()
@@ -87,6 +95,8 @@ public class CharacterControl : MonoBehaviour
 
     public void OnMove()
     {
+
+
         //Debug.Log("Move to: " + Mouse.current.position.ReadValue());
         if (EventSystem.current.IsPointerOverGameObject())
             return;

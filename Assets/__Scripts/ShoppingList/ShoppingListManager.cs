@@ -58,7 +58,7 @@ public class ShoppingListManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shoppingLists.Count < MAXSIZE)
+        if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE)
         {
             Debug.Log("New shopping list");
             NewShoppingList();

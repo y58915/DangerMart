@@ -115,6 +115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTime: 90
+  gameOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3882915705407216889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,9 +147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startWithInventory: 0
-  inventory: []
+  inventory:
+  - {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+  - {fileID: 11400000, guid: 78ccb0d16feef4bb3bd604f5304fed48, type: 2}
+  - {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
   startWithShoppingList: 0
-  shoppingListItems: []
+  shoppingListItems:
+  - {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+  NoGameOver: 0
 --- !u!114 &5162313865872693218
 MonoBehaviour:
   m_ObjectHideFlags: 0
