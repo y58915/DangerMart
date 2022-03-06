@@ -69,6 +69,18 @@ public class Inventory : MonoBehaviour
         container.Remove(_item);
         updateInventoryEvent.Invoke();
     }
+    public void RemoveWildCard()
+    {
+        foreach (Item _item in container)
+        {
+            // Debug.Log("item_name: "+ _item.itemName);
+            if(_item.itemName == "Wildcard"){
+                container.Remove(_item);
+                break;
+            }
+        }
+        updateInventoryEvent.Invoke();
+    }
 
     public void DiscardItem()
     {
@@ -92,7 +104,12 @@ public class Inventory : MonoBehaviour
     {
         foreach (Item item in list.itemList)
         {
-            RemoveItem(item);
+            Debug.Log(item.itemName);
+            if (container.Contains(item)){
+                RemoveItem(item);
+            } else{
+                RemoveWildCard();
+            }
             AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Completed", new Dictionary<string, object> { { item.itemName, 1 } });
             // Debug.Log("Completed Item " + item.itemName + analyticsResult_Item);
         }

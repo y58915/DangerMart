@@ -101,11 +101,14 @@ namespace __Scripts
                 {
                     if (inventoryItems.Contains(item)) count++;
                 }
-                if (count == cartItems.Count)
+                int wildCardCount = inventoryItems.Count(i => i.itemName == "Wildcard");
+                count += wildCardCount;
+                if (count >= cartItems.Count)
                 {
                     completable.Add(shopList);
                     completeableShoppingListIdx.Add(idx);
                 }
+                // Debug.Log("shopping[" + idx + "] size: " + cartItems.Count+ " satisfy:" + count + "(wildcard:" + wildCardCount + ")");
 
                 idx++;
             }
