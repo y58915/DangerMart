@@ -13,6 +13,7 @@ public class EnergyBar : MonoBehaviour
 
     public int maximumNeeded = 3;
 
+    #region Singleton
     public static EnergyBar instance;
 
     private void Awake()
@@ -26,10 +27,11 @@ public class EnergyBar : MonoBehaviour
             Destroy(this);
         }
     }
+    #endregion
 
     void Start()
     {
-        ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(AddEnergy);
+        // ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(AddEnergy);
         UseEnergyBar.AddListener(CharacterControl.instance.UseEnergy);
     }
 
@@ -38,7 +40,7 @@ public class EnergyBar : MonoBehaviour
     {
     }
 
-    private void AddEnergy(ShoppingList list)
+    public void AddEnergy()
     {
         if (energyBarCount < 3)
         {

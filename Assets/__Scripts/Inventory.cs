@@ -104,7 +104,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (Item item in list.itemList)
         {
-            Debug.Log(item.itemName);
+            // Debug.Log(item.itemName);
             if (container.Contains(item)){
                 RemoveItem(item);
             } else{

@@ -224,13 +224,14 @@ public class CharacterControl : MonoBehaviour
 
     private void IncreaseEnergy()
     {
-        // ADD FUNCTIONALITY LATER 
+        EnergyBar.instance.AddEnergy();
     }
 
     public void UseEnergy()
     {
         invulernable = true;
         playerNav.speed = originalSpeed * 2.0f;
+        // originalSpeed = originalSpeed * 2.0f; //update original speed as well? we can discuss game design later
         StartCoroutine("RemoveEnergyBuff");
     }
 
