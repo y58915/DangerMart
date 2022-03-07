@@ -16,7 +16,7 @@ MonoBehaviour:
   itemCategory: 2
   itemDescription: 
   itemImage: {fileID: 0}
-  itemModelPrefab: {fileID: 0}
+  itemModelPrefab: {fileID: 1000011827300634, guid: ff586fe8e17ca3a4d9669e3c824a0e29, type: 3}
   score: 0
   ability: 
   type: 0

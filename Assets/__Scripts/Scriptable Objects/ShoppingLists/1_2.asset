@@ -15,4 +15,4 @@ MonoBehaviour:
   itemList:
   - {fileID: 11400000, guid: 837e2e7c55551a24fafe772a04876c3c, type: 2}
   score: 0
-  rating: 1
+  rating: 5

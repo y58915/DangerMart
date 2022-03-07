@@ -180,9 +180,10 @@ public class CharacterControl : MonoBehaviour
 
     private void Stun()
     {
-        DebuffUI.instance.SetDebuff("Stun");
+        DebuffUI.instance.SetDebuff("STUNNED");
 
         playerNav.isStopped = true;
+        playerNav.SetDestination(this.transform.position);
         playerAnim.enabled = false;
         inputEnabled = false;
 
@@ -202,7 +203,7 @@ public class CharacterControl : MonoBehaviour
 
     private void SlowDown()
     {
-        DebuffUI.instance.SetDebuff("Slow");
+        DebuffUI.instance.SetDebuff("SLOW");
 
         playerNav.speed = originalSpeed * 0.25f;
 
@@ -236,7 +237,7 @@ public class CharacterControl : MonoBehaviour
 
         Inventory.instance.RemoveItem(items[index]);
 
-        DebuffUI.instance.SetDebuff("Steal", 1f);
+        DebuffUI.instance.SetDebuff("ITEM STOLEN", 1f);
     }
 
     private void AddWildCard()

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4000013187683200}
   - component: {fileID: 33000013979984174}
   - component: {fileID: 23000010090060824}
+  - component: {fileID: 5171468369084407546}
+  - component: {fileID: -3411632191588129541}
   m_Layer: 0
   m_Name: Drink_03
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1000011827300634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,3 +83,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5171468369084407546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011827300634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0961ec9fdf9e3499b4613732acedd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupItem: {fileID: 11400000, guid: 92ea3010738948e4ca088d6aea7347b4, type: 2}
+--- !u!135 &-3411632191588129541
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011827300634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.046073306
+  m_Center: {x: 0.0000003054738, y: 0.046073306, z: 0}
