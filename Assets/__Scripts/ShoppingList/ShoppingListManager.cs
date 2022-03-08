@@ -75,6 +75,7 @@ public class ShoppingListManager : MonoBehaviour
 
     public void RemoveList(ShoppingList shoppingList)
     {
+        listsCompleted += 1;
         shoppingLists.Remove(shoppingList);
         UpdateListsEvent.Invoke(shoppingLists);
     }
