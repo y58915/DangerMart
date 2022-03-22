@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StarRatingUI : MonoBehaviour
 {
+    [SerializeField] Sprite fullStar;
+    [SerializeField] Sprite emptyStar;
+
+    Image[] starList;
+
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Transform child in transform)
+        starList = GetComponentsInChildren<Image>();
+        foreach (var child in starList)
         {
             child.gameObject.SetActive(false);
         }
@@ -19,16 +26,19 @@ public class StarRatingUI : MonoBehaviour
         
     }
 
-    public void SetStar(int num = 1){
-        foreach (Transform child in transform)
+    public void SetStar(int num = 1)
+    {
+        foreach (var child in starList)
         {
-            if (num > 0){
-                child.gameObject.SetActive(true);
+            if (num > 0)
+            {
+                child.sprite = fullStar;
                 num -= 1;
-            } else{
-                child.gameObject.SetActive(false);
+            } 
+            else
+            {
+                child.sprite = emptyStar;
             }
-                
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Analytics;
 using TMPro;
 
@@ -10,7 +11,7 @@ using TMPro;
 public class CountdownTimerUI : MonoBehaviour
 {
     private float currentTime;
-    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] Text timerText;
 
     // Update is called once per frame
     void Update()
