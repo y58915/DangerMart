@@ -7830,7 +7830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6008013154396138510, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6008013154396138513, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
       propertyPath: m_Pivot.x
@@ -10675,6 +10675,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelController
       objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: allItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 63bc187dbbf8bc74aad524a96e3e968e, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2967b648aeb9d924592c94a70145b8e2, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: a62aaaea5be28f7499e2133ed6ed335a, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c922e19b03c55944fa387624cdffe6e7, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: c431bcf2b06f80a42b009955d1ad2273, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 652e4dce2512dd044b23d37ee998c65b, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9400e86ddc2ea51489ead49a412de974, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 73a7269e905ce014a80b361d86403412, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: cf1ef3af9ada54048bf8a0d5d7173289, type: 2}
+    - target: {fileID: 8100196777407145414, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: PRESET.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 770db2485ab516746bfff87e3113a495, type: 2}
     - target: {fileID: 8100196777407145415, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_RootOrder
       value: 7
