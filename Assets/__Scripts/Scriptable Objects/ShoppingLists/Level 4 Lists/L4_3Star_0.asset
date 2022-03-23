@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd11d91ebc3d34baab784d865b19b593, type: 3}
-  m_Name: 1_3
+  m_Name: L4_3Star_0
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: 78ccb0d16feef4bb3bd604f5304fed48, type: 2}
+  - {fileID: 11400000, guid: af2f2ffb9eb21ee4181b66f18b29de2c, type: 2}
+  - {fileID: 11400000, guid: 1dd5b72aaad4e2a43a6b939bc3433c2f, type: 2}
   score: 0
-  rating: 1
+  rating: 3
