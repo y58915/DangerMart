@@ -6,7 +6,7 @@ using TMPro;
 
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] RectTransform scoreImage;
+    [SerializeField] Image scoreImage;
     [SerializeField] float maxScore = 2000;
 
     // Start is called before the first frame update
@@ -25,6 +25,6 @@ public class ScoreUI : MonoBehaviour
     void UpdateScoreUI(float score)
     {
         float temp = Mathf.Clamp(score / maxScore, 0, 1);
-        scoreImage.anchorMax = new Vector2(1, temp);
+        scoreImage.fillAmount = temp;
     }
 }

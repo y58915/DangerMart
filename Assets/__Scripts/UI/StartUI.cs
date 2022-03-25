@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class StartUI : MonoBehaviour
 {
     [SerializeField] Button startButton;
+    [SerializeField] Button levelButton;
     [SerializeField] Button optionButton;
-    [SerializeField] Button quitButton;
 
     // Start is called before the first frame update
     void Start()
     {
         startButton.onClick.AddListener(OnStart);
+        levelButton.onClick.AddListener(OnLevel);
         optionButton.onClick.AddListener(OnOption);
-        quitButton.onClick.AddListener(OnQuit);
     }
 
     // Update is called once per frame
@@ -34,8 +34,8 @@ public class StartUI : MonoBehaviour
 
     }
 
-    void OnQuit()
+    void OnLevel()
     {
-        Application.Quit();
+        SceneManager.LoadScene("LevelScene");
     }
 }

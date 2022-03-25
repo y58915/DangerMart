@@ -10,6 +10,7 @@ public class EnergyBarUI : MonoBehaviour
     [SerializeField]private Image firstBar;
     [SerializeField]private Image secondBar;
     [SerializeField]private Image thirdBar;
+    [SerializeField]private Color notFilled;
     
     // Start is called before the first frame update
     void Start()
@@ -28,10 +29,10 @@ public class EnergyBarUI : MonoBehaviour
     {
         switch (i)
         {
-            case 1: firstBar.color = Color.yellow; secondBar.color = Color.white; thirdBar.color = Color.white; break;
-            case 2: firstBar.color = Color.yellow; secondBar.color = new Color(1, 0.6f, 0, 1); thirdBar.color = Color.white; break;
-            case 3: firstBar.color = Color.yellow; secondBar.color = new Color(1, 0.6f, 0, 1); thirdBar.color = Color.red; break;
-            default: firstBar.color = Color.white; secondBar.color = Color.white; thirdBar.color = Color.white; break;
+            case 1: firstBar.color = Color.white; secondBar.color = notFilled; thirdBar.color = notFilled; break;
+            case 2: firstBar.color = Color.white; secondBar.color = Color.white; thirdBar.color = notFilled; break;
+            case 3: firstBar.color = Color.white; secondBar.color = Color.white; thirdBar.color = Color.white; break;
+            default: firstBar.color = notFilled; secondBar.color = notFilled; thirdBar.color = notFilled; break;
         }
     }
 }
