@@ -44,9 +44,10 @@ public class ShoppingListPanelUI : MonoBehaviour
             ratingUIs[i].SetStar(list[i].rating);
         }
 
-        for (int i = list.Count-1; i < ShoppingListManager.instance.MAXSIZE-list.Count; i++)
+        for (int i = list.Count; i < ShoppingListManager.instance.MAXSIZE; i++)
         {
             shoppingListUIArray[i].enabled = false;
+            shoppingListUIArray[i].UpdateText();
         }
     }
 }

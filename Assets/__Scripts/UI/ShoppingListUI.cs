@@ -33,4 +33,8 @@ public class ShoppingListUI : MonoBehaviour
 
         text.text = temp;
     }
+    public void UpdateText()
+    {
+        text.text = "List";
+    }
 }

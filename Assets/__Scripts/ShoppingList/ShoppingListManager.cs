@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ShoppingListManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ShoppingListManager : MonoBehaviour
     public Item[] allItems;
     public int listsCompleted = 0;
     private float timer;
+    private bool[] levelFlag = { false, false, false };
+
 
     public List<ShoppingList> PRESET;
 
@@ -44,25 +47,76 @@ public class ShoppingListManager : MonoBehaviour
     void Start()
     {
         shoppingLists = new List<ShoppingList>();
+        string levelName = SceneManager.GetActiveScene().name;
+        switch (levelName)
+        {
+            case "Level 1":
+                for (int i = 0; i < MAXSIZE - 1; i++)
+                {
+                    NewShoppingList(i);
+                }
+                break;
+            case "Level 2":
+                break;
+            case "Level 3":
+                for (int i = 0; i < MAXSIZE - 1; i++)
+                {
+                    NewShoppingList(i);
+                }
+                break;
+            default:
+                // prepopulate the list to maxsize-1 and let update() add the remaining list so that the UI can be automatically updated
+                for (int i = 0; i < MAXSIZE - 1; i++)
+                {
+                    NewShoppingList();
+                }
+                break;
+        }
 
         // Inventory.instance.itemUpdatedEvent.AddListener(NewItemAdded);
-
-        // prepopulate the list to maxsize-1 and let update() add the remaining list so that the UI can be automatically updated
-        for (int i = 0; i < MAXSIZE-1; i++)
-        {
-            NewShoppingList();
-        }
+    
         timer = newListTimer;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE)
+        string levelName = SceneManager.GetActiveScene().name;
+        switch(levelName)
         {
-            Debug.Log("New shopping list");
-            NewShoppingList();
+            case "Level 1":
+                if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE && !levelFlag[0])
+                {
+                    Debug.Log("New shopping list");
+                    NewShoppingList(MAXSIZE - 1);
+                    levelFlag[0] = true;
+                }
+                break;
+            case "Level 2":
+                if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE && !levelFlag[1])
+                {
+                    Debug.Log("New shopping list");
+                    NewShoppingList(MAXSIZE - 1);
+                    levelFlag[1] = true;
+                }
+                break;
+            case "Level 3":
+                if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE && !levelFlag[2])
+                {
+                    Debug.Log("New shopping list");
+                    NewShoppingList(MAXSIZE - 1);
+                    levelFlag[2] = true;
+                }
+                break;
+            default:
+                if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE)
+                {
+                    Debug.Log("New shopping list");
+                    NewShoppingList();
+                }
+                break;
         }
+        
             
     }
 
