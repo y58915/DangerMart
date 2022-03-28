@@ -7,6 +7,7 @@ using UnityEngine.Analytics;
 public class LevelController : MonoBehaviour
 {
     [SerializeField] private float levelTime;
+    [SerializeField] private int level;
 
     public UnityEvent gameOverEvent;
 
@@ -58,6 +59,7 @@ public class LevelController : MonoBehaviour
                     SetPause(true);
                     GetAnalytics();
                     gameOverEvent.Invoke();
+                    GameManager.instance.SetScore(level, (int)Score.instance.GetScore());
                 }
             }
 

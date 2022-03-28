@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] int levelCount;
+    [SerializeField] public int levelCount;
 
-    [SerializeField] int[] levelScore;
+    [SerializeField] public int[] levelScore;
 
     #region Singleton
     public static GameManager instance;
