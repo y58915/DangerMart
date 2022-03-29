@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8594,6 +8594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+--- !u!1 &1271731093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1536531385148284219, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+  m_PrefabInstance: {fileID: 1271731092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1293698419 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1916737190311782164, guid: 28c7aea41a2cbda409b7cd8aac43b2c3, type: 3}
@@ -11379,6 +11384,14 @@ PrefabInstance:
       propertyPath: shoppingListItems.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: medals
+      value: 
+      objectReference: {fileID: 1271731093}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: levelTime
       value: 180

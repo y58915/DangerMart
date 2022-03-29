@@ -16,6 +16,9 @@ public class LevelController : MonoBehaviour
 
     private bool noGameOver = false;
 
+    [SerializeField] GameObject medals;
+
+
     #region Singleton
     public static LevelController instance;
 

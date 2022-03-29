@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         if (score > levelScore[level])
         {
-            levelScore[level - 1] = score;
+            levelScore[level] = score;
 
             SaveScore();
         }

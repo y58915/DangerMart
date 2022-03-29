@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject PausePanel;
     [SerializeField] GameObject CashRegister;
     [SerializeField] GameObject GameOverPanel;
+    [SerializeField] GameObject Medals;
 
     [SerializeField] Button PauseButton;
 
@@ -44,16 +45,14 @@ public class UIManager : MonoBehaviour
         PausePanel.SetActive(false);
         CashRegister.SetActive(false);
         GameOverPanel.SetActive(false);
+
+        LevelController.instance.gameOverEvent.AddListener(EnableMedals);
     }
 
     // Update is called once per frame
     void Update()
     {
     }
-    // public void ToggleInventoryPanel()
-    // {
-    //     InventoryPanel.SetActive(!InventoryPanel.activeInHierarchy);
-    // }
 
     public void TogglePausePanel()
     {
@@ -63,6 +62,23 @@ public class UIManager : MonoBehaviour
 
         LevelController.instance.SetPause(PausePanel.activeInHierarchy);
     }
+
+    private void EnableMedals()
+    {
+        if (Score.instance.currentScore / (float)Score.instance.maxScore > .1f)
+        {
+            Medals.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        if (Score.instance.currentScore / (float)Score.instance.maxScore > .15f)
+        {
+            Medals.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        if (Score.instance.currentScore / (float)Score.instance.maxScore >= .2f)
+        {
+            Medals.transform.GetChild(2).gameObject.SetActive(true);
+        }
+    }
+
 
     public void ToggleGameOverPanel()
     {

@@ -66,6 +66,7 @@ MonoBehaviour:
   PausePanel: {fileID: 3672127626112087980}
   CashRegister: {fileID: 2801629183136213463}
   GameOverPanel: {fileID: 1082462929}
+  Medals: {fileID: 1536531385148284219}
   PauseButton: {fileID: 5696020554964586634}
 --- !u!223 &6008013154396138514
 Canvas:
@@ -920,5 +921,10 @@ GameObject:
 --- !u!224 &1082462930 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8710325791594080521, guid: 17b24428ad7cfbe4783e45f0aed4b891, type: 3}
+  m_PrefabInstance: {fileID: 8710325790512151515}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1536531385148284219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7904820166597732064, guid: 17b24428ad7cfbe4783e45f0aed4b891, type: 3}
   m_PrefabInstance: {fileID: 8710325790512151515}
   m_PrefabAsset: {fileID: 0}
