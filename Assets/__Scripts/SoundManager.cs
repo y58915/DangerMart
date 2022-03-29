@@ -43,7 +43,7 @@ public class SoundManager : MonoBehaviour
     {
         NamedAudioClip clip = Find(name);
         if (clip.name != ""){
-            source.PlayOneShot(clip.clip);
+            source.PlayOneShot(clip.clip, source.volume);
         }
     }
 }
