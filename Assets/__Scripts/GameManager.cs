@@ -50,9 +50,12 @@ public class GameManager : MonoBehaviour
     //level start from 1
     public void SetScore(int level, int score)
     {
-        levelScore[level - 1] = score;
+        if (score > levelScore[level])
+        {
+            levelScore[level - 1] = score;
 
-        SaveScore();
+            SaveScore();
+        }
     }
 
     public void SaveScore()
