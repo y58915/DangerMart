@@ -23,7 +23,7 @@ public class ScoreUI : MonoBehaviour
 
     void UpdateScoreUI(float score)
     {
-        float temp = Mathf.Clamp(score / Score.instance.maxScore, 0, 1);
+        float temp = Mathf.Clamp(score / Score.instance.GetMaxScore(), 0, 1);
         scoreImage.fillAmount = temp;
     }
 }
