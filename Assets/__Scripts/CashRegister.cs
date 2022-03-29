@@ -18,6 +18,8 @@ namespace __Scripts
         private List<ShoppingList> completable;
         private List<int> completeableShoppingListIdx;
 
+        public SoundManager soundManager;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -47,6 +49,7 @@ namespace __Scripts
             shoppingList.UpdateListsEvent.Invoke(shoppingList.GetAllShoppingLists());
             CompletableOptions();
             UIUpdate(completeableShoppingListIdx, true);
+            soundManager.Play("Register");
 
         }
 

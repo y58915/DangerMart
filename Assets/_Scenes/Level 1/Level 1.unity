@@ -552,6 +552,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 406287137d7714d64bf9b8529da1ed2c, type: 3}
   m_PrefabInstance: {fileID: 477580054}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &600441604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6763730446778077741, guid: 84d753bf1460e4714b970ee76c3cb4df, type: 3}
+  m_PrefabInstance: {fileID: 1680094357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6e1406f034a4d88ab396b2d1e36450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &628254681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2228,6 +2239,7 @@ MonoBehaviour:
   CashRegisterUpdate:
     m_PersistentCalls:
       m_Calls: []
+  soundManager: {fileID: 600441604}
 --- !u!1 &2091546561
 GameObject:
   m_ObjectHideFlags: 0
