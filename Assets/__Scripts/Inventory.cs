@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public UnityEvent<Item> addItemEvent;
     [HideInInspector] public UnityEvent itemUpdatedEvent;
     [HideInInspector] public UnityEvent updateInventoryEvent;
+    public SoundManager soundManager;
 
     public int movingIndex;
 
@@ -56,6 +57,7 @@ public class Inventory : MonoBehaviour
         PrintInventory();
         itemUpdatedEvent.Invoke();
         updateInventoryEvent.Invoke();
+        soundManager.Play("Pickup");
     }
 
 
@@ -96,6 +98,7 @@ public class Inventory : MonoBehaviour
         container.RemoveAt(movingIndex);
         movingIndex = -1;
         updateInventoryEvent.Invoke();
+        soundManager.Play("Trash");
     }
 
 

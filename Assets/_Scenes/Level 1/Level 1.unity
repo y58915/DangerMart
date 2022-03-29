@@ -1926,6 +1926,10 @@ PrefabInstance:
       propertyPath: shoppingListItems.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+    - target: {fileID: 8100196777407145408, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 600441604}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: levelTime
       value: 180
