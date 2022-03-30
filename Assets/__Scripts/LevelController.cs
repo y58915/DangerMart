@@ -62,7 +62,7 @@ public class LevelController : MonoBehaviour
                     SetPause(true);
                     GetAnalytics();
                     gameOverEvent.Invoke();
-                    GameManager.instance.SetScore(level, (int)Score.instance.GetScore());
+                    GameManager.instance.SetScore(level, (int)Score.instance.GetScore(), Score.instance.GetMedal());
                 }
             }
 
@@ -74,7 +74,7 @@ public class LevelController : MonoBehaviour
         // Add analytics for High Score
         AnalyticsResult analyticsResult_Score = 
             Analytics.CustomEvent("High Score", new Dictionary<string, object> 
-            { { "Score", Score.instance.currentScore } });
+            { { "Score", Score.instance.GetScore() } });
         // Debug.Log("High Score: " + analyticsResult_Score);
 
         // Add analytics for Total Lists Complete

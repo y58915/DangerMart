@@ -66,7 +66,7 @@ MonoBehaviour:
   PausePanel: {fileID: 3672127626112087980}
   CashRegister: {fileID: 2801629183136213463}
   GameOverPanel: {fileID: 1082462929}
-  Medals: {fileID: 1536531385148284219}
+  Medals: {fileID: 0}
   PauseButton: {fileID: 5696020554964586634}
 --- !u!223 &6008013154396138514
 Canvas:
@@ -493,6 +493,10 @@ PrefabInstance:
     - target: {fileID: 1721901289865305500, guid: f0e9b5e5c56934f26ae20f2f78b84a85, type: 3}
       propertyPath: m_Name
       value: CashRegister
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721901289865305500, guid: f0e9b5e5c56934f26ae20f2f78b84a85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1721901289865305501, guid: f0e9b5e5c56934f26ae20f2f78b84a85, type: 3}
       propertyPath: m_Pivot.x
@@ -921,10 +925,5 @@ GameObject:
 --- !u!224 &1082462930 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8710325791594080521, guid: 17b24428ad7cfbe4783e45f0aed4b891, type: 3}
-  m_PrefabInstance: {fileID: 8710325790512151515}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1536531385148284219 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7904820166597732064, guid: 17b24428ad7cfbe4783e45f0aed4b891, type: 3}
   m_PrefabInstance: {fileID: 8710325790512151515}
   m_PrefabAsset: {fileID: 0}

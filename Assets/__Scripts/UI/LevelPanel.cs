@@ -8,41 +8,35 @@ public class LevelPanel : MonoBehaviour
 {
     [SerializeField] Button home;
     [SerializeField] List<Button> levels;
-    [SerializeField] List<GameObject> medals;
-    [SerializeField] List<int> scores;
+    [SerializeField] List<Image> medals;
+    [SerializeField] List<Sprite> medalType;
 
     // Start is called before the first frame update
     void Start()
     {
+        int[] levelMedal = GameManager.instance.GetLevelMedal();
 
-        //TODO: LEVELSCORE TEST REMOVE LATER
-        GameManager.instance.levelScore[0] = 200;
+        ////TODO: LEVELSCORE TEST REMOVE LATER
+        //GameManager.instance.levelScore[0] = 200;
 
-        GameManager.instance.levelScore[1] = 100;
+        //GameManager.instance.levelScore[1] = 100;
 
-        GameManager.instance.levelScore[2] = 130;
+        //GameManager.instance.levelScore[2] = 130;
 
-        GameManager.instance.levelScore[3] = 70;
-        //TODO: LEVELSCORE TEST REMOVE END
+        //GameManager.instance.levelScore[3] = 70;
+        ////TODO: LEVELSCORE TEST REMOVE END
 
-        for (int i = 0; i < levels.Count; i++)
+        for(int i = 0; i < levels.Count; i++)
         {
-            levels[i].onClick.AddListener(delegate { GoToLevel(i + 1); });
-        }
-
-        for(int i = 0; i < GameManager.instance.levelCount; i++)
-        {
-            if(GameManager.instance.levelScore[i] / (float)scores[i] > .33f)
+            if (levelMedal[i] == 0)
             {
-                medals[i].transform.GetChild(0).gameObject.SetActive(true);
+                medals[i].sprite = null;
+                medals[i].color = Color.clear;
             }
-            if (GameManager.instance.levelScore[i] / (float)scores[i]  > .66f)
+            else
             {
-                medals[i].transform.GetChild(1).gameObject.SetActive(true);
-            }
-            if (GameManager.instance.levelScore[i] / (float)scores[i] >= 1)
-            {
-                medals[i].transform.GetChild(2).gameObject.SetActive(true);
+                medals[i].sprite = medalType[levelMedal[i] - 1];
+                medals[i].color = Color.white;
             }
         }
 
@@ -58,6 +52,7 @@ public class LevelPanel : MonoBehaviour
     public void GoToLevel(int i)
     {
         SceneManager.LoadScene("Level " + i);
+        GameManager.instance.currentLevel = i;
     }
 
     void onHome()

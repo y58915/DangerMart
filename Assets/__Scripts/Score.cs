@@ -7,8 +7,8 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    public float currentScore = 0;
-    public float maxScore = 2000;
+    [SerializeField]float currentScore = 0;
+    [SerializeField]float maxScore = 2000;
     [HideInInspector] public UnityEvent<float> UpdateScore;
 
     #region Singleton
@@ -30,6 +30,10 @@ public class Score : MonoBehaviour
     private void Start()
     {
         currentScore = 0;
+        int temp = GameManager.instance.GetMaxScore();
+
+        if (temp != 0)
+            maxScore = temp;
     }
 
     // Update is called once per frame
@@ -56,10 +60,32 @@ public class Score : MonoBehaviour
         return currentScore;
     }
 
+    public float GetMaxScore()
+    {
+        return maxScore;
+    }
+
     public void SetScore(float score)
     {
         currentScore = score;
 
     }
 
+    public int GetMedal()
+    {
+        if (currentScore/ maxScore >= 0.9)
+        {
+            return 3;
+        }
+        if (currentScore / maxScore >= .6f)
+        {
+            return 2;
+        }
+        if (currentScore / maxScore >= .3f)
+        {
+            return 1;
+        }
+
+        return 0;
+    }
 }

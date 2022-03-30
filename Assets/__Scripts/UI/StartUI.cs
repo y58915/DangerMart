@@ -26,7 +26,8 @@ public class StartUI : MonoBehaviour
 
     void OnStart()
     {
-        SceneManager.LoadScene("Level 1");
+        //SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("LevelScene");
     }
 
     void OnOption()

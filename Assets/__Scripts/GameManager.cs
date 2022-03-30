@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public int levelCount;
+    public int levelCount;
 
-    [SerializeField] public int[] levelScore;
+    public int currentLevel = 0;
+
+    int[] levelScore;
+    int[] levelMedal;    //0: none; 1: bronze; 2: silver; 3: gold
+
+    [SerializeField] int[] levelMaxScore;
 
     #region Singleton
     public static GameManager instance;
@@ -29,6 +34,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         levelScore = new int[levelCount];
+        levelMedal = new int[levelCount];
+
         ReadScore();
         DontDestroyOnLoad(this);
     }
@@ -43,26 +50,37 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < levelCount; i++)
         {
-            levelScore[i] = PlayerPrefs.GetInt("Level " + (i + 1), 0);
+            levelScore[i] = PlayerPrefs.GetInt("LevelScore " + (i + 1), 0);
+        }
+        for (int i = 0; i < levelCount; i++)
+        {
+            levelScore[i] = PlayerPrefs.GetInt("LevelMedal " + (i + 1), 0);
         }
     }
 
     //level start from 1
-    public void SetScore(int level, int score)
+    public void SetScore(int level, int score, int medal)
     {
         if (score > levelScore[level])
         {
             levelScore[level] = score;
+            levelMedal[level] = medal;
 
             SaveScore();
         }
+
     }
 
     public void SaveScore()
     {
         for (int i = 0; i < levelCount; i++)
         {
-            PlayerPrefs.SetInt("Level " + (i + 1), levelScore[i]);
+            PlayerPrefs.SetInt("LevelScore " + (i + 1), levelScore[i]);
+        }
+
+        for (int i = 0; i < levelCount; i++)
+        {
+            PlayerPrefs.SetInt("LevelMedal " + (i + 1), levelMedal[i]);
         }
 
         SavePrefs();
@@ -71,5 +89,16 @@ public class GameManager : MonoBehaviour
     public void SavePrefs()
     {
         PlayerPrefs.Save();
+    }
+
+    public int[] GetLevelMedal()
+    {
+        return levelMedal;
+    }
+
+    public int GetMaxScore()
+    {
+        if (currentLevel > levelMaxScore.Length) return 0;
+        return levelMaxScore[currentLevel - 1];
     }
 }
