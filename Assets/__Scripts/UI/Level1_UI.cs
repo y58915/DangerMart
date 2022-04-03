@@ -21,4 +21,9 @@ public class Level1_UI : UIManager
 
         LevelController.instance.gameOverEvent.AddListener(EnableMedals);
     }
+
+    public void ActivateInventoryPanel()
+    {
+        InventoryPanel.SetActive(true);
+    }
 }

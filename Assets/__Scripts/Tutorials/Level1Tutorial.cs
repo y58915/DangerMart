@@ -10,6 +10,11 @@ public class Level1Tutorial : MonoBehaviour
     [SerializeField]
     private GameObject movementTutorial;
 
+    public GameObject collectionTutorial;
+
+    [SerializeField]
+    private CollectionArea_Tutorial watermelonArea;
+
     private BoxCollider movementVolume;
 
     // Start is called before the first frame update
@@ -35,6 +40,11 @@ public class Level1Tutorial : MonoBehaviour
         {
             movementTutorial.SetActive(false);
             movementVolume.enabled = false;
+
+            collectionTutorial.SetActive(true);
+            levelUI.ActivateInventoryPanel();
+
+            watermelonArea.canCollect = true;
         }
     }
 }
