@@ -26,4 +26,9 @@ public class Level1_UI : UIManager
     {
         InventoryPanel.SetActive(true);
     }
+
+    public void ActiveListPanel()
+    {
+        ShoppingListPanel.SetActive(true);
+    }
 }

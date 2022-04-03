@@ -22,7 +22,7 @@ public class CollectionArea_Tutorial : CollectionArea
             if (Inventory.instance.container.Contains(item) && !completed)
             {
                 completed = true;
-                level1Tutorial.collectionTutorial.SetActive(false);
+                level1Tutorial.CollectionToRegister();
             }
 
             // Reset the trigger 

@@ -13,6 +13,9 @@ public class Level1Tutorial : MonoBehaviour
     public GameObject collectionTutorial;
 
     [SerializeField]
+    private GameObject registerTutorial;
+
+    [SerializeField]
     private CollectionArea_Tutorial watermelonArea;
 
     private BoxCollider movementVolume;
@@ -46,5 +49,12 @@ public class Level1Tutorial : MonoBehaviour
 
             watermelonArea.canCollect = true;
         }
+    }
+
+    public void CollectionToRegister()
+    {
+        collectionTutorial.SetActive(false);
+        registerTutorial.SetActive(true);
+        levelUI.ActiveListPanel();
     }
 }
