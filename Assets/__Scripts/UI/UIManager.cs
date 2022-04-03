@@ -6,14 +6,14 @@ using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject HUD;
-    [SerializeField] GameObject ShoppingListPanel;
-    [SerializeField] GameObject InventoryPanel;
-    [SerializeField] GameObject PausePanel;
-    [SerializeField] GameObject CashRegister;
-    [SerializeField] GameObject GameOverPanel;
+    [SerializeField] protected GameObject HUD;
+    [SerializeField] protected GameObject ShoppingListPanel;
+    [SerializeField] protected GameObject InventoryPanel;
+    [SerializeField] protected GameObject PausePanel;
+    [SerializeField] protected GameObject CashRegister;
+    [SerializeField] protected GameObject GameOverPanel;
 
-    [SerializeField] Button PauseButton;
+    [SerializeField] protected Button PauseButton;
 
     #region Singleton
     public static UIManager instance;
@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
         LevelController.instance.SetPause(PausePanel.activeInHierarchy);
     }
 
-    private void EnableMedals()
+    protected void EnableMedals()
     {
     }
 

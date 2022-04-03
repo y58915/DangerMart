@@ -11,9 +11,9 @@ public class CollectionArea : MonoBehaviour
 
     [Header("Item")]
     [SerializeField]
-    private Item item;
+    protected Item item;
 
-    private GameObject myItem;
+    protected GameObject myItem;
 
     // Start is called before the first frame update
     void Start()
