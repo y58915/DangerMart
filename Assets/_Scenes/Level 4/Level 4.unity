@@ -1528,6 +1528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f03ad03dde4412e9b4abafcd686e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 1
   waypoints:
   - {fileID: 282119499}
   - {fileID: 137533580}
@@ -4216,7 +4217,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -5764,6 +5765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f03ad03dde4412e9b4abafcd686e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 1
   waypoints:
   - {fileID: 1703136551}
   - {fileID: 1034835439}
@@ -6312,6 +6314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f03ad03dde4412e9b4abafcd686e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   waypoints:
   - {fileID: 456272731}
   - {fileID: 1631253074}
@@ -6936,6 +6939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f03ad03dde4412e9b4abafcd686e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 2
   waypoints:
   - {fileID: 405097837}
   - {fileID: 354759572}
@@ -8668,6 +8672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f03ad03dde4412e9b4abafcd686e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 2
   waypoints:
   - {fileID: 550526875}
   - {fileID: 554797122}

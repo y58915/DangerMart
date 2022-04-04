@@ -129,26 +129,29 @@ public class CharacterControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        
+        Debug.Log("OnCollisionEnter");
+        
         if (invulernable)
             return;
         
-        if (collision.gameObject.GetComponent<EnemyController>() != null)
+        if (collision.gameObject.GetComponent<PatrollingEnemy>() != null)
         {
-            switch(collision.gameObject.GetComponent<EnemyController>().enemyType)
+            switch(collision.gameObject.GetComponent<PatrollingEnemy>().enemyType)
             {
-                case EnemyController.EnemyType.Stun:
+                case PatrollingEnemy.EnemyType.Stun:
                     Stun();
                     break;
-                case EnemyController.EnemyType.SlowDown:
+                case PatrollingEnemy.EnemyType.SlowDown:
                     SlowDown();
                     break;
-                case EnemyController.EnemyType.Steal:
+                case PatrollingEnemy.EnemyType.Steal:
                     LoseItem();
                     break;
                 default:
                     break;
             }
-            AnalyticsResult analyticsResult_Enemies = Analytics.CustomEvent("Enemy Hit", new Dictionary<string, object> { { "Enemy", collision.gameObject.GetComponent<EnemyController>().enemyType } });
+            AnalyticsResult analyticsResult_Enemies = Analytics.CustomEvent("Enemy Hit", new Dictionary<string, object> { { "Enemy", collision.gameObject.GetComponent<PatrollingEnemy>().enemyType } });
             // Debug.Log("Enemy Hit: " + analyticsResult_Enemies);
         }
     }
@@ -180,6 +183,7 @@ public class CharacterControl : MonoBehaviour
 
     private void Stun()
     {
+        Debug.Log("Stunning Effect Triggered");
         DebuffUI.instance.SetDebuff("STUNNED");
 
         playerNav.isStopped = true;

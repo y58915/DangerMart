@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class PatrollingEnemy : MonoBehaviour
 {
+    // Set type of enemy 
+    public enum EnemyType { Stun, SlowDown, Steal };
+    public EnemyType enemyType = EnemyType.Stun;
+
     NavMeshAgent enemy;
     public Transform[] waypoints;
     int waypointIndex;
@@ -16,9 +20,9 @@ public class PatrollingEnemy : MonoBehaviour
         enemy = GetComponent<NavMeshAgent>();
         waypointIndex = 0;
         UpdateDestination();
-        Debug.LogFormat("Start: Position => " + transform.position);
-        Debug.LogFormat("Start: Target => " + target);
-        Debug.LogFormat("Start: Index => " + waypointIndex);
+        // Debug.LogFormat("Start: Position => " + transform.position);
+        // Debug.LogFormat("Start: Target => " + target);
+        // Debug.LogFormat("Start: Index => " + waypointIndex);
 
     }
 
@@ -30,11 +34,11 @@ public class PatrollingEnemy : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target) < 1)
         {
-            Debug.LogFormat("Update: Position => " + transform.position);
-            Debug.LogFormat("Update: Target => " + target);
+            // Debug.LogFormat("Update: Position => " + transform.position);
+            // Debug.LogFormat("Update: Target => " + target);
 
             IterateWaypointIndex();
-            Debug.LogFormat("Update: Index => " + waypointIndex);
+            // Debug.LogFormat("Update: Index => " + waypointIndex);
             // Debug.LogFormat("Iterate Waypoint Index" + waypointIndex);
 
             UpdateDestination();
