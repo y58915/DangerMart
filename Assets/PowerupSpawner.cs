@@ -8,10 +8,10 @@ public class PowerupSpawner : MonoBehaviour
     [SerializeField] private int MAX_NUMBER_OF_POWERUPS_ON_MAP = 5;
     [SerializeField] private int AVERAGE_SPAWNING_TIME = 15;
 
-    private int MAP_LEFT_BOARDER = -10;
-    private int MAP_RIGHT_BOARDER = 3;
+    private int MAP_LEFT_BOARDER = -4;
+    private int MAP_RIGHT_BOARDER = 2;
     private int MAP_LOWER_BOARDER = -6;
-    private int MAP_UPPER_BOARDER = 2;
+    private int MAP_UPPER_BOARDER = -2;
     
 
     private int numberOfPowerups = 0;

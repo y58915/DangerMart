@@ -515,7 +515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7060198435993522609, guid: c3bb7a10d17fe4040a26116ff87dab73, type: 3}
       propertyPath: MAX_NUMBER_OF_POWERUPS_ON_MAP
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7060198435993522610, guid: c3bb7a10d17fe4040a26116ff87dab73, type: 3}
       propertyPath: m_Name
