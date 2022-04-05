@@ -34,6 +34,12 @@ public class Level1Tutorial : MonoBehaviour
     void Start()
     {
         movementVolume = GetComponent<BoxCollider>();
+
+        movementTutorial.SetActive(true);
+        collectionTutorial.SetActive(false);
+        registerTutorial.SetActive(false);
+        trashTutorial.SetActive(false);
+        scoreTutorial.SetActive(false);
     }
 
     private void Awake()
@@ -82,5 +88,10 @@ public class Level1Tutorial : MonoBehaviour
         levelUI.ActivateScorePanel();
 
         pineappleArea.canCollect = true;
+    }
+
+    public void FinishTutorial()
+    {
+        scoreTutorial.SetActive(false);
     }
 }

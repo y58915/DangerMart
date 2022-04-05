@@ -7,7 +7,7 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField]float currentScore = 0;
+    public float currentScore = 0;
     [SerializeField]float maxScore = 2000;
     [HideInInspector] public UnityEvent<float> UpdateScore;
 

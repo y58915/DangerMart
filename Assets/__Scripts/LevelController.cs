@@ -7,14 +7,14 @@ using UnityEngine.Analytics;
 public class LevelController : MonoBehaviour
 {
     [SerializeField] private float levelTime;
-    [SerializeField] private int level;
+    [SerializeField] protected int level;
 
     public UnityEvent gameOverEvent;
 
     public bool gamePaused { get { return pauseCount != 0; } }
     private int pauseCount;
 
-    private bool noGameOver = false;
+    protected bool noGameOver = false;
 
     [SerializeField] GameObject medals;
 
