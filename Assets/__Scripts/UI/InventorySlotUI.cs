@@ -12,6 +12,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IBeginDragHan
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
     public static int draggedIndex;
+    [SerializeField] private Sprite clearSquare;
 
     private void Start() {
         rectTransform = GetComponent<RectTransform>();
@@ -23,13 +24,13 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IBeginDragHan
     public void SetItem(Item _item)
     {
         image.sprite = _item.itemImage;
-        image.color = Color.white;
+        //image.color = Color.white;
     }
 
     public void ClearItem()
     {
-        image.sprite = null;
-        image.color = Color.white;
+        image.sprite = clearSquare;
+        //image.color = Color.white;
     }
 
     public void OnBeginDrag(PointerEventData eventData) {

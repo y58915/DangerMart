@@ -66,7 +66,6 @@ MonoBehaviour:
   PausePanel: {fileID: 3672127626112087980}
   CashRegister: {fileID: 2801629183136213463}
   GameOverPanel: {fileID: 1082462929}
-  Medals: {fileID: 0}
   PauseButton: {fileID: 5696020554964586634}
 --- !u!223 &6008013154396138514
 Canvas:
@@ -261,6 +260,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 6008013154396138514}
+    - target: {fileID: 54582326902102119, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6008013154396138514}
     - target: {fileID: 1721901289865305500, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
       propertyPath: m_Name
       value: InventoryPanel
@@ -349,6 +352,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2258976245712991216, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6008013154396138514}
+    - target: {fileID: 6138216614175050410, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6008013154396138514}
+    - target: {fileID: 6298504648465156040, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6008013154396138514}
+    - target: {fileID: 7380276344207900832, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6008013154396138514}
+    - target: {fileID: 8463069454740657676, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6008013154396138514}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d7ae78041670343a91819a76e2e79e, type: 3}
 --- !u!1 &768219026 stripped
