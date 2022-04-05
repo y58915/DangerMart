@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5880,6 +5880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 6008013153469398918}
   image: {fileID: 0}
+  clearSquare: {fileID: 0}
 --- !u!225 &1721901289525026297
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5906,6 +5907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 6008013153469398918}
   image: {fileID: 0}
+  clearSquare: {fileID: 0}
 --- !u!114 &1721901290308191952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5920,6 +5922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 6008013153469398918}
   image: {fileID: 0}
+  clearSquare: {fileID: 0}
 --- !u!225 &1721901290308191954
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5946,6 +5949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 6008013153469398918}
   image: {fileID: 0}
+  clearSquare: {fileID: 0}
 --- !u!225 &1721901290331868658
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5972,6 +5976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 6008013153469398918}
   image: {fileID: 0}
+  clearSquare: {fileID: 0}
 --- !u!225 &1721901290629703754
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6010,6 +6015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 6008013153469398918}
   image: {fileID: 0}
+  clearSquare: {fileID: 0}
 --- !u!224 &1754756071154047541
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11212,7 +11218,9 @@ MonoBehaviour:
   PausePanel: {fileID: 3672127625226232888}
   CashRegister: {fileID: 2801629181958339139}
   GameOverPanel: {fileID: 189268293}
+  WinPanel: {fileID: 0}
   PauseButton: {fileID: 5696020556108907294}
+  tutorialUI: {fileID: 641761653}
 --- !u!224 &6008013154629496327
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13620,10 +13628,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Times Up!
+  m_text: Good Job!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}
+  m_sharedMaterial: {fileID: -535809118107587110, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13840,6 +13848,9 @@ MonoBehaviour:
   levelTime: 0
   level: 0
   gameOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  winEvent:
     m_PersistentCalls:
       m_Calls: []
   medals: {fileID: 0}
@@ -14308,6 +14319,7 @@ MonoBehaviour:
   restartButton: {fileID: 6401851238373774561}
   levelButton: {fileID: 384951684345746436}
   quitButton: {fileID: 3821291790639839498}
+  nextLevelButton: {fileID: 0}
 --- !u!1 &8767174096009905694
 GameObject:
   m_ObjectHideFlags: 0
