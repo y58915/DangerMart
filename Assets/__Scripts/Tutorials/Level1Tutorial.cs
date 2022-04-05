@@ -20,6 +20,9 @@ public class Level1Tutorial : MonoBehaviour
     private GameObject trashTutorial;
 
     [SerializeField]
+    private GameObject scoreTutorial;
+
+    [SerializeField]
     private CollectionArea_Tutorial watermelonArea;
 
     private BoxCollider movementVolume;
@@ -66,5 +69,12 @@ public class Level1Tutorial : MonoBehaviour
     {
         registerTutorial.SetActive(false);
         trashTutorial.SetActive(true);
+    }
+
+    public void TrashToScore()
+    {
+        trashTutorial.SetActive(false);
+        scoreTutorial.SetActive(true);
+        levelUI.ActivateScorePanel();
     }
 }

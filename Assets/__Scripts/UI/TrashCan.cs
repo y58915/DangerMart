@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class TrashCan : MonoBehaviour, IDropHandler
 {
-    public void OnDrop(PointerEventData eventData) {
+    public virtual void OnDrop(PointerEventData eventData) {
         Inventory.instance.DiscardItem();
     }
 }

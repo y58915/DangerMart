@@ -31,4 +31,9 @@ public class Level1_UI : UIManager
     {
         ShoppingListPanel.SetActive(true);
     }
+
+    public void ActivateScorePanel()
+    {
+        HUD.transform.Find("Score").gameObject.SetActive(true);
+    }
 }
