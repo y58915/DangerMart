@@ -20,8 +20,27 @@ public class CountdownTimerUI : MonoBehaviour
         int minute = (int)(currentTime / 60);
         int seconds = (int)(currentTime % 60);
 
+        if (minute == 5 && seconds == 0)
+        {
+            StartCoroutine(Alert());
+        }
+
+        if (minute == 1 && seconds == 0)
+        {
+            StartCoroutine(Alert());
+        }
+
         string secondsTextFormat = (seconds >= 10) ? seconds.ToString() : "0" + seconds.ToString();
 
         timerText.text = minute.ToString() + ":" + secondsTextFormat;
+    }
+
+    IEnumerator Alert()
+    {
+        timerText.color = Color.red;
+
+        yield return new WaitForSeconds(1);
+
+        timerText.color = Color.white;
     }
 }
