@@ -10,10 +10,14 @@ public class Level1Tutorial : MonoBehaviour
     [SerializeField]
     private GameObject movementTutorial;
 
-    public GameObject collectionTutorial;
+    [SerializeField]
+    private GameObject collectionTutorial;
 
     [SerializeField]
     private GameObject registerTutorial;
+
+    [SerializeField]
+    private GameObject trashTutorial;
 
     [SerializeField]
     private CollectionArea_Tutorial watermelonArea;
@@ -56,5 +60,11 @@ public class Level1Tutorial : MonoBehaviour
         collectionTutorial.SetActive(false);
         registerTutorial.SetActive(true);
         levelUI.ActiveListPanel();
+    }
+
+    public void RegisterToTrash()
+    {
+        registerTutorial.SetActive(false);
+        trashTutorial.SetActive(true);
     }
 }

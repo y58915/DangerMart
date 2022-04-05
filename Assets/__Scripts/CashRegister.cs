@@ -10,13 +10,13 @@ namespace __Scripts
 {
     public class CashRegister : MonoBehaviour
     {
-        private Inventory inventory;
-        private ShoppingListManager shoppingList;
+        protected Inventory inventory;
+        protected ShoppingListManager shoppingList;
         [SerializeField] GameObject ShoppingListPanel;
         // [SerializeField] GameObject CashRegisterObj;
         [HideInInspector] public UnityEvent CashRegisterUpdate;
         private List<ShoppingList> completable;
-        private List<int> completeableShoppingListIdx;
+        protected List<int> completeableShoppingListIdx;
 
         public SoundManager soundManager;
 
@@ -35,7 +35,7 @@ namespace __Scripts
         }
 
         // temp solution for complete a shopping list
-        public void CompleteAction(int index)
+        public virtual void CompleteAction(int index)
         {
             UIUpdate(Enumerable.Range(0, shoppingList.MAXSIZE).ToList(), false);
             // shoppingList.RemoveList(index);
@@ -50,10 +50,9 @@ namespace __Scripts
             CompletableOptions();
             UIUpdate(completeableShoppingListIdx, true);
             soundManager.Play("Register");
-
         }
 
-        private void UIUpdate(List<int> indices, bool isSelect)
+        protected void UIUpdate(List<int> indices, bool isSelect)
         {
             foreach (int idx in indices)
             {
@@ -90,7 +89,7 @@ namespace __Scripts
                 UIUpdate(Enumerable.Range(0, shoppingList.MAXSIZE).ToList(), false);
             }
         }
-        private void CompletableOptions()
+        protected void CompletableOptions()
         {
             completable = new List<ShoppingList>();
             List<Item> inventoryItems = inventory.container;
