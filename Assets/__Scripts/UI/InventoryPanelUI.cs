@@ -72,7 +72,7 @@ public class InventoryPanelUI : MonoBehaviour
 
         for (int j = i; j < inventorySlotList.Length; j++)
         {
-            inventorySlotList[i].ClearItem();
+            inventorySlotList[j].ClearItem();
         }
     }
 }
