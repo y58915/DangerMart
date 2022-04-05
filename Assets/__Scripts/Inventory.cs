@@ -57,7 +57,9 @@ public class Inventory : MonoBehaviour
         PrintInventory();
         itemUpdatedEvent.Invoke();
         updateInventoryEvent.Invoke();
-        soundManager.Play("Pickup");
+
+        if (soundManager != null)
+            soundManager.Play("Pickup");
     }
 
 
