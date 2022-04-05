@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] protected GameObject CashRegister;
     [SerializeField] protected GameObject GameOverPanel;
 
+    [SerializeField] protected GameObject WinPanel;
+
     [SerializeField] protected Button PauseButton;
 
     #region Singleton
@@ -39,12 +41,14 @@ public class UIManager : MonoBehaviour
 
         LevelController.instance.gameOverEvent.AddListener(ToggleGameOverPanel);
 
+        LevelController.instance.winEvent.AddListener(ToggleWinPanel);
         ShoppingListPanel.SetActive(true);
         InventoryPanel.SetActive(true);
         PausePanel.SetActive(false);
         CashRegister.SetActive(false);
         GameOverPanel.SetActive(false);
-
+        WinPanel.SetActive(false);
+        LevelController.instance.winEvent.AddListener(EnableMedals);
         LevelController.instance.gameOverEvent.AddListener(EnableMedals);
     }
 
@@ -70,5 +74,10 @@ public class UIManager : MonoBehaviour
     public void ToggleGameOverPanel()
     {
         GameOverPanel.SetActive(!GameOverPanel.activeInHierarchy);
+    }
+
+    public void ToggleWinPanel()
+    {
+        WinPanel.SetActive(!WinPanel.activeInHierarchy);
     }
 }

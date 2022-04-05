@@ -9,6 +9,7 @@ public class GameOvereUI : MonoBehaviour
     [SerializeField] Button restartButton;
     [SerializeField] Button levelButton;
     [SerializeField] Button quitButton;
+    [SerializeField] Button nextLevelButton;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class GameOvereUI : MonoBehaviour
         restartButton.onClick.AddListener(OnRestart);
         levelButton.onClick.AddListener(OnLevel);
         quitButton.onClick.AddListener(OnQuit);
+        nextLevelButton.onClick.AddListener(OnNextLevel);
     }
 
     // Update is called once per frame
@@ -27,7 +29,11 @@ public class GameOvereUI : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    
+    void OnNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+
     void OnLevel()
     {
         SceneManager.LoadScene("LevelScene");

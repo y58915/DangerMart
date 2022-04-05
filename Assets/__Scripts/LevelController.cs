@@ -11,11 +11,14 @@ public class LevelController : MonoBehaviour
 
     public UnityEvent gameOverEvent;
 
+    public UnityEvent winEvent;
+
     public bool gamePaused { get { return pauseCount != 0; } }
     private int pauseCount;
 
     protected bool noGameOver = false;
 
+    private bool win = false;
     [SerializeField] GameObject medals;
 
 
@@ -51,7 +54,8 @@ public class LevelController : MonoBehaviour
     {
         if (!gamePaused)
         {
-            levelTime -= Time.deltaTime;
+            if(!win)
+                levelTime -= Time.deltaTime;
 
             if (levelTime < 0)
             {
@@ -66,6 +70,14 @@ public class LevelController : MonoBehaviour
                 }
             }
 
+            if(Score.instance.GetScore() >= Score.instance.GetMaxScore() && !win)
+            {
+                win = true;
+                SetPause(true);
+                GetAnalytics();
+                winEvent.Invoke();
+                GameManager.instance.SetScore(level, (int)Score.instance.GetScore(), Score.instance.GetMedal());
+            }
         }
     }
 
