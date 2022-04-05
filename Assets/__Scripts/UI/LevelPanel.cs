@@ -28,7 +28,12 @@ public class LevelPanel : MonoBehaviour
 
         for(int i = 0; i < levels.Count; i++)
         {
-            if (levelMedal[i] == 0)
+            if (i >= levelMedal.Length)
+            {
+                medals[i].sprite = null;
+                medals[i].color = Color.clear;
+            }
+            else if (levelMedal[i] == 0)
             {
                 medals[i].sprite = null;
                 medals[i].color = Color.clear;

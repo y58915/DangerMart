@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] protected Button PauseButton;
 
+    [SerializeField] private GameObject tutorialUI;
+
     #region Singleton
     public static UIManager instance;
 
@@ -62,6 +64,8 @@ public class UIManager : MonoBehaviour
         if (GameOverPanel.activeInHierarchy) return;
 
         PausePanel.SetActive(!PausePanel.activeInHierarchy);
+        if (tutorialUI != null)
+            tutorialUI.SetActive(!tutorialUI.activeInHierarchy);
 
         LevelController.instance.SetPause(PausePanel.activeInHierarchy);
     }

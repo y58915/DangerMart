@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     //level start from 1
     public void SetScore(int level, int score, int medal)
     {
-        if (score > levelScore[level])
+        if (score >= levelScore[level])
         {
             levelScore[level] = score;
             levelMedal[level] = medal;
