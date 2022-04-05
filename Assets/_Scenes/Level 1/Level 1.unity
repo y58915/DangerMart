@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7170,25 +7170,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 140}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &2453017011484390370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6008013153469398938}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4e627366095344c86d895031495424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HUD: {fileID: 8370566324823109140}
-  ShoppingListPanel: {fileID: 8335450636723529313}
-  InventoryPanel: {fileID: 1711735814}
-  PausePanel: {fileID: 3672127625226232888}
-  CashRegister: {fileID: 2801629181958339139}
-  GameOverPanel: {fileID: 189268293}
-  PauseButton: {fileID: 5696020556108907294}
 --- !u!114 &2523557037817807888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10578,7 +10559,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6008013153469398917}
-  - component: {fileID: 2453017011484390370}
   - component: {fileID: 6008013153469398918}
   - component: {fileID: 6008013153469398919}
   - component: {fileID: 6008013153469398936}
@@ -12913,7 +12893,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Mouse/rightButton,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2453017011484390370}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ToggleInventoryPanel
         m_Mode: 1

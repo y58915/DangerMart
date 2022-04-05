@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: L1_2Star_0
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+  - {fileID: 11400000, guid: b98c7e71e666d8b4eaedceb2037abf49, type: 2}
   - {fileID: 11400000, guid: af2f2ffb9eb21ee4181b66f18b29de2c, type: 2}
   score: 0
   rating: 2
