@@ -25,6 +25,9 @@ public class Level1Tutorial : MonoBehaviour
     [SerializeField]
     private CollectionArea_Tutorial watermelonArea;
 
+    [SerializeField]
+    private CollectionArea_Tutorial pineappleArea;
+
     private BoxCollider movementVolume;
 
     // Start is called before the first frame update
@@ -75,6 +78,9 @@ public class Level1Tutorial : MonoBehaviour
     {
         trashTutorial.SetActive(false);
         scoreTutorial.SetActive(true);
+
         levelUI.ActivateScorePanel();
+
+        pineappleArea.canCollect = true;
     }
 }

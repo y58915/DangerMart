@@ -1145,6 +1145,7 @@ MonoBehaviour:
   trashTutorial: {fileID: 1457509149}
   scoreTutorial: {fileID: 1545395121}
   watermelonArea: {fileID: 1640771365332420}
+  pineappleArea: {fileID: 3155020195021740767}
 --- !u!1 &645463962
 GameObject:
   m_ObjectHideFlags: 0
@@ -3383,6 +3384,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3882915705407216889, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: maxScore
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_Enabled
       value: 0
