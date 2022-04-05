@@ -32,7 +32,16 @@ public class PatrollingEnemy : MonoBehaviour
         // Debug.LogFormat("Updating Distance" + Vector3.Distance(transform.position, target));
         // Debug.LogFormat("Updating Index" + waypointIndex);
 
-        if (Vector3.Distance(transform.position, target) < 1)
+        if (LevelController.instance.gamePaused)
+        {
+            enemy.isStopped = true;
+        }
+        else
+        {
+            enemy.isStopped = false;
+        }
+
+        if (Vector3.Distance(transform.position, target) < 0.1)
         {
             // Debug.LogFormat("Update: Position => " + transform.position);
             // Debug.LogFormat("Update: Target => " + target);
