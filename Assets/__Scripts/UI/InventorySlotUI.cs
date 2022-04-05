@@ -29,7 +29,7 @@ public class InventorySlotUI : MonoBehaviour, IPointerDownHandler, IBeginDragHan
     public void ClearItem()
     {
         image.sprite = null;
-        image.color = Color.clear;
+        image.color = Color.white;
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
