@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -113,7 +113,7 @@ RectTransform:
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.1, y: 0.1}
+  m_AnchorMax: {x: 0.12, y: 0.12}
   m_AnchoredPosition: {x: 20, y: 5}
   m_SizeDelta: {x: -20, y: -10}
   m_Pivot: {x: 0, y: 0.5}
@@ -624,16 +624,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 4eade859acaaaa64aa5d5e2fc5867f16, type: 3}
   m_Type: 1
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -687,11 +687,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837651789631048524, guid: df93ec7938e464aa88f05df56302371b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.1
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 8837651789631048524, guid: df93ec7938e464aa88f05df56302371b, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.9
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 8837651789631048524, guid: df93ec7938e464aa88f05df56302371b, type: 3}
       propertyPath: m_AnchorMin.y
@@ -755,6 +755,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df93ec7938e464aa88f05df56302371b, type: 3}
+--- !u!224 &3690007643059587369 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8837651789631048524, guid: df93ec7938e464aa88f05df56302371b, type: 3}
+  m_PrefabInstance: {fileID: 5300788558964376165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7001965817618109276 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2935174654950166841, guid: df93ec7938e464aa88f05df56302371b, type: 3}
@@ -766,8 +771,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &3690007643059587369 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8837651789631048524, guid: df93ec7938e464aa88f05df56302371b, type: 3}
-  m_PrefabInstance: {fileID: 5300788558964376165}
-  m_PrefabAsset: {fileID: 0}
