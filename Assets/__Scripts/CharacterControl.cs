@@ -217,6 +217,8 @@ public class CharacterControl : MonoBehaviour
 
     private void SpeedUp()
     {
+        DebuffUI.instance.SetDebuff("SPEED UP!");
+
         playerNav.speed = originalSpeed * 2.0f;
 
         StartCoroutine(SpeedChange(5.0f));
@@ -247,15 +249,20 @@ public class CharacterControl : MonoBehaviour
     private void AddWildCard()
     {
         Inventory.instance.addItemEvent.Invoke(wildCardRef);
+
+        DebuffUI.instance.SetDebuff("GOT A WILDCARD!", 1f);
     }
 
     private void IncreaseEnergy()
     {
         EnergyBar.instance.AddEnergy();
+
+        DebuffUI.instance.SetDebuff("ENERGY INCREASED!");
     }
 
     public void UseEnergy()
     {
+        DebuffUI.instance.SetDebuff("INVULNERABLE!");
         invulernable = true;
         playerNav.speed = originalSpeed * 2.0f;
         // originalSpeed = originalSpeed * 2.0f; //update original speed as well? we can discuss game design later
@@ -267,6 +274,7 @@ public class CharacterControl : MonoBehaviour
         yield return new WaitForSeconds(invulernablityTime);
         invulernable = false;
         playerNav.speed = originalSpeed;
+        DebuffUI.instance.CleanDebuff();
     }
     
 }

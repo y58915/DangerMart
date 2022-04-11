@@ -40,6 +40,7 @@ public class DebuffUI : MonoBehaviour
         StopAllCoroutines();
         DebuffText.gameObject.SetActive(true);
         DebuffText.text = s;
+        DebuffText.color = Color.white;
     }
 
 
@@ -49,6 +50,7 @@ public class DebuffUI : MonoBehaviour
 
         DebuffText.gameObject.SetActive(true);
         DebuffText.text = s;
+        DebuffText.color = Color.white;
 
         StartCoroutine(CleanDebuffAfterSec(time));
     }
