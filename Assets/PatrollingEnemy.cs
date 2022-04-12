@@ -41,7 +41,7 @@ public class PatrollingEnemy : MonoBehaviour
             enemy.isStopped = false;
         }
 
-        if (Vector3.Distance(transform.position, target) < 0.1 || enemy.velocity.sqrMagnitude < 0.01f)
+        if (Vector3.Distance(transform.position, target) < 0.1 || enemy.velocity.sqrMagnitude == 0f )
         {
             // Debug.LogFormat("Update: Position => " + transform.position);
             // Debug.LogFormat("Update: Target => " + target);
