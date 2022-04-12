@@ -193,11 +193,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4982127149357740, guid: 41b018f12ce178147b4607881dbcdcea, type: 3}
   m_PrefabInstance: {fileID: 2943084}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8456156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6072350451139781234, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
-  m_PrefabInstance: {fileID: 1271731092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &12925711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,6 +2545,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645808508}
   m_CullTransparentMesh: 1
+--- !u!1 &671263615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 665900493445065822, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+  m_PrefabInstance: {fileID: 1271731092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &688233169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,6 +4227,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7214067312255727818, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7653003063653998192, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.099998474
@@ -5663,12 +5667,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: levelTime
-      value: 180
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: GameOverText
       value: 
-      objectReference: {fileID: 8456156}
+      objectReference: {fileID: 671263615}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
