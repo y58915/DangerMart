@@ -257,7 +257,7 @@ public class CharacterControl : MonoBehaviour
     {
         EnergyBar.instance.AddEnergy();
 
-        DebuffUI.instance.SetDebuff("ENERGY INCREASED!");
+        DebuffUI.instance.SetDebuff("ENERGY INCREASED!", 1f);
     }
 
     public void UseEnergy()

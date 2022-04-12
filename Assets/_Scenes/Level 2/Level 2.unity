@@ -5533,6 +5533,70 @@ PrefabInstance:
       propertyPath: levelTime
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1323917529}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1323917529}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Win
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Lose
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: gameOverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8100196777407145413, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_Name
       value: LevelController
