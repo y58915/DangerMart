@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3cda7ddd-80c2-4e1c-8428-b89fe042978e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Instacart-Simulator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/CashRegister.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/CharacterControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/CharacterControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/Enemies/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/Enemies/EnemyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/UI/CashRegisterUI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Level 3/Level 3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Level 3/Level 3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/StartScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/StartScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/LevelController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/LevelController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/ShoppingList/ShoppingListManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Scripts/UI/ShoppingListUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Scripts/UI/ShoppingListUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

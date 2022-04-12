@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Analytics;
+using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LevelController : MonoBehaviour
     public UnityEvent gameOverEvent;
 
     public UnityEvent winEvent;
+    public GameObject GameOverText;
 
     public bool gamePaused { get { return pauseCount != 0; } }
     private int pauseCount;
@@ -65,6 +67,7 @@ public class LevelController : MonoBehaviour
                 {
                     SetPause(true);
                     GetAnalytics();
+                    GameOverText.GetComponent<Text>().text = "Times Up!";
                     gameOverEvent.Invoke();
                     GameManager.instance.SetScore(level, (int)Score.instance.GetScore(), Score.instance.GetMedal());
                 }
@@ -75,6 +78,7 @@ public class LevelController : MonoBehaviour
                 win = true;
                 SetPause(true);
                 GetAnalytics();
+                GameOverText.GetComponent<Text>().text = "Congratulation!";
                 winEvent.Invoke();
                 GameManager.instance.SetScore(level, (int)Score.instance.GetScore(), Score.instance.GetMedal());
             }

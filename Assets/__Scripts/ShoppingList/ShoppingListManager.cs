@@ -101,7 +101,7 @@ public class ShoppingListManager : MonoBehaviour
                 }
                 break;
             case "Level 3":
-                if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE && !levelFlag[2])
+                if (!LevelController.instance.gamePaused && shoppingLists.Count < MAXSIZE)
                 {
                     Debug.Log("New shopping list");
                     NewShoppingList(MAXSIZE - 1);
