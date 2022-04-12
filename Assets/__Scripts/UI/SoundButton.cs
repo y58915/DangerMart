@@ -37,5 +37,6 @@ public class SoundButton : MonoBehaviour
     {
         soundOn = !soundOn;
         UpdateSprite();
+        SoundSettings.instance.onSoundToggle.Invoke();
     }
 }

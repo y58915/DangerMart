@@ -30,10 +30,13 @@ public class Score : MonoBehaviour
     private void Start()
     {
         currentScore = 0;
-        int temp = GameManager.instance.GetMaxScore();
+        if (GameManager.instance != null)
+        {
+            int temp = GameManager.instance.GetMaxScore();
 
-        if (temp != 0)
-            maxScore = temp;
+            if (temp != 0)
+                maxScore = temp;
+        }
     }
 
     // Update is called once per frame
