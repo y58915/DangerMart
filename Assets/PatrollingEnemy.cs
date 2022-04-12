@@ -12,6 +12,7 @@ public class PatrollingEnemy : MonoBehaviour
     NavMeshAgent enemy;
     public Transform[] waypoints;
     int waypointIndex;
+    float lastSpeed = 9999f;
     Vector3 target;
 
     // Start is called before the first frame update
@@ -41,17 +42,18 @@ public class PatrollingEnemy : MonoBehaviour
             enemy.isStopped = false;
         }
 
-        if (Vector3.Distance(transform.position, target) < 0.1 || enemy.velocity.sqrMagnitude == 0f )
+        if (Vector3.Distance(transform.position, target) < 0.1 || (lastSpeed < 0.003f && enemy.velocity.sqrMagnitude < 0.003f) )
         {
             // Debug.LogFormat("Update: Position => " + transform.position);
             // Debug.LogFormat("Update: Target => " + target);
-
             IterateWaypointIndex();
             // Debug.LogFormat("Update: Index => " + waypointIndex);
             // Debug.LogFormat("Iterate Waypoint Index" + waypointIndex);
 
             UpdateDestination();
         }
+
+        lastSpeed = enemy.velocity.sqrMagnitude;
     }
 
     void UpdateDestination() 
