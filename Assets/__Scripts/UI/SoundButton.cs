@@ -16,6 +16,8 @@ public class SoundButton : MonoBehaviour
     void Start()
     {
         soundButton.onClick.AddListener(ToggleSound);
+
+        soundOn = GameManager.instance.GetSound();
         UpdateSprite();
     }
 
@@ -37,5 +39,6 @@ public class SoundButton : MonoBehaviour
     {
         soundOn = !soundOn;
         UpdateSprite();
+        SoundSettings.instance.onSoundToggle.Invoke();
     }
 }

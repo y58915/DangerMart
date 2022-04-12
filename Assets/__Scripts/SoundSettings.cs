@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class SoundSettings : MonoBehaviour
 {
@@ -13,15 +14,35 @@ public class SoundSettings : MonoBehaviour
 
     AudioSource[] sources;
     SoundButton soundButton;
-    
+
+    public UnityEvent onSoundToggle;
+
+    #region Singleton
+    public static SoundSettings instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
         sources = GetComponentsInChildren<AudioSource>(); // the order is BGM, SFX
         // ChangeBGMVolume(volume[BGM]);
         // ChangeSFXVolume(volume[SFX]);
-        soundButton = GameObject.Find("SoundButton").GetComponent<SoundButton>();
-        soundButton.soundOn = !mute;
+
+        onSoundToggle.AddListener(ToggleSound);
+
+        mute = !GameManager.instance.GetSound();
 
         for (int i = 0; i < 2; i++)
         {
@@ -33,12 +54,14 @@ public class SoundSettings : MonoBehaviour
         // sliders[SFX].value = volume[SFX];
     }
 
-    public void ToggleSound(){
+    void ToggleSound(){
         mute = !mute;
         for (int i = 0; i < 2; i++)
         {
             sources[i].mute = mute;
         }
+
+        GameManager.instance.SetSound(mute);
     }
 
     // void ChangeVolume(int type, float num){
