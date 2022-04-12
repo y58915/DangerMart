@@ -29,8 +29,8 @@ public class EnergyBarUI : MonoBehaviour
     {
         switch (i)
         {
-            case 1: firstBar.color = Color.white; secondBar.color = notFilled; thirdBar.color = notFilled; break;
-            case 2: firstBar.color = Color.white; secondBar.color = Color.white; thirdBar.color = notFilled; break;
+            case 1: firstBar.color = Color.white; secondBar.color = Color.clear; thirdBar.color = Color.clear; break;
+            case 2: firstBar.color = Color.white; secondBar.color = Color.white; thirdBar.color = Color.clear; break;
             case 3: firstBar.color = Color.white; secondBar.color = Color.white; thirdBar.color = Color.white; break;
             default: firstBar.color = notFilled; secondBar.color = notFilled; thirdBar.color = notFilled; break;
         }
