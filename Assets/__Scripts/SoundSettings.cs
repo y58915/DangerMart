@@ -42,6 +42,13 @@ public class SoundSettings : MonoBehaviour
 
         onSoundToggle.AddListener(ToggleSound);
 
+        mute = !GameManager.instance.GetSound();
+
+        for (int i = 0; i < 2; i++)
+        {
+            sources[i].mute = mute;
+        }
+
         // Slider[] sliders = GetComponentsInChildren<Slider>(true);
         // sliders[BGM].value = volume[BGM];
         // sliders[SFX].value = volume[SFX];
@@ -53,6 +60,8 @@ public class SoundSettings : MonoBehaviour
         {
             sources[i].mute = mute;
         }
+
+        GameManager.instance.SetSound(mute);
     }
 
     // void ChangeVolume(int type, float num){

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public int currentLevel = 0;
 
+    int soundOn;         //0: off; 1: on
     int[] levelScore;
     int[] levelMedal;    //0: none; 1: bronze; 2: silver; 3: gold
 
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
         levelMedal = new int[levelCount];
 
         ReadScore();
+        ReadSoundSetting();
         DontDestroyOnLoad(this);
     }
 
@@ -56,6 +58,11 @@ public class GameManager : MonoBehaviour
         {
             levelScore[i] = PlayerPrefs.GetInt("LevelMedal " + (i + 1), 0);
         }
+    }
+
+    void ReadSoundSetting()
+    {
+        soundOn = PlayerPrefs.GetInt("Sound", 1);
     }
 
     //level start from 1
@@ -86,6 +93,16 @@ public class GameManager : MonoBehaviour
         SavePrefs();
     }
 
+    public void SetSound(bool tf)
+    {
+        soundOn = tf ? 1 : 0;
+    }
+
+    public bool GetSound()
+    {
+        return soundOn == 1;
+    }
+
     public void SavePrefs()
     {
         PlayerPrefs.Save();
@@ -100,5 +117,11 @@ public class GameManager : MonoBehaviour
     {
         if (currentLevel > levelMaxScore.Length) return 0;
         return levelMaxScore[currentLevel - 1];
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("Sound", soundOn);
+        SavePrefs();
     }
 }
