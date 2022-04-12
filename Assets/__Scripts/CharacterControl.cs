@@ -22,6 +22,8 @@ public class CharacterControl : MonoBehaviour
     private Item wildCardRef;
     [SerializeField]
     public PowerupSpawner powerupSpawner; 
+
+    private SoundManager soundManager;
     
     private CollectionArea targetCollectionArea;
     private bool inputEnabled = true;
@@ -57,6 +59,7 @@ public class CharacterControl : MonoBehaviour
     void Start()
     {
         originalSpeed = playerNav.speed;
+        soundManager = GameObject.Find("SoundManager/SFX").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -141,12 +144,15 @@ public class CharacterControl : MonoBehaviour
             {
                 case PatrollingEnemy.EnemyType.Stun:
                     Stun();
+                    soundManager.Play("Stun");
                     break;
                 case PatrollingEnemy.EnemyType.SlowDown:
                     SlowDown();
+                    soundManager.Play("Slow");
                     break;
                 case PatrollingEnemy.EnemyType.Steal:
                     LoseItem();
+                    soundManager.Play("Steal");
                     break;
                 default:
                     break;

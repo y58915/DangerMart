@@ -622,9 +622,9 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2fce1d1941a07a34697e3d885f7633a9, type: 3}
-    m_FontSize: 100
+    m_FontSize: 80
     m_FontStyle: 1
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 300
     m_Alignment: 4
@@ -633,7 +633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Times Up!
+  m_Text: Congratulations!
 --- !u!1 &8710325791594080522
 GameObject:
   m_ObjectHideFlags: 0
