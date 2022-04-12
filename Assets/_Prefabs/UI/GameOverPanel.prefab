@@ -731,4 +731,4 @@ MonoBehaviour:
   restartButton: {fileID: 2321248129703394478}
   levelButton: {fileID: 9058661535831211083}
   quitButton: {fileID: 5613384590402998597}
-  nextLevelButton: {fileID: 4792987076612541884}
+  nextLevelButton: {fileID: 2321248129703394478}
