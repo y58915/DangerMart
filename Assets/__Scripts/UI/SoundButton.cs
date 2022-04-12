@@ -16,6 +16,7 @@ public class SoundButton : MonoBehaviour
     void Start()
     {
         soundButton.onClick.AddListener(ToggleSound);
+        UpdateSprite();
     }
 
     // Update is called once per frame
@@ -24,19 +25,17 @@ public class SoundButton : MonoBehaviour
         
     }
 
+    void UpdateSprite(){
+        if (soundOn){
+            soundButtonImage.sprite = soundOnSprite;
+        } else{
+            soundButtonImage.sprite = soundOffSprite;
+        }
+    }
+
     void ToggleSound()
     {
-        if (soundOn)
-        {
-            //Sound Off
-            soundButtonImage.sprite = soundOffSprite;
-            soundOn = false;
-        }
-        else
-        {
-            //Sound On
-            soundButtonImage.sprite = soundOnSprite;
-            soundOn = true;
-        }
+        soundOn = !soundOn;
+        UpdateSprite();
     }
 }
