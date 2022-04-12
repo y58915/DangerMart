@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3882915705407216889}
   - component: {fileID: 7050265536835639689}
   - component: {fileID: 5162313865872693218}
+  - component: {fileID: 6817972722294587278}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -100,6 +101,7 @@ MonoBehaviour:
   updateInventoryEvent:
     m_PersistentCalls:
       m_Calls: []
+  soundManager: {fileID: 0}
   movingIndex: 0
   MAXSIZE: 6
 --- !u!114 &8100196777407145409
@@ -115,9 +117,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTime: 90
+  level: 0
   gameOverEvent:
     m_PersistentCalls:
       m_Calls: []
+  winEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  medals: {fileID: 0}
 --- !u!114 &3882915705407216889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScore: 0
+  maxScore: 2000
   UpdateScore:
     m_PersistentCalls:
       m_Calls: []
@@ -174,3 +182,65 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   maximumNeeded: 3
+--- !u!114 &6817972722294587278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100196777407145413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 40e396e29b0054f4fb623c8fd1e5f11d, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c4fb0d7c-a7df-47ac-948e-17b08c025fbc
+    m_ActionName: Player/Move[/Mouse/rightButton,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ffb64e3-0aa1-4ea2-8dbd-d5aa47f2666d
+    m_ActionName: Player/Inventory[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c058c7a1-9036-48f9-9487-263225596a0e
+    m_ActionName: Player/Pause[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7050265536835639689}
+        m_TargetAssemblyTypeName: DevCheat, Assembly-CSharp
+        m_MethodName: AddScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0aafaf96-0da8-4996-bbba-40098122f7a9
+    m_ActionName: Player/AddScore[/Keyboard/equals]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1efdfb27-ec1f-49be-bdb7-1a6fbc0d394f
+    m_ActionName: UI/New action
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

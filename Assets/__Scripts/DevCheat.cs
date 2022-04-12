@@ -24,7 +24,6 @@ public class DevCheat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     
     IEnumerator SetCheat()
@@ -48,5 +47,10 @@ public class DevCheat : MonoBehaviour
         {
             LevelController.instance.SetNoGameOver(NoGameOver);
         }
+    }
+
+    public void AddScore()
+    {
+        Score.instance.AddScore(200);
     }
 }
