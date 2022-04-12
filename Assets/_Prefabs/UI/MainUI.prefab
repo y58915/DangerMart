@@ -590,6 +590,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6008013154396138513}
     m_Modifications:
+    - target: {fileID: 5179798368410483294, guid: d83521d6db93b4d4bb8cb77e58090b4c, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6363362636527663583, guid: d83521d6db93b4d4bb8cb77e58090b4c, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -1020,14 +1024,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a58a20b2c1992c4891776b1a348c026, type: 3}
---- !u!1 &8335450635830343157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2676277786357063467, guid: 7a58a20b2c1992c4891776b1a348c026, type: 3}
-  m_PrefabInstance: {fileID: 6235643008292514526}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1754756072407943585 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5679972748566831999, guid: 7a58a20b2c1992c4891776b1a348c026, type: 3}
+  m_PrefabInstance: {fileID: 6235643008292514526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8335450635830343157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2676277786357063467, guid: 7a58a20b2c1992c4891776b1a348c026, type: 3}
   m_PrefabInstance: {fileID: 6235643008292514526}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8710325790512151515
