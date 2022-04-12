@@ -7,17 +7,22 @@ using UnityEngine.SceneManagement;
 public class StartUI : MonoBehaviour
 {
     [SerializeField] Button startButton;
-    [SerializeField] Button levelButton;
     [SerializeField] Button optionButton;
+
+    [Header("Credit")]
     [SerializeField] Button creditButton;
+    [SerializeField] Button creditReturnButton;
+    [SerializeField] GameObject creditPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         startButton.onClick.AddListener(OnStart);
-        levelButton.onClick.AddListener(OnLevel);
         optionButton.onClick.AddListener(OnOption);
         creditButton.onClick.AddListener(OnCredit);
+        creditReturnButton.onClick.AddListener(OnCreditReturn);
+
+        creditPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,13 +42,14 @@ public class StartUI : MonoBehaviour
 
     }
 
-    void OnLevel()
-    {
-        SceneManager.LoadScene("LevelScene");
-    }
 
     void OnCredit()
     {
+        creditPanel.SetActive(true);
+    }
 
+    void OnCreditReturn()
+    {
+        creditPanel.SetActive(false);
     }
 }
