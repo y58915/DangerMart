@@ -246,10 +246,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 497712835}
-    - target: {fileID: 1620193692746164889, guid: ac6c887b54475aa47b9e88b027eca355, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 10.000061
-      objectReference: {fileID: 0}
     - target: {fileID: 2937826792200819323, guid: ac6c887b54475aa47b9e88b027eca355, type: 3}
       propertyPath: m_Name
       value: StartPanel

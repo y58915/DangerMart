@@ -696,10 +696,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1797502478407727044, guid: b6d8a1ef62d67473d98ae203c7534815, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 10.000061
-      objectReference: {fileID: 0}
     - target: {fileID: 6537805914020769954, guid: b6d8a1ef62d67473d98ae203c7534815, type: 3}
       propertyPath: m_Name
       value: CreditPanel
