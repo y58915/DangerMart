@@ -17,7 +17,7 @@ namespace __Scripts
         [HideInInspector] public UnityEvent CashRegisterUpdate;
         private List<ShoppingList> completable;
         protected List<int> completeableShoppingListIdx;
-
+        private GameObject player;
         public SoundManager soundManager;
 
         // Start is called before the first frame update
@@ -46,6 +46,7 @@ namespace __Scripts
             //
             inventory.CompleteShoppingList(shopList);
             shoppingList.RemoveList(shopList);
+            GameObject.FindWithTag("Player").GetComponent<CharacterControl>().IncreaseEnergy();
             // Debug.Log($"Updated List Size: {shoppingList.GetAllShoppingLists().Count}");
             shoppingList.UpdateListsEvent.Invoke(shoppingList.GetAllShoppingLists());
             CompletableOptions();
@@ -68,6 +69,7 @@ namespace __Scripts
         {
             if (other.CompareTag("Player"))
             {
+                player = other.gameObject;
                 CompletableOptions();
                 if (completeableShoppingListIdx.Count == 0)
                 {

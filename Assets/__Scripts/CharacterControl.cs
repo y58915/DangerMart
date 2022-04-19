@@ -133,7 +133,7 @@ public class CharacterControl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-        Debug.Log("OnCollisionEnter");
+        // Debug.Log("OnCollisionEnter");
         
         if (invulernable)
             return;
@@ -259,7 +259,7 @@ public class CharacterControl : MonoBehaviour
         DebuffUI.instance.SetDebuff("GOT A WILDCARD!", 1f);
     }
 
-    private void IncreaseEnergy()
+    public void IncreaseEnergy()
     {
         EnergyBar.instance.AddEnergy();
 
