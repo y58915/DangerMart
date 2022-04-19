@@ -5887,7 +5887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: levelTime
-      value: 90
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: winEvent.m_PersistentCalls.m_Calls.Array.size
