@@ -6,32 +6,9 @@ using UnityEngine.Events;
 
 public class SoundSettings : MonoBehaviour
 {
-    const int BGM = 0;
-    const int SFX = 1;
-    // static float[] volume = {1.0f , 1.0f};
-    static bool mute = false;
-    // public AudioClip[] clips;
 
     AudioSource[] sources;
     SoundButton soundButton;
-
-    public UnityEvent onSoundToggle;
-
-    #region Singleton
-    public static SoundSettings instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
-    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -40,13 +17,9 @@ public class SoundSettings : MonoBehaviour
         // ChangeBGMVolume(volume[BGM]);
         // ChangeSFXVolume(volume[SFX]);
 
-        onSoundToggle.AddListener(ToggleSound);
-
-        mute = !GameManager.instance.GetSound();
-
         for (int i = 0; i < 2; i++)
         {
-            sources[i].mute = mute;
+            sources[i].mute = !GameManager.instance.GetSound();
         }
 
         // Slider[] sliders = GetComponentsInChildren<Slider>(true);
@@ -54,14 +27,11 @@ public class SoundSettings : MonoBehaviour
         // sliders[SFX].value = volume[SFX];
     }
 
-    void ToggleSound(){
-        mute = !mute;
+    public void ToggleSound(bool state){
         for (int i = 0; i < 2; i++)
         {
-            sources[i].mute = mute;
+            sources[i].mute = !state;
         }
-
-        GameManager.instance.SetSound(mute);
     }
 
     // void ChangeVolume(int type, float num){

@@ -11,14 +11,19 @@ public class SoundButton : MonoBehaviour
     [SerializeField] Sprite soundOffSprite;
 
     public bool soundOn = true;
+    Button btn;
+    SoundSettings soundSettings;
 
     // Start is called before the first frame update
     void Start()
     {
-        soundButton.onClick.AddListener(ToggleSound);
+        soundSettings = GameObject.Find("SoundManager").GetComponent<SoundSettings>();
+        btn = GetComponent<Button>();
+        btn.onClick.AddListener(ToggleSound);
 
         soundOn = GameManager.instance.GetSound();
         UpdateSprite();
+
     }
 
     // Update is called once per frame
@@ -38,7 +43,8 @@ public class SoundButton : MonoBehaviour
     void ToggleSound()
     {
         soundOn = !soundOn;
+        GameManager.instance.SetSound(soundOn);
         UpdateSprite();
-        SoundSettings.instance.onSoundToggle.Invoke();
+        soundSettings.ToggleSound(soundOn);
     }
 }
