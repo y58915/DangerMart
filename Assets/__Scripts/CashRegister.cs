@@ -26,6 +26,7 @@ namespace __Scripts
             inventory = Inventory.instance;
             shoppingList = ShoppingListManager.instance;
             // inventory.updateInventoryEvent.AddListener(CompletableOptions);
+            soundManager = GameObject.Find("SoundManager/SFX").GetComponent<SoundManager>();
         }
 
         // Update is called once per frame

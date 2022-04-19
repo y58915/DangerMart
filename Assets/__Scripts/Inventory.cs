@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public UnityEvent<Item> addItemEvent;
     [HideInInspector] public UnityEvent itemUpdatedEvent;
     [HideInInspector] public UnityEvent updateInventoryEvent;
-    public SoundManager soundManager;
+    SoundManager soundManager;
 
     public int movingIndex;
 
@@ -40,6 +40,7 @@ public class Inventory : MonoBehaviour
 
         addItemEvent.AddListener(AddItem);
         ShoppingListManager.instance.ShoppingListCompleteEvent.AddListener(CompleteShoppingList);
+        soundManager = GameObject.Find("SoundManager/SFX").GetComponent<SoundManager>();
     }
 
 
