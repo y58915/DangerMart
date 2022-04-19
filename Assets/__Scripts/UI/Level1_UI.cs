@@ -7,6 +7,7 @@ public class Level1_UI : UIManager
     private void Start()
     {
         PauseButton.onClick.AddListener(TogglePausePanel);
+        LevelController.instance.winEvent.AddListener(ToggleWinPanel);
 
         ShoppingListPanel.SetActive(false);
         InventoryPanel.SetActive(false);
