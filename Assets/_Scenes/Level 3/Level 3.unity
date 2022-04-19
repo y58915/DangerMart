@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -988,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 7060198435993522608, guid: c3bb7a10d17fe4040a26116ff87dab73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7060198435993522609, guid: c3bb7a10d17fe4040a26116ff87dab73, type: 3}
+      propertyPath: AVERAGE_SPAWNING_TIME
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7060198435993522609, guid: c3bb7a10d17fe4040a26116ff87dab73, type: 3}
       propertyPath: MAX_NUMBER_OF_POWERUPS_ON_MAP
@@ -6190,6 +6194,10 @@ PrefabInstance:
       propertyPath: shoppingListItems.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 88f38740b669047a4b66ef55a5e28650, type: 2}
+    - target: {fileID: 8100196777407145408, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1882263269}
     - target: {fileID: 8100196777407145409, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: level
       value: 3
