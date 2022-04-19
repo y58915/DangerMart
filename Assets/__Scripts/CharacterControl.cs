@@ -157,7 +157,11 @@ public class CharacterControl : MonoBehaviour
                 default:
                     break;
             }
-            AnalyticsResult analyticsResult_Enemies = Analytics.CustomEvent("Enemy Hit", new Dictionary<string, object> { { "Enemy", collision.gameObject.GetComponent<PatrollingEnemy>().enemyType } });
+            AnalyticsResult analyticsResult_Enemies = Analytics.CustomEvent("Enemy Hit", new Dictionary<string, object> 
+            {
+                { "Level", LevelController.instance.GetLevel() },
+                { "Enemy", collision.gameObject.GetComponent<PatrollingEnemy>().enemyType } 
+            });
             // Debug.Log("Enemy Hit: " + analyticsResult_Enemies);
         }
     }
@@ -247,7 +251,7 @@ public class CharacterControl : MonoBehaviour
         }
         int index = Random.Range(0, items.Count);
 
-        Inventory.instance.RemoveItem(items[index]);
+        Inventory.instance.StealItem(items[index]);
 
         DebuffUI.instance.SetDebuff("ITEM STOLEN", 1f);
     }

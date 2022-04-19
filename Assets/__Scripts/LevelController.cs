@@ -90,13 +90,19 @@ public class LevelController : MonoBehaviour
         // Add analytics for High Score
         AnalyticsResult analyticsResult_Score = 
             Analytics.CustomEvent("High Score", new Dictionary<string, object> 
-            { { "Score", Score.instance.GetScore() } });
+            { 
+                { "Level", level }, 
+                { "Score", Score.instance.GetScore() } 
+            });
         // Debug.Log("High Score: " + analyticsResult_Score);
 
         // Add analytics for Total Lists Complete
         AnalyticsResult analyticsResult_Lists = 
             Analytics.CustomEvent("Total Lists Complete", new Dictionary<string, object> 
-            { { "Lists", ShoppingListManager.instance.listsCompleted } });
+            { 
+                { "Level", level }, 
+                { "Lists", ShoppingListManager.instance.listsCompleted } 
+            });
         // Debug.Log("Total Lists Complete: " + analyticsResult_Lists);
 
         float dist = GameObject.FindGameObjectsWithTag("Player")[0].
@@ -104,7 +110,10 @@ public class LevelController : MonoBehaviour
 
         AnalyticsResult analyticsResult_Dist = 
             Analytics.CustomEvent("Distance Traveled", new Dictionary<string, object>
-            { { "Distance", dist } });
+            { 
+                { "Level", level }, 
+                { "Distance", dist } 
+            });
         // Debug.Log("Total Distance Traveled: " + analyticsResult_Dist);
 
         int clicks = GameObject.FindGameObjectsWithTag("Player")[0].
@@ -112,7 +121,10 @@ public class LevelController : MonoBehaviour
 
         AnalyticsResult analyticsResult_Clicks = 
             Analytics.CustomEvent("Mouse Clicks", new Dictionary<string, object> 
-            { { "Clicks", clicks } });
+            {
+                { "Level", level }, 
+                { "Clicks", clicks } 
+            });
         // Debug.Log("Total Mouse Clicks: " + analyticsResult_Clicks);
     }
 
@@ -122,6 +134,12 @@ public class LevelController : MonoBehaviour
     {
         return levelTime;
     }
+
+    public int GetLevel()
+	{
+        return level;
+	}
+
     public void SetNoGameOver(bool tf)
     {
         noGameOver = tf;

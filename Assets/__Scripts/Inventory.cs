@@ -52,7 +52,11 @@ public class Inventory : MonoBehaviour
         else {
             container.Add(_item);
         }
-        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Picked Up", new Dictionary<string, object> { { _item.itemName, 1 } });
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Picked Up", new Dictionary<string, object> 
+        {
+            { "Level", LevelController.instance.GetLevel() },
+            { "Item Picked Up", _item.itemName } 
+        });
         // Debug.Log("New Item " + _item.itemName + analyticsResult_Item);
         PrintInventory();
         itemUpdatedEvent.Invoke();
@@ -73,6 +77,17 @@ public class Inventory : MonoBehaviour
         container.Remove(_item);
         updateInventoryEvent.Invoke();
     }
+
+    public void StealItem(Item _item)
+	{
+        RemoveItem(_item);
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Stolen", new Dictionary<string, object>
+        {
+            { "Level", LevelController.instance.GetLevel() },
+            { "Item Stolen", _item.itemName }
+        });
+    }
+
     public void RemoveWildCard()
     {
         foreach (Item _item in container)
@@ -95,7 +110,11 @@ public class Inventory : MonoBehaviour
         if (movingIndex >= container.Count){
             return;
         }
-        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> { { container[movingIndex].itemName, 1 } });
+        AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Discarded", new Dictionary<string, object> 
+        {
+            { "Level", LevelController.instance.GetLevel() },
+            { "Item Discarded", container[movingIndex].itemName } 
+        });
         // Debug.Log("Discarded Item "+ container[movingIndex].itemName + analyticsResult_Item);
         container.RemoveAt(movingIndex);
         movingIndex = -1;
@@ -115,7 +134,11 @@ public class Inventory : MonoBehaviour
             } else{
                 RemoveWildCard();
             }
-            AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Completed", new Dictionary<string, object> { { item.itemName, 1 } });
+            AnalyticsResult analyticsResult_Item = Analytics.CustomEvent("Item Completed", new Dictionary<string, object> 
+            {
+                { "Level", LevelController.instance.GetLevel() },
+                { "Item Completed", item.itemName } 
+            });
             // Debug.Log("Completed Item " + item.itemName + analyticsResult_Item);
         }
         PrintInventory();
