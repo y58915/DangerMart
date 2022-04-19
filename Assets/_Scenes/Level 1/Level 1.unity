@@ -688,21 +688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTime: 0
   level: 0
-  gameOverEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 600441604}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Lose
-          m_BoolArgument: 0
-        m_CallState: 2
   winEvent:
     m_PersistentCalls:
       m_Calls:
@@ -718,8 +703,6 @@ MonoBehaviour:
           m_StringArgument: Win
           m_BoolArgument: 0
         m_CallState: 2
-  GameOverText: {fileID: 0}
-  medals: {fileID: 0}
   level1Tutorial: {fileID: 641761656}
 --- !u!1 &408165941 stripped
 GameObject:
@@ -1178,11 +1161,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6735294219060468989, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
   m_PrefabInstance: {fileID: 616975936}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &616975940 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1082462929, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
-  m_PrefabInstance: {fileID: 616975936}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &616975941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3672127626112087980, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
@@ -1220,7 +1198,6 @@ MonoBehaviour:
   InventoryPanel: {fileID: 616975942}
   PausePanel: {fileID: 616975941}
   CashRegister: {fileID: 1640770464619945}
-  GameOverPanel: {fileID: 616975940}
   WinPanel: {fileID: 616975939}
   PauseButton: {fileID: 616975938}
   tutorialUI: {fileID: 641761653}
@@ -1466,7 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4fd1554c95ad143900fd8e8d81d67c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelUI: {fileID: 0}
+  levelUI: {fileID: 616975945}
   movementTutorial: {fileID: 786582527}
   collectionTutorial: {fileID: 735659698}
   registerTutorial: {fileID: 162830315}
@@ -4638,7 +4615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ca94827ea5510458b1aa5f3d5505ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShoppingListPanel: {fileID: 0}
+  ShoppingListPanel: {fileID: 616975943}
   CashRegisterUpdate:
     m_PersistentCalls:
       m_Calls: []
