@@ -8,6 +8,7 @@ public class LevelPanel : MonoBehaviour
 {
     [SerializeField] Button home;
     [SerializeField] List<Button> levels;
+    [SerializeField] List<GameObject> levelLockers;
     [SerializeField] List<Image> medals;
     [SerializeField] List<Sprite> medalType;
 
@@ -46,6 +47,8 @@ public class LevelPanel : MonoBehaviour
         }
 
         home.onClick.AddListener(onHome);
+
+        UpdateLevelEnable();
     }
 
     // Update is called once per frame
@@ -63,5 +66,24 @@ public class LevelPanel : MonoBehaviour
     void onHome()
     {
         SceneManager.LoadScene("StartScene");
+    }
+
+    void UpdateLevelEnable()
+    {
+        int[] levelEnable = GameManager.instance.GetLevelEnable();
+
+        for (int i = 0; i < levelEnable.Length; i++)
+        {
+            if (levelEnable[i] == 1)
+            {
+                levels[i].enabled = true;
+                levelLockers[i].SetActive(false);
+            }
+            else
+            {
+                levels[i].enabled = false;
+                levelLockers[i].SetActive(true);
+            }
+        }
     }
 }

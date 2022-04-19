@@ -45,4 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelCount: 4
   currentLevel: 0
-  levelMaxScore: d0070000d0070000d0070000d0070000
+  levelMaxScore: c8000000d0070000d0070000d0070000
+  levelEnable: 

@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
 
     public void ToggleWinPanel()
     {
+        Debug.Log("win panel");
         WinPanel.SetActive(!WinPanel.activeInHierarchy);
 
         WinPanel.GetComponent<GameOvereUI>().SetMedal(Score.instance.GetMedal());
