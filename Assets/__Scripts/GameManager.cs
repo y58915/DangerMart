@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public int currentLevel = 0;
 
-    int soundOn;         //0: off; 1: on
+    int soundOn = 1;         //0: off; 1: on
     int[] levelScore;
     int[] levelMedal;    //0: none; 1: bronze; 2: silver; 3: gold
 
