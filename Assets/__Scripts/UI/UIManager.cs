@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] protected GameObject InventoryPanel;
     [SerializeField] protected GameObject PausePanel;
     [SerializeField] protected GameObject CashRegister;
-    [SerializeField] protected GameObject GameOverPanel;
 
     [SerializeField] protected GameObject WinPanel;
 
@@ -41,17 +40,12 @@ public class UIManager : MonoBehaviour
     {
         PauseButton.onClick.AddListener(TogglePausePanel);
 
-        LevelController.instance.gameOverEvent.AddListener(ToggleGameOverPanel);
-
         LevelController.instance.winEvent.AddListener(ToggleWinPanel);
         ShoppingListPanel.SetActive(true);
         InventoryPanel.SetActive(true);
         PausePanel.SetActive(false);
         CashRegister.SetActive(false);
-        GameOverPanel.SetActive(false);
         WinPanel.SetActive(false);
-        LevelController.instance.winEvent.AddListener(EnableMedals);
-        LevelController.instance.gameOverEvent.AddListener(EnableMedals);
     }
 
     // Update is called once per frame
@@ -61,7 +55,7 @@ public class UIManager : MonoBehaviour
 
     public void TogglePausePanel()
     {
-        if (GameOverPanel.activeInHierarchy) return;
+        if (WinPanel.activeInHierarchy) return;
 
         PausePanel.SetActive(!PausePanel.activeInHierarchy);
         if (tutorialUI != null)
@@ -70,18 +64,11 @@ public class UIManager : MonoBehaviour
         LevelController.instance.SetPause(PausePanel.activeInHierarchy);
     }
 
-    protected void EnableMedals()
-    {
-    }
-
-
-    public void ToggleGameOverPanel()
-    {
-        GameOverPanel.SetActive(!GameOverPanel.activeInHierarchy);
-    }
 
     public void ToggleWinPanel()
     {
         WinPanel.SetActive(!WinPanel.activeInHierarchy);
+
+        WinPanel.GetComponent<GameOvereUI>().SetMedal(Score.instance.GetMedal());
     }
 }

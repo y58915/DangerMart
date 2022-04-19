@@ -8,20 +8,15 @@ public class Level1_UI : UIManager
     {
         PauseButton.onClick.AddListener(TogglePausePanel);
 
-        LevelController.instance.gameOverEvent.AddListener(ToggleGameOverPanel);
-
         ShoppingListPanel.SetActive(false);
         InventoryPanel.SetActive(false);
         PausePanel.SetActive(false);
         //CashRegister.SetActive(false);
-        GameOverPanel.SetActive(false);
         WinPanel.SetActive(false);
         HUD.transform.Find("Score").gameObject.SetActive(false);
         HUD.transform.Find("Timer").gameObject.SetActive(false);
         HUD.transform.Find("EnergyBar").gameObject.SetActive(false);
         HUD.transform.Find("Debuff").gameObject.SetActive(false);
-
-        LevelController.instance.gameOverEvent.AddListener(EnableMedals);
     }
 
     public void ActivateInventoryPanel()
