@@ -10,10 +10,8 @@ public class LevelController : MonoBehaviour
     [SerializeField] private float levelTime;
     [SerializeField] protected int level;
 
-    public UnityEvent gameOverEvent;
 
     public UnityEvent winEvent;
-    public GameObject GameOverText;
 
     public bool gamePaused { get { return pauseCount != 0; } }
     private int pauseCount;
@@ -21,7 +19,6 @@ public class LevelController : MonoBehaviour
     protected bool noGameOver = false;
 
     private bool win = false;
-    [SerializeField] GameObject medals;
 
 
     #region Singleton
@@ -67,8 +64,7 @@ public class LevelController : MonoBehaviour
                 {
                     SetPause(true);
                     GetAnalytics();
-                    GameOverText.GetComponent<Text>().text = "Times Up!";
-                    gameOverEvent.Invoke();
+                    winEvent.Invoke();
                     GameManager.instance.SetScore(level, (int)Score.instance.GetScore(), Score.instance.GetMedal());
                 }
             }
@@ -78,7 +74,6 @@ public class LevelController : MonoBehaviour
                 win = true;
                 SetPause(true);
                 GetAnalytics();
-                GameOverText.GetComponent<Text>().text = "Congratulation!";
                 winEvent.Invoke();
                 GameManager.instance.SetScore(level, (int)Score.instance.GetScore(), Score.instance.GetMedal());
             }

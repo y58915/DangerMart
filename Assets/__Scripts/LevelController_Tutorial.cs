@@ -16,7 +16,7 @@ public class LevelController_Tutorial : LevelController
 
             SetPause(true);
             //GetAnalytics();
-            gameOverEvent.Invoke();
+            winEvent.Invoke();
             GameManager.instance.SetScore(level, (int)Score.instance.GetScore(), Score.instance.GetMedal());
         }
     }
