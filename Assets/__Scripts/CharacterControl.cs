@@ -176,12 +176,15 @@ public class CharacterControl : MonoBehaviour
                     if (invulernable)
                         return;
                     SpeedUp();
+                    soundManager.Play("Pickup");
                     break;
                 case PowerupItem.PowerUpAbility.WildCard:
                     AddWildCard();
+                    soundManager.Play("Pickup");
                     break;
                 case PowerupItem.PowerUpAbility.EnergyDrink:
                     IncreaseEnergy();
+                    soundManager.Play("Pickup");
                     break;
                 default:
                     break;
