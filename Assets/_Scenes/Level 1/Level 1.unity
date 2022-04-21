@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -576,7 +576,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3882915705407216889, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: maxScore
-      value: 100
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 8100196777407145408, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: soundManager
@@ -4959,8 +4959,8 @@ MonoBehaviour:
   collectionPosition: {fileID: 5199851712156804045}
   collectionTrigger: {fileID: 0}
   item: {fileID: 11400000, guid: af2f2ffb9eb21ee4181b66f18b29de2c, type: 2}
-  canCollect: 0
-  completed: 1
+  canCollect: 1
+  completed: 0
   level1Tutorial: {fileID: 641761656}
 --- !u!1 &3932508750668975137
 GameObject:
