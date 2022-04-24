@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4238,7 +4238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310078373462693283, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10.0000305
+      value: 10.000153
       objectReference: {fileID: 0}
     - target: {fileID: 5696020554964586634, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5732,7 +5732,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3882915705407216889, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: maxScore
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_Enabled
