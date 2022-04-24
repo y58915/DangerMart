@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Steals items
+  m_text: <b>Steals</b> items
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}
   m_sharedMaterial: {fileID: -535809118107587110, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}
@@ -3519,7 +3519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Stunned for \na while"
+  m_text: "<b>Stunned</b> for \na while"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}
   m_sharedMaterial: {fileID: -535809118107587110, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}
@@ -4231,6 +4231,10 @@ PrefabInstance:
     - target: {fileID: 4746217117432690193, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873261563234530342, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5310078373462693283, guid: 28521dd1c4e13a140b710dfd7f0de5e7, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5728,7 +5732,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3882915705407216889, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: maxScore
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7050265536835639689, guid: be6ec81fa749f5f4bade2488b6d67142, type: 3}
       propertyPath: m_Enabled
@@ -5969,7 +5973,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Slows \nmovement"
+  m_text: '<b>Slows </b>
+
+    movement'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}
   m_sharedMaterial: {fileID: -535809118107587110, guid: b8300b2202f3c984cbc24f3d52e572e4, type: 2}

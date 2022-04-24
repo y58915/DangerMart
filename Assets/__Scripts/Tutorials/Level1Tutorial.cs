@@ -58,25 +58,12 @@ public class Level1Tutorial : MonoBehaviour
         if (other.gameObject.GetComponent<CharacterControl>() != null)
         {
             movementTutorial.SetActive(false);
-            Debug.Log("Deactivating movement tutorial");
-
             movementVolume.enabled = false;
-            Debug.Log("Deativating trigger volume");
 
             collectionTutorial.SetActive(true);
-            Debug.Log("Activating collection tutorial");
-
-            if (levelUI != null)
-                Debug.Log("The level UI exists");
-            else
-                Debug.Log("The level UI DOES NOT exist");
-
             levelUI.ActivateInventoryPanel();
 
-            Debug.Log("Activating inventory panel");
-
             watermelonArea.canCollect = true;
-            Debug.Log("Activating watermelon collection area");
         }
     }
 
