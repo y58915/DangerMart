@@ -49,7 +49,10 @@ public class GameOvereUI : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level 4")
             SceneManager.LoadScene("StartScene");
         else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        {
+            GameManager.instance.currentLevel = GameManager.instance.currentLevel+1;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     void OnLevel()

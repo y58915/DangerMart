@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
     public int GetMaxScore()
     {
         if (currentLevel > levelMaxScore.Length) return 0;
-        return levelMaxScore[currentLevel - 1];
+        return levelMaxScore[currentLevel];
     }
 
 
