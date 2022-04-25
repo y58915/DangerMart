@@ -32,11 +32,13 @@ public class StarRatingUI : MonoBehaviour
         {
             if (num > 0)
             {
+                child.gameObject.SetActive(true);
                 child.sprite = fullStar;
                 num -= 1;
             } 
             else
             {
+                child.gameObject.SetActive(true);
                 child.sprite = emptyStar;
             }
         }
