@@ -14,10 +14,10 @@ public class StarRatingUI : MonoBehaviour
     void Start()
     {
         starList = GetComponentsInChildren<Image>();
-        foreach (var child in starList)
-        {
-            child.gameObject.SetActive(false);
-        }
+        //foreach (var child in starList)
+        //{
+        //    child.gameObject.SetActive(false);
+        //}
     }
 
     // Update is called once per frame
@@ -32,11 +32,13 @@ public class StarRatingUI : MonoBehaviour
         {
             if (num > 0)
             {
+                //child.gameObject.SetActive(true);
                 child.sprite = fullStar;
                 num -= 1;
             } 
             else
             {
+                //child.gameObject.SetActive(true);
                 child.sprite = emptyStar;
             }
         }
