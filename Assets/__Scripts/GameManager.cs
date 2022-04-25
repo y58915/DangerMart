@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     //level start from 1
     public void SetScore(int level, int score, int medal)
     {
-        if (medal != 0)
+        if (medal != 0 && level != 3)
         {
             SetLevelEnable(level + 1);
         }
