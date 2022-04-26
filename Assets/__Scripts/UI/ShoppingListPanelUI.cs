@@ -39,15 +39,15 @@ public class ShoppingListPanelUI : MonoBehaviour
     {
         for (int i = 0; i < list.Count; i++)
         {
-            shoppingListUIArray[i].enabled = true;
+            shoppingListUIArray[i].gameObject.SetActive(true);
             shoppingListUIArray[i].UpdateText(list[i]);
             ratingUIs[i].SetStar(list[i].rating);
         }
 
         for (int i = list.Count; i < ShoppingListManager.instance.MAXSIZE; i++)
         {
-            shoppingListUIArray[i].enabled = false;
             shoppingListUIArray[i].UpdateText();
+            shoppingListUIArray[i].gameObject.SetActive(false);
         }
     }
 }
