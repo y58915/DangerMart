@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Wildcard
   itemCategory: 2
   itemDescription: 
-  itemImage: {fileID: 21300000, guid: 597f5c2b883cb4cc686cef6013cadacb, type: 3}
+  itemImage: {fileID: 3196781424389100179, guid: 0ef195ebc7d78c3498cbce40e560b1be, type: 3}
   itemModelPrefab: {fileID: 1000011322177112, guid: 4f544c14cf326b843a5f07e7de41640e, type: 3}
   score: 0
   ability: 
