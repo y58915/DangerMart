@@ -460,30 +460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8616405013686057931, guid: bd3351222873a48fb98e9dbd3e3d1db0, type: 3}
-      propertyPath: levelMaxScore.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616405013686057931, guid: bd3351222873a48fb98e9dbd3e3d1db0, type: 3}
-      propertyPath: levelMaxScore.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616405013686057931, guid: bd3351222873a48fb98e9dbd3e3d1db0, type: 3}
-      propertyPath: levelMaxScore.Array.data[1]
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616405013686057931, guid: bd3351222873a48fb98e9dbd3e3d1db0, type: 3}
-      propertyPath: levelMaxScore.Array.data[2]
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616405013686057931, guid: bd3351222873a48fb98e9dbd3e3d1db0, type: 3}
-      propertyPath: levelMaxScore.Array.data[3]
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 8616405013686057931, guid: bd3351222873a48fb98e9dbd3e3d1db0, type: 3}
-      propertyPath: levelMaxScore.Array.data[4]
-      value: 1000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd3351222873a48fb98e9dbd3e3d1db0, type: 3}
 --- !u!1 &1362586952
