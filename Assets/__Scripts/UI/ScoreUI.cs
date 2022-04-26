@@ -22,7 +22,7 @@ public class ScoreUI : MonoBehaviour
 
     void UpdateScoreUI(float score)
     {
-        float temp = Mathf.Clamp(score / Score.instance.GetMaxScore(), 0, 1);
+        float temp = Mathf.Clamp(score / Score.instance.GetMaxScore(), 0, 1) * 0.9f + 0.1f;
 
         rt.anchorMax = new Vector2(rt.anchorMax.x, temp);
     }
