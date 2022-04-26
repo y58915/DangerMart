@@ -398,6 +398,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6672078180373338440, guid: ac6c887b54475aa47b9e88b027eca355, type: 3}
+      propertyPath: m_Text
+      value: "Engineers: \nChen Qian\nJiayu Xu\nJiashuo Tong\nJun Lin\nKento Yamanaka\nRutu
+        Mayurkumar Desai\nTony Quach"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac6c887b54475aa47b9e88b027eca355, type: 3}
 --- !u!1001 &1222538149
