@@ -222,7 +222,7 @@ public class CharacterControl : MonoBehaviour
     {
         DebuffUI.instance.SetDebuff("SLOW");
 
-        playerNav.speed = originalSpeed * 0.25f;
+        playerNav.speed = originalSpeed * 0.4f;
 
         StartCoroutine(SpeedChange(5.0f));
 
@@ -234,7 +234,7 @@ public class CharacterControl : MonoBehaviour
 
         playerNav.speed = originalSpeed * 2.0f;
 
-        StartCoroutine(SpeedChange(5.0f));
+        StartCoroutine(SpeedChange(4.0f));
     }
 
     private IEnumerator SpeedChange(float duration)
