@@ -1,2 +1,2 @@
-# Instacart-Simulator
+# DangerMart
 CSCI 526 Team Sleepless
